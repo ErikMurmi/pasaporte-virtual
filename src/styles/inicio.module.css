@@ -1,0 +1,43 @@
+/* Estilos título */
+.titulo{
+    color:#8D2331;
+    padding-top: 2vh;
+    padding-bottom: 1vh;
+    text-align: left;   
+    font-size:2.5vh; 
+    margin-left: 5vw;
+}
+/* Estilos botón */
+div.form input{
+    display: block;
+    background-color: #8D2331;
+    border: 2px solid #8D2331;
+    color: white;
+    border-radius: 10px;
+    height: 6vh;
+    margin: 3vh auto 1vh auto;
+    width: 30%;
+}
+/* Scroll */
+div.scroll{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+div.scroll .imagen{
+    margin: 0 auto 0 auto;
+    height: 40vh;
+    width: 24.9vh;
+}
+div.scroll button{
+    margin: 0 auto 0 auto;
+    background-color: #fff;
+    border:solid #fff;
+    width: 5vh;
+    height: 5vh;
+}
+div.scroll BiLeftArrow, div.scroll BiLeftArrow{
+    color:#8D2331;
+}
