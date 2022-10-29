@@ -19,7 +19,7 @@ export const registro = () => {
                 <input id="contrasenia" type="password" placeholder="Ingresa tu contraseña"></input>
                 <label for="colegio">Mi colegio</label>
                 <select name="colegio" id="colegio">
-                    <option value="" disabled selected>Select your option</option>
+                    <option value="" disabled selected>Elige tu colegio</option>
                     <option value="uea">Unidad Educativa Alluriquín</option>
                     <option value="cc">Colegio Caracas</option>
                     <option value="cq">Colegio Quito</option>

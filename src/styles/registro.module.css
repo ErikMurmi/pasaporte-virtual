@@ -10,6 +10,7 @@
 .form{
     color: black;
 }
+
 /* Centrar y ancho */
 form.form label, form.form input, form.form select{
     display: block;
