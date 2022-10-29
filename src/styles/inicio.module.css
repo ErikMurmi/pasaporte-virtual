@@ -1,6 +1,6 @@
 /* Estilos título */
 .titulo{
-    color:#8D2331;
+    color:black;
     padding-top: 2vh;
     padding-bottom: 1vh;
     text-align: left;   
@@ -8,15 +8,16 @@
     margin-left: 5vw;
 }
 /* Estilos botón */
-div.form input{
-    display: block;
+div.form button{
+    display: flex;
+    align-items: center;
     background-color: #8D2331;
     border: 2px solid #8D2331;
     color: white;
     border-radius: 10px;
     height: 6vh;
     margin: 3vh auto 1vh auto;
-    width: 30%;
+    width: 40%;
 }
 /* Scroll */
 div.scroll{

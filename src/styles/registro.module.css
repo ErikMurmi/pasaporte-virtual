@@ -1,6 +1,6 @@
 /* Estilos título */
 .titulo{
-    color:#8D2331;
+    color:black;
     padding-top: 1vh;
     padding-bottom: 0vh;
     text-align: center;   
@@ -8,7 +8,7 @@
 }
 /* Estilos formulario*/
 .form{
-    color: #8D2331;
+    color: black;
 }
 /* Centrar y ancho */
 form.form label, form.form input, form.form select{
@@ -19,7 +19,6 @@ form.form label, form.form input, form.form select{
 }
 /*Estilizar inputs y botón*/
 form.form input:not([type^="submit"]){
-    color: #8D2331;
     border: 2px solid #8D2331;
     text-align: left;
     border-radius: 10px;
@@ -39,6 +38,13 @@ form.form input[type^="submit"]{
     height: 6vh;
     margin: 4vh auto 5vh auto;
     width: 75%;
+}
+
+form.form select{
+    color: black;
+    border: 2px solid #8D2331;
+    border-radius: 10px;
+    height: 6vh;
 }
 
 /* Estilos link */

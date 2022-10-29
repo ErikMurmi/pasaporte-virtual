@@ -12,18 +12,19 @@ export const login = () => {
             </Head>
             <Barra></Barra>
             <div className={style.titulo}>
-                <h2 >Pasaporte UDLA</h2>
+                <h1>Pasaporte UDLA</h1>
+                <h2>Inicio de Sesión</h2>
             </div>
             <form className={style.form}>
-                    <label for="email">Email:</label>
+                    <label for="email">Email</label>
                     <input id="email" type="email" placeholder="Ingresa tu correo"></input>
-                    <label for="contrasenia">Contraseña:</label>
+                    <label for="contrasenia">Contraseña</label>
                     <input id="contrasenia" type="password" placeholder="Ingresa tu contraseña"></input>
                     <input className={style.botones} type="submit" value="Ingresar"></input>
                 </form>
                 <div className={style.linkCenter}>
                     <Link href="/registro" className={style.link}>
-                        Regístrate!
+                        Aún no estás registrado? Haz click aquí
                     </Link>
                 </div>                
         </div>

@@ -2,19 +2,20 @@ import Barra from "../components/Barra"
 import style from "../styles/inicio.module.css"
 import Insignia from "../Insignia.png"
 import Image from "next/image"
+import qr from "../qr.png"
 import { BiLeftArrow, BiRightArrow } from '../../node_modules/react-icons/bi';
 
-export const inicio = ({ props }) => {
+export const inicio = ({ props, Nombre }) => {
   return (
     <div>
-    <Barra></Barra>
+      <Barra></Barra>
       <div className={style.titulo}>
-        <h2>Nombre: Tito Jaramillo</h2>
-        <h2>Insignias recolectadas:</h2>
+        <h2>Bienvenido {Nombre}</h2>
+        <h2>Insignias recolectadas</h2>
       </div>
       <div className={style.scroll}>
         <button>
-        <BiLeftArrow color="#8D2331" size="5vh"/>
+          <BiLeftArrow color="black" size="5vh" />
         </button>
 
         <Image src={Insignia}
@@ -23,12 +24,16 @@ export const inicio = ({ props }) => {
           className={style.imagen}
         />
         <button>
-          <BiRightArrow color="#8D2331" size="5vh"/>
+          <BiRightArrow color="black" size="5vh" />
         </button>
       </div>
       <div className={style.form}>
-        <input type="button" value="Agregar insignia"></input>
-        <input type="button" value="Cerrar sesión"></input>
+      <button>
+      <Image src={qr} 
+          width={"25vh"}
+          height={"25vh"}
+          />&nbsp;&nbsp; Agregar insignia
+      </button>
       </div>
     </div>
   )
