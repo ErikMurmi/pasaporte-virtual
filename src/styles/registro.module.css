@@ -45,7 +45,8 @@ form.form select{
     color: black;
     border: 2px solid #8D2331;
     border-radius: 10px;
-    height: 6vh;
+    height: 8vh;
+    padding: 10px;
 }
 
 /* Estilos link */
