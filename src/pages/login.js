@@ -4,7 +4,7 @@ import style from "../styles/login.module.css"
 import Link from "next/link"
 import Head from "next/head"
 import { useState } from "react"
-import {loginEmailPassword,tryFirestore} from '../config/client'
+import {loginEmailPassword} from '../config/client'
 import { useRouter } from "next/router"
 
 export const login = () => {
@@ -13,7 +13,6 @@ export const login = () => {
     const [password,setPassword] = useState('')
     const router = useRouter()
 
-    tryFirestore()
     const handleChange =(e)=>{
         const {value,name} = e.target
         if(name===fields.EMAIL){

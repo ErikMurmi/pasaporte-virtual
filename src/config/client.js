@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword,onAuthStateChanged } from "firebase/auth";
 import { getFirestore, collection,addDoc} from "firebase/firestore";
+import { useRouter } from "next/router";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_APIKEY ,
@@ -14,11 +15,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+//const router = useRouter();
 
 export default app
 
 export const loginEmailPassword =(email,password)=>{
-    const auth = getAuth();
     let logged = false;
     logged = signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -38,15 +40,15 @@ export const loginEmailPassword =(email,password)=>{
 export const db = getFirestore(app);
 
 
-export const tryFirestore=async()=>{
-    try {
-        const docRef = await addDoc(collection(db, "users"), {
-          first: "Ada",
-          last: "Lovelace",
-          born: 1815
-        });
-        console.log("Document written with ID: ", docRef.id);
-      } catch (e) {
-        console.error("Error adding document: ", e);
-      }
-}
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    // ...
+  } else {
+    console.log('No hay usuario')
+    //router.replace('/login')
+  }
+});
+
