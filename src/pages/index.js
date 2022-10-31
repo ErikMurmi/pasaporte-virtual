@@ -1,8 +1,32 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { storage } from '../config/client';
+import { ref,getDownloadURL } from 'firebase/storage';
+import { useEffect } from 'react';
+
 
 export default function Home() {
+
+  const pathReference = ref(storage, 'images/badges/FACEA.png');
+  const testImage =() =>{
+      getDownloadURL(pathReference)
+    .then((url) => {
+      // `url` is the download URL for 'images/stars.jpg'
+
+      // Or inserted into an <img> element
+      const img = document.getElementById('badge');
+      console.log(url)
+      img.setAttribute('src', url);
+    })
+    .catch((error) => {
+      // Handle any errors
+    });
+  }
+  useEffect(() => {
+    testImage()
+  }, [])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -28,10 +52,11 @@ export default function Home() {
             <p> Generate a qr code with text or a link</p>
           </a>
 
+          <Image height={200} id="badge">
 
-
-
+          </Image>
         </div>
+        
       </main>
 
       <footer className={styles.footer}>
