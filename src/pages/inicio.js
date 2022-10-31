@@ -3,14 +3,29 @@ import style from "../styles/inicio.module.css"
 import Insignia from "../Insignia.png"
 import Image from "next/image"
 import qr from "../qr.png"
+import useUser from "../hooks/useUser"
+import { useEffect } from "react"
+import { useRouter } from "next/router"
 import { BiLeftArrow, BiRightArrow } from '../../node_modules/react-icons/bi';
+import { getAuth } from "firebase/auth";
 
 export const inicio = ({ props, Nombre }) => {
+  //const user = useUser()
+  const router = useRouter()
+  const auth = getAuth();
+  const user = auth.currentUser;
+  // useEffect(() => {
+  //   !user && router.replace("/login")
+  // }, [user])
+
+  useEffect(() =>{
+    console.log(user)
+  },[])
   return (
     <div>
-      <Barra></Barra>
+      <Barra logged={true} ></Barra>
       <div className={style.titulo}>
-        <h2>Bienvenido {Nombre}</h2>
+        <h2>Bienvenido {user.email}</h2>
         <h2>Insignias recolectadas</h2>
       </div>
       <div className={style.scroll}>

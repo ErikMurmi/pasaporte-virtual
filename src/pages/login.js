@@ -3,15 +3,22 @@ import style from "../styles/login.module.css"
 //import SafeAreaView from "react"
 import Link from "next/link"
 import Head from "next/head"
-import { useState } from "react"
+import { useState, useEffect} from "react"
 import {loginEmailPassword} from '../config/client'
 import { useRouter } from "next/router"
+import useUser from "../hooks/useUser"
 
 export const login = () => {
     const fields = {EMAIL:'email',PASSWORD:'password'}
+    const [errorMsg,setErrorMsg] = useState("")
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState('')
+    const user = useUser()
     const router = useRouter()
+  
+    useEffect(() => {
+      user && router.replace("/inicio")
+    }, [user])
 
     const handleChange =(e)=>{
         const {value,name} = e.target
@@ -26,9 +33,11 @@ export const login = () => {
     const signIn= (form)=>{
         form.preventDefault()
         const logged = loginEmailPassword(email,password)
-        console.log(logged)
-        if(logged){
+        console.log('Logged status: ',logged)
+        if(logged===true){
             router.replace('/inicio')
+        }else{
+            setErrorMsg("Credenciales invalidas")
         }
     }
 
@@ -47,6 +56,7 @@ export const login = () => {
                     <input id="email" name='email' autoComplete="false" type="email" onChange={handleChange} placeholder="Ingresa tu correo"></input>
                     <label htmlFor="contrasenia">Contraseña</label>
                     <input id="contrasenia" name="password" type="password" onChange={handleChange} placeholder="Ingresa tu contraseña"></input>
+                    <p style={{textAlign:"center"}}>{errorMsg}</p>
                     <input className={style.botones} type="submit" value="Ingresar"></input>
                 </form>
                 <div className={style.linkCenter}>

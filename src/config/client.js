@@ -21,8 +21,7 @@ const auth = getAuth();
 export default app
 
 export const loginEmailPassword =(email,password)=>{
-    let logged = false;
-    logged = signInWithEmailAndPassword(auth, email, password)
+    const logged = signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
@@ -33,22 +32,27 @@ export const loginEmailPassword =(email,password)=>{
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        return false
     });
     return logged;
 }
 
 export const db = getFirestore(app);
 
+const mapUserFromFirebaseAuthToUser = (user) => {
+  const { displayName, email, photoURL, uid } = user
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    const uid = user.uid;
-    // ...
-  } else {
-    console.log('No hay usuario')
-    //router.replace('/login')
+  return {
+    avatar: photoURL,
+    username: displayName,
+    email,
+    uid,
   }
-});
+}
 
+export const onFirebaseAuthStateChanged = (onChange) => {
+  return onAuthStateChanged(auth,(user) => {
+    const normalizedUser = user ? mapUserFromFirebaseAuthToUser(user) : null
+    onChange(normalizedUser)
+  })
+}
