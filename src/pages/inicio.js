@@ -1,8 +1,8 @@
 import Barra from "../components/Barra"
 import style from "../styles/inicio.module.css"
-import Insignia from "../Insignia.png"
+import Insignia from "../images/Insignia.png"
 import Image from "next/image"
-import qr from "../qr.png"
+import qr from "../images/qr.png"
 import useUser from "../hooks/useUser"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
@@ -18,9 +18,9 @@ export const inicio = ({ props, Nombre }) => {
   //   !user && router.replace("/login")
   // }, [user])
 
-  useEffect(() =>{
+  useEffect(() => {
     console.log(user)
-  },[])
+  }, [])
   return (
     <div>
       <Barra logged={true} ></Barra>
@@ -43,12 +43,12 @@ export const inicio = ({ props, Nombre }) => {
         </button>
       </div>
       <div className={style.form}>
-      <button>
-      <Image src={qr} 
-          width={"25vh"}
-          height={"25vh"}
-          />&nbsp;&nbsp; Agregar insignia
-      </button>
+        <button>
+          <div className={style.contenidoBoton}>
+          <Image src={qr} className={style.imagen}/>
+          </div>
+          Agregar insignia
+        </button>
       </div>
     </div>
   )

@@ -3,6 +3,36 @@
     background-color: #8D2331;
     padding-top: 1.5vh;
     padding-bottom: 1.5vh;
-    text-align: center;
-    align-items: center;
+    padding-left: 1.5vh;
+    padding-right: 1.5vh;
+    display: flex;
+    justify-content: center;
+}
+
+.barraSpace {
+    width: 100%;
+    background-color: #8D2331;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+    padding-left: 1.5vh;
+    padding-right: 1.5vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container{
+    width: 9.5vh;
+    height: 4vh;
+}
+
+.container .imagen{
+    width: 100%;
+    height: 100%;
+}
+
+.button{
+    background-color: #8D2331;
+    color: #fff;
+    border: solid #8D2331;
+    font-weight: bold;
 }
