@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import { collection, getDocs,addDoc,doc,getDoc} from "firebase/firestore";
 import { db } from "../../../config/client"; 
 
@@ -9,34 +8,30 @@ const Collections ={
 
 export const getAllUsers=async()=>{
     const querySnapshot = await getDocs(collection(db, Collections.USERS));
-    const users = await  querySnapshot.docs.map(async (docp) => {
-        const data = docp.data()
-        const id = docp.id
-        //console.log('llegue')
-        const badges = await getUserUnlockedBadges(id)
-        console.log('badges ', badges)
-        return{
-            id,
-            ...data
-        }
-    })
+    var users = await querySnapshot.docs.reduce(async function(total,item){
+        var user = item.data()
+        var id = item.id
+        var badges = await getUserUnlockedBadges(id)
+        user.unlockedBadges = badges
+        total.push(user)
+        return total
+    },[]);
+    console.log('user: ', users)
     return users
 }
 
 export const getUserUnlockedBadges=async(id)=>{
     const queryBadges = await getDocs(collection(db,`${Collections.USERS}/${id}/unlockedBadges`));
-        //console.log(queryBadges.docs.length)
-    let badgesRq = []
-    queryBadges.docs.forEach(async (docu)=>{
-        const data = docu.data()
+    console.log(queryBadges.docs.length)
+    var result = queryBadges.docs.reduce(async function(total, item) {
+        const data = item.data()
         const badge_doc = await getDoc(data.badge)
-        const id = docu.id
+        const id = item.id
         const badge = badge_doc.data()
-        badgesRq.push(badge)
-        console.log("badges iteration ",badgesRq)
-    })
-    console.log('br ', badgesRq)
-    return badgesRq
+        total.push({id,...badge});
+        return total;
+    }, []);
+    return result
 }
 
 export const addUser=async()=>{
@@ -47,14 +42,6 @@ export default async function handler(req,res){
     const {method,body} = req
     switch(method){
         case 'GET':
-            // const querySnapshot = await getDocs(collection(db, Collections.USERS));
-            // const sol = querySnapshot.docs.map((doc) => {
-            // const data = doc.data()
-            // const id = doc.id
-            // return{
-            //     id,
-            //     ...data
-            // }})
             const sol = await getAllUsers()
             return res.status(200).json(sol)
         case 'POST':
