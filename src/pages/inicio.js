@@ -47,7 +47,7 @@ export const inicio = ({ props, Nombre }) => {
           <div className={style.contenidoBoton}>
           <Image src={qr} className={style.imagen}/>
           </div>
-          Agregar insignia
+          &nbsp;Agregar insignia
         </button>
       </div>
     </div>

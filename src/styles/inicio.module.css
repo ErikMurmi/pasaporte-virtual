@@ -1,13 +1,13 @@
 /* Estilos título */
 .titulo{
     color:black;
-    padding-top: 2vh;
-    padding-bottom: 1vh;
+    padding-top: 3%;
+    padding-bottom: 2%;
     text-align: left;   
-    font-size:2.5vh; 
-    margin-left: 5vw;
+    font-size:100%; 
+    margin-left: 5%;
 }
-/* Estilos botón */
+/* Estilos botón qr*/
 div.form button{
     display: flex;
     align-items: center;
@@ -15,8 +15,8 @@ div.form button{
     border: 2px solid #8D2331;
     color: white;
     border-radius: 10px;
-    height: 6vh;
-    margin: 7vh auto 1vh auto;
+    height: 32%;
+    margin: 17% auto 11% auto;
     width: 40%;
 }
 div.form button{
@@ -28,8 +28,8 @@ div.form button{
 div.form button .contenidoBoton{
     display: flex;
     align-items: center;
-    width: 3.6vh;
-    height: 3.6vh;
+    width: 25%;
+    height: 25%;
 }
 div.form button .contenidoBoton .imagen{
     width: 100%;
@@ -47,15 +47,15 @@ div.scroll{
 }
 div.scroll .imagen{
     margin: 0 auto 0 auto;
-    height: 40vh;
-    width: 24.9vh;
+    height: 80%;
+    width: 49.8%;
 }
 div.scroll button{
     margin: 0 auto 0 auto;
     background-color: #fff;
     border:solid #fff;
-    width: 5vh;
-    height: 5vh;
+    width: 10%;
+    height: 10%;
 }
 div.scroll BiLeftArrow, div.scroll BiLeftArrow{
     color:#8D2331;

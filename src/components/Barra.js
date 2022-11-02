@@ -8,7 +8,7 @@ export const Barra = (props) => {
     const auth = getAuth();
     const signingOut = () => signOut(auth).then(console.log(user));
     return (
-        <div id="fjad">
+        <div>
             <div className={!props.logged?styles.barra:styles.barraSpace}>
                 <div className={styles.container}>
                     <Imagen className={styles.imagen} src={logo}

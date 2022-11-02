@@ -5,13 +5,13 @@
 }
 
 .titulo h1{
-    padding-top: 4vh;
-    padding-bottom: 4vh;
-    font-size:4vh; 
+    padding-top: 7%;
+    padding-bottom: 7%;
+    font-size:175%; 
 }
 .titulo h2{
-    font-size:3.5vh; 
-    padding-bottom: 4vh;
+    font-size:150%; 
+    padding-bottom: 4%;
 }
 /* Estilos formulario*/
 .form{
@@ -22,7 +22,7 @@ form.form label, form.form input{
     display: block;
 	margin: 0 auto 0 auto;
 	width: 70%;
-    font-size: 3vh;
+    font-size: 125%;
 }
 /*Estilizar inputs y botón*/
 form.form input:not([type^="submit"]){
@@ -32,7 +32,7 @@ form.form input:not([type^="submit"]){
     padding-top: 2%;
     padding-bottom: 2%;
     padding-left: 5%;
-    margin: 1vh auto 2vh auto;
+    margin: 2% auto 4% auto;
 }
 form.form input:not([type^="submit"]):focus{
     background-color: lightgoldenrodyellow;
@@ -42,9 +42,10 @@ form.form input[type^="submit"]{
     border: 2px solid #8D2331;
     color: white;
     border-radius: 10px;
-    height: 6vh;
-    margin: 5vh auto 8vh auto;
+    margin: 10% auto 15% auto;
     width: 75%;
+    padding-top: 3%;
+    padding-bottom: 3%;
 }
 
 
@@ -55,9 +56,9 @@ form.form input[type^="submit"]{
     display: block;
 	margin: 0 auto 0 auto;
     text-decoration: underline;
-    font-size: 3vh;
+    font-size: 125%;
 }
 .linkCenter{
-    padding-top: 5vh;
+    padding-top: 5%;
     text-align: center;
 }

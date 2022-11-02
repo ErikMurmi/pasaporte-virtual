@@ -1,28 +1,29 @@
 .barra {
     width: 100%;
+    max-height: 10%;
     background-color: #8D2331;
-    padding-top: 1.5vh;
-    padding-bottom: 1.5vh;
-    padding-left: 1.5vh;
-    padding-right: 1.5vh;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
     display: flex;
     justify-content: center;
 }
 
 .barraSpace {
     width: 100%;
+    max-height: 10%;
     background-color: #8D2331;
-    padding-top: 1.5vh;
-    padding-bottom: 1.5vh;
-    padding-left: 1.5vh;
-    padding-right: 1.5vh;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
     display: flex;
     justify-content: space-between;
 }
 
 .container{
-    width: 9.5vh;
-    height: 4vh;
+    width: 30%;/*Alto de la imagen*/
 }
 
 .container .imagen{
