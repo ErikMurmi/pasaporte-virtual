@@ -1,0 +1,83 @@
+/*Estilo de la imagen que vera el administrador en la lista de insignias*/
+
+.titulo {
+    color: black;
+    padding-bottom: 1vh;
+    font-size: 4vw;
+    margin-left: 7vw;
+}
+
+div.badgeContainer{
+
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+}
+
+div.badgeContainer image{
+   height: 2vh;
+}
+
+div.boton {
+    background-color: #8D2331;
+    border: 2px solid #8D2331;
+    border-radius: 9vh;
+    height: 7vh;
+    margin: 3vh;
+    max-width: 20%;
+    text-align: center;
+    padding-bottom: 1vh;
+    padding-top: 0.5vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    position: absolute;
+    top: 15vh;
+    right: 2vh;
+    font-size: 4vh;
+}
+
+
+div.boton a{
+    color: white;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 4vw;
+    font-weight: bold;
+}
+
+.imagen{
+    height: 15rem;
+    width:auto;
+   
+}
+
+
+form.form label, form.form input{
+    display: block;
+	margin: 0 auto 0 auto;
+	width: 70%;
+    font-size: 3vh;
+}
+/*Estilizar inputs y botón*/
+form.form input:not([type^="submit"]){
+    border: 2px solid #8D2331;
+    text-align: left;
+    border-radius: 10px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+    margin: 1vh auto 2vh auto;
+}
+form.form input:not([type^="submit"]):focus{
+    background-color: lightgoldenrodyellow;
+}
+form.form input[type^="submit"]{
+    background-color: #8D2331;
+    border: 2px solid #8D2331;
+    color: white;
+    border-radius: 10px;
+    height: 6vh;
+    margin: 5vh auto 8vh auto;
+    width: 75%;
+}

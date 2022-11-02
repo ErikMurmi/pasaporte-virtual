@@ -20,8 +20,8 @@ export const getAllBadges=async()=>{
     return badges
 }
 
-export const addBadge=async()=>{
-    await addDoc(collection(db, Collections.BADGES),body)
+export const addBadge=async(badge)=>{
+    await addDoc(collection(db, Collections.BADGES),badge)
 }
 
 export default async function handler(req,res){

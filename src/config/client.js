@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword,onAuthStateChanged } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword,onAuthStateChanged, createUserWithEmailAndPassword} from "firebase/auth";
 import { getFirestore, collection,addDoc} from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { useRouter } from "next/router";
@@ -38,6 +38,26 @@ export const loginEmailPassword =(email,password)=>{
     });
     return logged;
 }
+
+
+export const singUpWithEmailAndPassword=(email,password)=>{
+  const logged = createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log(user)
+      return true
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      return false
+      // ..
+    });
+    return logged
+}
+
 
 export const db = getFirestore(app);
 

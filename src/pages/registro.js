@@ -1,20 +1,26 @@
 import Barra from "../components/Barra"
 import style from "../styles/registro.module.css"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/router"
+import useUser from "../hooks/useUser"
+
+import {singUpWithEmailAndPassword} from '../config/client'
 
 export const registro = () => {
-
-    const fields = {EMAIL:'email',PASSWORD:'password'}
-    const [email,setEmail] = useState("")
-    const [password,setPassword] = useState('')
+    const user = useUser()
+    const router = useRouter()
     const [newUser,setNewUser] = useState({
         nombre:'',
         colegio:'',
         email:'',
         password:'',
-
+        unlockedBadges:[]
     })
+
+    useEffect(() => {
+        user && router.replace("/inicio")
+      }, [user])
 
     const handleChange =(e)=>{
         const {value,name} = e.target
@@ -23,6 +29,7 @@ export const registro = () => {
 
     const signUp=(form)=>{
         form.preventDefault()
+        singUpWithEmailAndPassword(newUser.email,newUser.password)
         console.log(newUser)
     }
 
