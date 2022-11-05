@@ -1,16 +1,20 @@
 //scan.js
 
 import React, { useState, useRef } from "react";
+import { useRouter } from "next/router";
 import { QrReader } from "react-qr-reader";
 import styles from "../styles/Home.module.css";
+import Barra from "../components/Barra";
 
 function Scan() {
   const [data, setData] = useState("No result");
+  const router = useRouter()
 
   return (
-    <div className={styles.container}>
+    <>
+      <Barra/>
       <div className={styles.container}>
-        <QrReader
+        <QrReader 
           onResult={(result, error) => {
             if (!!result) {
               setData(result?.text);
@@ -27,9 +31,10 @@ function Scan() {
         constraints    ={{ facingMode:  "environment"  }}
           style={{ width: "40%", height: "40%" }}
         />
+        <button onClick={()=>{router.replace('/inicio')}}> Volver inicio</button>
         <p>{data}</p>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { onFirebaseAuthStateChanged } from "../config/client"
 import { useRouter } from "next/router"
-import { connectStorageEmulator } from "firebase/storage"
 
 export const USER_STATES = {
   NOT_LOGGED: null,
@@ -18,7 +17,7 @@ export default function useUser() {
 
   useEffect(() => {
     const actualPage = router.pathname
-    user === USER_STATES.NOT_LOGGED && actualPage !== "/registro" && router.push("/login")
+    user === USER_STATES.NOT_LOGGED && actualPage !== "/registro" && router.push("/")
   }, [user])
 
   return user
