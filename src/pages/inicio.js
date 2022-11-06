@@ -8,6 +8,7 @@ import { useEffect } from "react"
 import { useRouter } from "next/router"
 import { BiLeftArrow, BiRightArrow } from '../../node_modules/react-icons/bi';
 import { getAuth } from "firebase/auth";
+import CarouselComponent from "../components/carousel"
 
 export const inicio = ({ props, Nombre }) => {
   //const user = useUser()
@@ -29,18 +30,7 @@ export const inicio = ({ props, Nombre }) => {
         <h2>Insignias recolectadas</h2>
       </div>
       <div className={style.scroll}>
-        <button>
-          <BiLeftArrow color="black" size="5vh" />
-        </button>
-
-        <Image src={Insignia}
-          width={198}
-          height={318}
-          className={style.imagen}
-        />
-        <button>
-          <BiRightArrow color="black" size="5vh" />
-        </button>
+        <CarouselComponent/>
       </div>
       <div className={style.form}>
         <button>
