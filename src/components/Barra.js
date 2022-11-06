@@ -9,14 +9,14 @@ export const Barra = (props) => {
     const signingOut = () => signOut(auth).then(console.log(user));
     return (
         <div>
-            <div className={!props.logged?styles.barra:styles.barraSpace}>
+            <div className={user===undefined || user===null?styles.barra:styles.barraSpace}>
                 <div className={styles.container}>
                     <Imagen className={styles.imagen} src={logo}
                         alt="logo-udla"
                     />
                 </div>
 
-                {props.logged ? <button onClick={signingOut} className={styles.button}>
+                {user ? <button onClick={signingOut} className={styles.button}>
                     Cerrar Sesión
                 </button> : null}
             </div>

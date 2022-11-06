@@ -3,8 +3,9 @@ import style from "../styles/login.module.css"
 //import SafeAreaView from "react"
 import Link from "next/link"
 import Head from "next/head"
-import { useState, useEffect} from "react"
+import { useState, useEffect, use} from "react"
 import {loginEmailPassword} from '../config/client'
+import { getUser } from "./api/users"
 import { useRouter } from "next/router"
 import useUser from "../hooks/useUser"
 
@@ -13,12 +14,13 @@ export const login = () => {
     const [errorMsg,setErrorMsg] = useState("")
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState('')
+    const [info,setInfo] = useState(null)
     const user = useUser()
     const router = useRouter()
   
     useEffect(() => {
-      user && router.replace("/inicio")
-    }, [user])
+        user && router.replace("/inicio")
+      }, [user])
 
     const handleChange =(e)=>{
         const {value,name} = e.target
@@ -30,9 +32,9 @@ export const login = () => {
         }
     }
 
-    const signIn= (form)=>{
+    const signIn=async (form)=>{
         form.preventDefault()
-        const logged = loginEmailPassword(email,password)
+        const logged = await loginEmailPassword(email,password)
         console.log('Logged status: ',logged)
         if(logged===true){
             router.replace('/inicio')

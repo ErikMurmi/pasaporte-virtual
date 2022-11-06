@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword,onAuthStateChanged, createUserWithEmailAndPassword} from "firebase/auth";
 import { getFirestore, collection,addDoc} from "firebase/firestore";
+import { getUser } from "../pages/api/users";
 import { getStorage } from "firebase/storage";
 import { useRouter } from "next/router";
 
@@ -17,43 +18,24 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
+export const auth = getAuth();
 export const storage = getStorage(app);
 
 export default app
-
-export const loginEmailPassword =(email,password)=>{
-    const logged = signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user.email)
-        return true;
-        // ...
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        return false
-    });
-    return logged;
-}
 
 
 export const singUpWithEmailAndPassword=(email,password)=>{
   const logged = createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Signed in 
       const user = userCredential.user;
       console.log(user)
       return true
-      // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.log("code:",errorCode,"msg:",errorMessage)
       return false
-      // ..
     });
     return logged
 }
@@ -61,20 +43,8 @@ export const singUpWithEmailAndPassword=(email,password)=>{
 
 export const db = getFirestore(app);
 
-const mapUserFromFirebaseAuthToUser = (user) => {
-  const { displayName, email, photoURL, uid } = user
-
-  return {
-    avatar: photoURL,
-    username: displayName,
-    email,
-    uid,
-  }
-}
-
-export const onFirebaseAuthStateChanged = (onChange) => {
+export const onFirebaseAuthStateChanged = async (onChange) => {
   return onAuthStateChanged(auth,(user) => {
-    const normalizedUser = user ? mapUserFromFirebaseAuthToUser(user) : null
-    onChange(normalizedUser)
+    onChange(user ? user: null)
   })
 }
