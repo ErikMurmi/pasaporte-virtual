@@ -8,19 +8,16 @@ import { useEffect } from 'react';
 
 export default function Home() {
 
-  const pathReference = ref(storage, 'images/badges/FACEA.png');
+  const pathReference = ref(storage, 'images/badges/FICA.png');
   const testImage =() =>{
       getDownloadURL(pathReference)
     .then((url) => {
-      // `url` is the download URL for 'images/stars.jpg'
-
-      // Or inserted into an <img> element
       const img = document.getElementById('badge');
       console.log(url)
       img.setAttribute('src', url);
     })
     .catch((error) => {
-      // Handle any errors
+      console.log("No se pudo cargar la imagen: ",error)
     });
   }
   useEffect(() => {

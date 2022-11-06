@@ -9,7 +9,9 @@ const imagenesCarousel = [
     { src: "/Insignia.png", alt: "", title: "Insignia 5" },
 ]
 
-export const carousel = () => {
+export const carousel = ({images}) => {
+
+    console.log(images)
     return (
         <div>
             <Carousel 
@@ -37,7 +39,7 @@ export const carousel = () => {
                     );
                   }}
                 >
-                {imagenesCarousel.map((carouselList) => (
+                {images.map((carouselList) => (
                     <div>
                         <img src={carouselList.src} alt={carouselList.title} />
                         <p className="legend">{carouselList.title}</p>

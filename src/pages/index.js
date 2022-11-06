@@ -32,9 +32,9 @@ export const login = () => {
         }
     }
 
-    const signIn=(form)=>{
+    async function signIn(form){
         form.preventDefault()
-        signInWithEmailAndPassword(auth, email, password)
+        await signInWithEmailAndPassword(auth, email, password)
         .then(async(userCredential) => {
             const user = userCredential.user;
             const info = await getUser(user.uid)
@@ -42,7 +42,6 @@ export const login = () => {
                 router.replace('/scan')
             else
                 router.replace('/inicio')
-            console.log(info)
             return true;
         })
         .catch((error) => {

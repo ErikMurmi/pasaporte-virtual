@@ -1,5 +1,5 @@
 import { async } from "@firebase/util";
-import { collection, getDocs,addDoc,doc} from "firebase/firestore";
+import { collection, getDocs,addDoc,doc, setDoc} from "firebase/firestore";
 import { db } from "../../../config/client"; 
 
 const Collections ={
@@ -21,7 +21,7 @@ export const getAllBadges=async()=>{
 }
 
 export const addBadge=async(badge)=>{
-    await addDoc(collection(db, Collections.BADGES),badge)
+    await setDoc(doc(db, Collections.BADGES,badge.name),badge)
 }
 
 export default async function handler(req,res){
