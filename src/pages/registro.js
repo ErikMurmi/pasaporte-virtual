@@ -10,6 +10,13 @@ import {singUpWithEmailAndPassword} from '../config/client'
 export const registro = () => {
     const user = useUser()
     const router = useRouter()
+    const colegios = [
+        {value: "default", colegio: "Elige tu colegio"},
+        {value: "uea", colegio: "Unidad Educativa Alluriquín"},
+        {value: "uea", colegio: "Unidad Educativa Alluriquín"},
+        {value: "uea", colegio: "Unidad Educativa Alluriquín"},
+        {value: "uea", colegio: "Unidad Educativa Alluriquín"},
+    ]
     const [newUser,setNewUser] = useState({
         nombre:'',
         colegio:'',
@@ -53,10 +60,9 @@ export const registro = () => {
                 <label htmlFor="colegio">Mi colegio</label>
                 <select name="colegio" id="colegio" defaultValue={'default'}
                 onChange={handleChange}>
-                    <option value="default">Elige tu colegio</option>
-                    <option value="uea">Unidad Educativa Alluriquín</option>
-                    <option value="cc">Colegio Caracas</option>
-                    <option value="cq">Colegio Quito</option>
+                    {colegios.map((colegio) => (
+                    <option value={colegio.value}>{colegio.colegio}</option>
+                ))}
                 </select>
                 <input type="submit" value="Registrar"></input>
             </form>

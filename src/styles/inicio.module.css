@@ -37,26 +37,8 @@ div.form button .contenidoBoton .imagen{
 }
 
 /* Scroll */
-div.scroll{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 3%;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-div.scroll .imagen{
-    margin: 0 auto 0 auto;
-    height: 80%;
-    width: 49.8%;
-}
-div.scroll button{
-    margin: 0 auto 0 auto;
-    background-color: #fff;
-    border:solid #fff;
-    width: 10%;
-    height: 10%;
-}
-div.scroll BiLeftArrow, div.scroll BiLeftArrow{
-    color:#8D2331;
+.scroll {
+    height: 81.3%;
+    width: 50%;
+    margin: 0 auto;
 }

@@ -1,8 +1,8 @@
 import Barra from "../components/Barra"
 import style from "../styles/inicio.module.css"
-import Insignia from "../Insignia.png"
+import Insignia from "../images/Insignia.png"
 import Image from "next/image"
-import qr from "../qr.png"
+import qr from "../images/qr.png"
 import { BiLeftArrow, BiRightArrow } from '../../node_modules/react-icons/bi';
 import Badge from "../components/Badge"
 import adminStyle from "../styles/admin.module.css"
@@ -30,7 +30,7 @@ export default function badgesList({ props, Nombre }) {
 
     useEffect(() => {
         loadBadges()
-      }, [])
+    }, [])
 
     const loadBadges = async () => {
         let badgeL = await getAllBadges();
@@ -46,9 +46,9 @@ export default function badgesList({ props, Nombre }) {
 
         <div>
             <Barra></Barra>
-            <div className={style.titulo}>
-                <h2>Bienvenido {Nombre}</h2>
-                <h2>Insignias</h2>
+            <div className={adminStyle.titulo}>
+                <h2 >Bienvenido {Nombre}</h2>
+                <h2 >Insignias</h2>
                 <div className={adminStyle.boton}   >
                     <a href="/badges" >
                         Agregar insignia

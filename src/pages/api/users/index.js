@@ -20,9 +20,20 @@ export const getAllUsers=async()=>{
     return users
 }
 
+
+export async function getUser (id){
+    const docRef = doc(db,Collections.USERS,id)
+    const docSnap = await getDoc(docRef)
+    if(docSnap.exists()){
+        return docSnap.data()
+    }else{
+        console.log('No user info found')
+    }
+}
+
 export const getUserUnlockedBadges=async(id)=>{
     const queryBadges = await getDocs(collection(db,`${Collections.USERS}/${id}/unlockedBadges`));
-    console.log(queryBadges.docs.length)
+    console.log('badges # ',queryBadges.docs.length)
     var result = queryBadges.docs.reduce(async function(total, item) {
         const data = item.data()
         const badge_doc = await getDoc(data.badge)
@@ -46,7 +57,8 @@ export default async function handler(req,res){
             return res.status(200).json(sol)
         case 'POST':
             console.log("body ",body)
-            const result = await addDoc(collection(db, Collections.USERS),body)
+            //const result = await addDoc(collection(db, Collections.USERS),body)
+            const result = await getUser(body.id)
             console.log(result)
             return res.status(200).json(result)
         default:

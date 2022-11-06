@@ -1,5 +1,5 @@
-import Insignia from "../Insignia.png"
-import QR from "../qr.png"
+import Insignia from "../images/Insignia.png"
+import QR from "../images/qr.png"
 import Image from "next/image"
 import style from "../styles/admin.module.css"
 import { getAllBadges } from "../pages/api/badges"
