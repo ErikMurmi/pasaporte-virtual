@@ -1,12 +1,7 @@
-import Barra from "../components/Barra"
-import style from "../styles/inicio.module.css"
-import Insignia from "../images/Insignia.png"
-import Image from "next/image"
-import qr from "../images/qr.png"
-import { BiLeftArrow, BiRightArrow } from '../../node_modules/react-icons/bi';
-import Badge from "../components/Badge"
-import adminStyle from "../styles/admin.module.css"
-import { getAllBadges } from "./api/badges"
+import Barra from "../../components/Barra"
+import Badge from "../../components/Badge"
+import adminStyle from "../../styles/admin.module.css"
+import { getAllBadges } from "../api/badges"
 import { useEffect, useState } from "react"
 
 

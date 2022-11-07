@@ -23,6 +23,7 @@ export const login = () => {
     // }, [user])
 
     const handleChange =(e)=>{
+        errorMsg.length>0?setErrorMsg(""):null
         const {value,name} = e.target
         if(name===fields.EMAIL){
             setEmail(value)
@@ -36,10 +37,11 @@ export const login = () => {
         form.preventDefault()
         await signInWithEmailAndPassword(auth, email, password)
         .then(async(userCredential) => {
+            setErrorMsg("Loading...")
             const user = userCredential.user;
             const info = await getUser(user.uid)
             if(info.type==='admin')
-                router.replace('/scan')
+                router.replace('/admin/badgeslis')
             else
                 router.replace('/inicio')
             return true;
@@ -51,12 +53,6 @@ export const login = () => {
             console.log("code:",errorCode,"msg:",errorMessage)
             return false
         });
-        // console.log('Logged status: ',logged)
-        // if(logged===true){
-        //     router.replace('/inicio')
-        // }else{
-        //     setErrorMsg("Credenciales invalidas")
-        // }
     }
 
     return (
@@ -70,18 +66,19 @@ export const login = () => {
                 <h2>Inicio de Sesión</h2>
             </div>
             <form autoComplete="off" className={style.form} onSubmit={signIn}>
-                    <label htmlFor="email">Email</label>
-                    <input id="email" name='email' autoComplete="false" type="email" onChange={handleChange} placeholder="Ingresa tu correo"></input>
-                    <label htmlFor="contrasenia">Contraseña</label>
-                    <input id="contrasenia" name="password" type="password" onChange={handleChange} placeholder="Ingresa tu contraseña"></input>
-                    <p style={{textAlign:"center"}}>{errorMsg}</p>
-                    <input className={style.botones} type="submit" value="Ingresar"></input>
-                </form>
-                <div className={style.linkCenter}>
-                    <Link href="/registro" className={style.link}>
-                        Aún no estás registrado? Haz click aquí
-                    </Link>
-                </div>                
+                <label htmlFor="email">Email</label>
+                <input id="email" name='email' autoComplete="false" type="email" onChange={handleChange} placeholder="Ingresa tu correo"></input>
+                <label htmlFor="contrasenia">Contraseña</label>
+                <input id="contrasenia" name="password" type="password" onChange={handleChange} placeholder="Ingresa tu contraseña"></input>
+                <p style={{textAlign:"center"}}>{errorMsg}</p>
+                <input className={style.botones} type="submit" value="Ingresar"></input>
+            </form>
+            <div className={style.linkCenter}>
+                <p>Aún no estás registrado?</p>
+                <Link href="/registro" className={style.link}>
+                    Haz click aquí
+                </Link>
+            </div>                
         </div>
     )
 }

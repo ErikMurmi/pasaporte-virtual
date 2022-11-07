@@ -1,10 +1,15 @@
 import { async } from "@firebase/util";
-import { collection, getDocs,addDoc,doc, setDoc} from "firebase/firestore";
+import { collection, getDocs,addDoc,doc, setDoc,serverTimestamp} from "firebase/firestore";
 import { db } from "../../../config/client"; 
 
 const Collections ={
     USUARIOS : 'users',
     BADGES:'badges'
+}
+
+export const addUnlockedBadge=async(uid,badge)=>{
+    const docRef =  doc(db,Collections.USUARIOS,uid,"unlockedBadges",badge.name)
+    return await setDoc(docRef,{badge:doc(db,`badges/${badge.name}`),timestamp:serverTimestamp()})
 }
 
 export const getAllBadges=async()=>{
@@ -39,7 +44,8 @@ export default async function handler(req,res){
             return res.status(200).json(sol)
         case 'POST':
             console.log("body ",body)
-            const result = await addDoc(collection(db, Collections.BADGES),body)
+            //const result = await addDoc(collection(db, Collections.BADGES),body)
+            const result = await addUnlockedBadge(body)
             console.log(result)
             return res.status(200).json(result)
         default:
