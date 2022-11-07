@@ -1,4 +1,4 @@
-import styles from '../styles/Barra.module.css'
+import styles from '../styles/components.module.css'
 import logo from "../images/Logo.png"
 import Imagen from "next/image"
 import { getAuth, signOut } from "firebase/auth";
@@ -8,18 +8,16 @@ export const Barra = (props) => {
     const auth = getAuth();
     const signingOut = () => signOut(auth).then(console.log(user));
     return (
-        <div>
-            <div className={user===undefined || user===null?styles.barra:styles.barraSpace}>
-                <div className={styles.container}>
-                    <Imagen className={styles.imagen} src={logo}
-                        alt="logo-udla"
-                    />
-                </div>
-
-                {user ? <button onClick={signingOut} className={styles.button}>
-                    Cerrar Sesión
-                </button> : null}
+        <div className={user === undefined || user === null ? styles.barra : styles.barraSpace}>
+            <div className={styles.containerBarra}>
+                <Imagen className={styles.logoUdla} src={logo}
+                    alt="logo-udla"
+                />
             </div>
+
+            {user ? <button onClick={signingOut} className={styles.botonCerrarSesion}>
+                Cerrar Sesión
+            </button> : null}
         </div>
     )
 }

@@ -6,6 +6,7 @@ body {
   margin: 0;
   overflow-y: auto;
   font-family: 'Roboto', sans-serif;
+  text-align: center;
 }
 
 a {
@@ -13,7 +14,82 @@ a {
   text-decoration: underline;
 }
 
-main{
+/* Títulos */
+h1{
+  padding-top: 7%;
+  padding-bottom: 7%;
+  font-size:175%; 
+  /* width: 100%;
+  text-align: center; */
+}
+h2{
+  font-size:150%;
+  padding-bottom: 4%;
+  /* width: 100%;
+  text-align: center; */
+}
+
+/*Estilizar inputs y botón*/
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  text-align: left;
+  padding-left: 10%;
+  padding-right: 10%;
+  font-size: 1.2em;
+}
+
+label{
+  margin-bottom: -3px;;
+}
+
+input, select {
+  border: 2px solid #8D2331;
+  text-align: left;
+  border-radius: 10px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 5%;
+  font-size: 1.1em;
+}
+
+input[type^="submit"]{
+  background-color: #8D2331;
+  border: 2px solid #8D2331;
+  color: white;
+  border-radius: 10px;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  margin-top: 7%;
+  margin-bottom: 7%;
+  text-align: center;
+}
+
+/* Estilos link */
+.linkCenter {
+  padding-top: 5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 120%;
+}
+
+.link {
+  color: black;
+  text-decoration: underline;
+  margin-left: 2%;
+}
+
+.linkCenter p {
+  margin: 0;
+  padding: 0;
+}
+
+main {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);

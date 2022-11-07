@@ -1,5 +1,5 @@
 import Barra from "../components/Barra"
-import style from "../styles/inicio.module.css"
+import style from "../styles/components.module.css"
 import Image from "next/image"
 import qr from "../images/qr.png"
 import useUser from "../hooks/useUser"
@@ -40,18 +40,18 @@ export default function inicio (props){
 
   return (<>
     <Barra logged={true} ></Barra>
-    <div className={style.form}>
-      <div className={style.titulo}>
+    <div className={style.insigniasUsuario}>
+      <div style={{textAlign:"left"}}>
         <h2>Bienvenido {info?info.name:null}</h2>
         <h2>Insignias recolectadas</h2>
         <p>{props.availableBadges.length}</p>
       </div>
-      <div className={style.scroll}>
+      <div className={[style.tamanioCarousel]}>
         <CarouselComponent images={carrouselBadges}/>
       </div>
       <button onClick={()=>{router.replace('/scan')}}>
-        <div className={style.contenidoBoton}>
-        <Image src={qr} alt='qr_img' className={style.imagen}/>
+        <div className={style.botonQr}>
+        <Image src={qr} alt='qr_img' className={style.imagenBotonQR}/>
         </div>
         &nbsp;Agregar insignia
       </button>
