@@ -53,12 +53,19 @@ form.form input[type^="submit"]{
 .link{
     color: black;
     text-decoration: none;
-    display: block;
-	margin: 0 auto 0 auto;
     text-decoration: underline;
-    font-size: 125%;
+    margin-left: 2%;
 }
 .linkCenter{
     padding-top: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+}
+
+.linkCenter p{
+    margin: 0;
+    padding: 0;
 }

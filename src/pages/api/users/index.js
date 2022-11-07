@@ -1,4 +1,4 @@
-import { collection, getDocs,addDoc,doc,getDoc} from "firebase/firestore";
+import { collection, getDocs,addDoc,doc,getDoc, setDoc} from "firebase/firestore";
 import { db } from "../../../config/client"; 
 
 const Collections ={
@@ -16,7 +16,6 @@ export const getAllUsers=async()=>{
         total.push(user)
         return total
     },[]);
-    console.log('user: ', users)
     return users
 }
 
@@ -33,20 +32,19 @@ export async function getUser (id){
 
 export const getUserUnlockedBadges=async(id)=>{
     const queryBadges = await getDocs(collection(db,`${Collections.USERS}/${id}/unlockedBadges`));
-    console.log('badges # ',queryBadges.docs.length)
-    var result = queryBadges.docs.reduce(async function(total, item) {
-        const data = item.data()
-        const badge_doc = await getDoc(data.badge)
-        const id = item.id
-        const badge = badge_doc.data()
-        total.push({id,...badge});
-        return total;
-    }, []);
+    let result = []
+    for(let i =0; i < queryBadges.docs.length;i++){
+        let data = queryBadges.docs[i].data()
+        let id = queryBadges.docs[i].id
+        let badge_doc = await getDoc(data.badge)
+        let badge = badge_doc.data()
+        result.push({id,...badge});
+    }
     return result
 }
 
-export const addUser=async()=>{
-    await addDoc(collection(db, Collections.USERS),body)
+export const addUser=async(user)=>{
+    await setDoc(doc(db, Collections.USERS,user.id),user)
 }
 
 export default async function handler(req,res){

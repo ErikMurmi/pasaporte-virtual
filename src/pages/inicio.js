@@ -4,64 +4,75 @@ import Image from "next/image"
 import qr from "../images/qr.png"
 import useUser from "../hooks/useUser"
 import { useEffect, useState } from "react"
-import { ref,getDownloadURL } from 'firebase/storage';
 import { getAllBadges } from "./api/badges"
 import { useRouter } from "next/router"
 import { auth,storage } from "../config/client"
+import { getUser } from "./api/users/index"
 import CarouselComponent from "../components/carousel"
 import {getUserUnlockedBadges} from "./api/users/index"
 
 export default function inicio (props){
   const router = useRouter()
-  const user = auth.currentUser;
+  const user = useUser();
   const [info,setInfo] = useState(null)
   const [unlockedBadges,setUnlockedBadges] = useState([])
+  const [carrouselBadges,setCarrouselBadges] = useState(props.availableBadges)
 
-  console.log('props:',props)
   useEffect(() => {
+    async function getUserInfo(){
+      setInfo(await getUser(user.uid))
+    }
     async function getBadges(){
       setUnlockedBadges(await getUserUnlockedBadges(user.uid))
     }
-    getBadges()
-  }, [])
+    if(user!== null && user!==undefined){
+      getBadges()
+      getUserInfo()
+    }
+  }, [user])
 
   useEffect(()=>{
-    console.log('unl bad: ',unlockedBadges)
+    if(unlockedBadges.length>0){
+      setCarrouselBadges(mapBadgesToCarrousel(unlockedBadges))
+    }
   },[unlockedBadges])
 
 
-  return (
-    <div>
-      <Barra logged={true} ></Barra>
+  return (<>
+    <Barra logged={true} ></Barra>
+    <div className={style.form}>
       <div className={style.titulo}>
-        <h2>Bienvenido {user?user.email:null}</h2>
+        <h2>Bienvenido {info?info.name:null}</h2>
         <h2>Insignias recolectadas</h2>
         <p>{props.availableBadges.length}</p>
       </div>
       <div className={style.scroll}>
-        <CarouselComponent images={props.availableBadges}/>
+        <CarouselComponent images={carrouselBadges}/>
       </div>
-      <div className={style.form}>
-        <button onClick={()=>{router.replace('/scan')}}>
-          <div className={style.contenidoBoton}>
-          <Image src={qr} alt='qr_img' className={style.imagen}/>
-          </div>
-          &nbsp;Agregar insignia
-        </button>
-      </div>
+      <button onClick={()=>{router.replace('/scan')}}>
+        <div className={style.contenidoBoton}>
+        <Image src={qr} alt='qr_img' className={style.imagen}/>
+        </div>
+        &nbsp;Agregar insignia
+      </button>
     </div>
+    </>
   )
 }
 
-export const getServerSideProps=async()=>{
-  const badges = await getAllBadges()
-  const imgArray = badges.map((badge)=>{
+const mapBadgesToCarrousel=(badges)=>{
+  return(badges.map((badge)=>{
     return{
       src:badge.image,
       alt:"",
       title:badge.name,
     }
-  })
+  }))
+}
+
+export const getServerSideProps=async()=>{
+  const badges = await getAllBadges()
+  const imgArray = mapBadgesToCarrousel(badges)
   return {
     props:{
       availableBadges:imgArray

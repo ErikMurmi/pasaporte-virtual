@@ -4,8 +4,9 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import useUser from "../hooks/useUser"
-
-import {singUpWithEmailAndPassword} from '../config/client'
+import { createUserWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../config/client"
+import { addUser } from "./api/users"
 
 export const registro = () => {
     const user = useUser()
@@ -13,16 +14,15 @@ export const registro = () => {
     const colegios = [
         {value: "default", colegio: "Elige tu colegio"},
         {value: "uea", colegio: "Unidad Educativa Alluriquín"},
-        {value: "uea", colegio: "Unidad Educativa Alluriquín"},
-        {value: "uea", colegio: "Unidad Educativa Alluriquín"},
-        {value: "uea", colegio: "Unidad Educativa Alluriquín"},
+        {value: "aei", colegio: "Unidad Educativa Alluriquín"},
+        {value: "eao", colegio: "Unidad Educativa Alluriquín"},
+        {value: "oui", colegio: "Unidad Educativa Alluriquín"},
     ]
     const [newUser,setNewUser] = useState({
-        nombre:'',
+        name:'',
         colegio:'',
         email:'',
-        password:'',
-        unlockedBadges:[]
+        type:'client'
     })
 
     useEffect(() => {
@@ -34,10 +34,19 @@ export const registro = () => {
         setNewUser({...newUser,[name]:value})
     }
 
-    const signUp=(form)=>{
+    const signUp=async (form)=>{
         form.preventDefault()
-        singUpWithEmailAndPassword(newUser.email,newUser.password)
-        console.log(newUser)
+        await createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
+        .then(async(userCredential) => {
+            const user = userCredential.user;
+            addUser({id:user.uid,...newUser})
+            })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("code:",errorCode,"msg:",errorMessage)
+            return null
+            });
     }
 
     return (
@@ -49,7 +58,7 @@ export const registro = () => {
 
             <form className={style.form} onSubmit={signUp}>
                 <label htmlFor="nombre">Nombre y Apellido</label>
-                <input id="nombre" type="text" name="nombre" onChange={handleChange}
+                <input id="nombre" type="text" name="name" onChange={handleChange}
                 placeholder="Ingresa tu nombre"></input>
                 <label htmlFor="email">Email</label>
                 <input id="email" name="email" onChange={handleChange}
@@ -61,13 +70,13 @@ export const registro = () => {
                 <select name="colegio" id="colegio" defaultValue={'default'}
                 onChange={handleChange}>
                     {colegios.map((colegio) => (
-                    <option value={colegio.value}>{colegio.colegio}</option>
+                    <option key={colegio.value} value={colegio.value}>{colegio.colegio}</option>
                 ))}
                 </select>
                 <input type="submit" value="Registrar"></input>
             </form>
             <div className={style.linkCenter}>
-                <Link href="/login" className={style.link}>
+                <Link href="/" className={style.link}>
                     Ya tienes una cuenta? Inicia sesión aquí
                 </Link>
             </div>

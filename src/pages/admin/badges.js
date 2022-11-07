@@ -1,11 +1,9 @@
-import Barra from "../components/Barra";
-import style from "../styles/admin.module.css"
-import Switch from '@mui/material/Switch'
+import Barra from "../../components/Barra";
+import style from "../../styles/admin.module.css"
 import React, { useState, Component } from "react";
-import { addBadge } from "./api/badges";
-import { storage } from "../config/client";
+import { addBadge } from "../api/badges";
+import { storage } from "../../config/client";
 import { ref, uploadBytes, get, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 export default function badges() {
     const [nombre, setNombre] = useState("");

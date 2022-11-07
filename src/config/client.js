@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword,onAuthStateChanged, createUserWithEmailAndPassword} from "firebase/auth";
+import { getAuth,onAuthStateChanged, createUserWithEmailAndPassword} from "firebase/auth";
 import { getFirestore, collection,addDoc} from "firebase/firestore";
-import { getUser } from "../pages/api/users";
+import { addUser } from "../pages/api/users";
 import { getStorage } from "firebase/storage";
 import { useRouter } from "next/router";
 
@@ -24,26 +24,9 @@ export const storage = getStorage(app);
 export default app
 
 
-export const singUpWithEmailAndPassword=(email,password)=>{
-  const logged = createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user)
-      return true
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log("code:",errorCode,"msg:",errorMessage)
-      return false
-    });
-    return logged
-}
-
-
 export const db = getFirestore(app);
 
-export const onFirebaseAuthStateChanged = async (onChange) => {
+export const onFirebaseAuthStateChanged = (onChange) => {
   return onAuthStateChanged(auth,(user) => {
     onChange(user ? user: null)
   })
