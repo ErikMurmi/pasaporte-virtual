@@ -118,8 +118,7 @@ export default function badges() {
                 <label htmlFor="image">Seleccione una imagen</label>
                 {nombre!="" &&  <input type={"file"} id="image" onChange={(e) => { setImagen(e.target.files[0]) }} />}
                 {imagen!= null && <button type="button" onClick={uploadImage}>Guardar Imagen</button>}
-                
-                <input type={"submit"} value="Crear" />
+                {imagenRef!=null && <input type={"submit"} value="Crear" />}
 
             </form>
         </>
