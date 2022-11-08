@@ -1,21 +1,6 @@
-/*Estilo de la imagen que vera el administrador en la lista de insignias*/
-div.boton {
-    background-color: #8D2331;
-    border: 2px solid #8D2331;
-    border-radius: 9vh;
-    height: 7vh;
-    margin: 3vh;
-    max-width: 20%;
-    text-align: center;
-    padding-bottom: 1vh;
-    padding-top: 0.5vh;
-    padding-left: 1vh;
-    padding-right: 1vh;
-    position: absolute;
-    top: 3em;
-    right: 2vh;
-    font-size: 4vh;
-}
+
+
+
 
 div.titulo {
     color: black;
@@ -29,8 +14,8 @@ div.badgeContainer {
     align-self: center;
     display: flex;
     flex-direction: row;
-    width: 60%;
-    overflow-y:"auto";
+    width: 85%;
+
 }
 
 div.badgeContainer image {
@@ -40,13 +25,7 @@ div.badgeContainer image {
 
 
 
-div.boton a {
-    color: white;
-    vertical-align: middle;
-    text-decoration: none;
-    font-size: 4vw;
-    font-weight: bold;
-}
+
 
 .imagen {
     height: 10rem;
@@ -54,9 +33,10 @@ div.boton a {
 
 }
 
-form.form{
+form.form {
     margin-bottom: 10%;
 }
+
 form.form label,
 form.form input {
     display: block;
@@ -90,7 +70,7 @@ form.form input[type^="submit"] {
     width: 75%;
 }
 
-form.form button{
+form.form button {
     border: 2px solid #8D2331;
     position: relative;
     border-radius: 10px;
@@ -99,7 +79,7 @@ form.form button{
 
     margin-left: 40%;
     width: 20%;
-    
+
     font-size: large;
     /* color: white;
     display: inline;
@@ -108,6 +88,8 @@ form.form button{
     margin: 5vh auto 8vh auto; */
 }
 
+
+/*Estilo de la imagen que vera el administrador en la lista de insignias*/
 @media only screen and (min-width: 420px) {
 
     div.titulo {
@@ -118,24 +100,76 @@ form.form button{
     }
 
     div.boton {
+
         background-color: #8D2331;
         border: 2px solid #8D2331;
         border-radius: 9vh;
         height: 7vh;
         margin: 3vh;
-        max-width: 20%;
+        max-width: 30%;
         text-align: center;
         padding-bottom: 1vh;
         padding-top: 0.5vh;
         padding-left: 1vh;
         padding-right: 1vh;
         position: absolute;
-        top: 28vh;
+        top: 18rem;
         right: 2vh;
-        font-size: 2vh;
+        font-size: 0.5rem;
     }
-    
+
+    div.badgeContainer {
+
+        align-self: center;
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+
+    }
+
+    div.boton a {
+        color: white;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 2rem;
+    }
 
 
 
 }
+
+
+@media only screen and (max-width: 420px) {
+    div.boton {
+        background-color: #8D2331;
+        border: 2px solid #8D2331;
+        border-radius: 9vh;
+        height: 7vh;
+        margin: 3vh;
+        max-width: 30%;
+        text-align: center;
+        padding-bottom: 1vh;
+        padding-top: 0.5vh;
+        padding-left: 1vh;
+        padding-right: 1vh;
+        position: absolute;
+        top: 5rem;
+        right: 2vh;
+
+    }
+
+    div.boton a {
+        color: white;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+
+
+
+}
+
+

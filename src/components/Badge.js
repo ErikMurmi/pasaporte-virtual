@@ -10,54 +10,33 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../config/client"
 
 export default function Badge(props) {
-    // console.log(props)
-    //props.image.split('/').pop()
     console.log(props.image)
-    // const httpReference = ref(storage, props.image)
-
-
-
-
-    // getDownloadURL(ref(storage, props.image))
-    //     .then((url) => {
-
-    //         // Or inserted into an <img> element
-    //         const img = document.getElementById(`myimg${props.titulo}`);
-    //         if (img != null) {
-    //             img.setAttribute('src', url);
-    //             console.log(url);
-
-    //         }
-
-    //     })
-    //     .catch((error) => {
-    //         // Handle any errors
-    //     });
-
-
-
-
     return (
-        <div style={{ marginTop: "6%", marginBottom: "10%", overflowX: "hidden"}}>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-                <div className={style.badgeContainer}>
 
-                    <img src={props.image}
-                        width={150}
-                        height={150}></img>
+        <div style={{ display: "flex", flexDirection: "column", marginTop: "10%", marginBottom: "10%", borderStyle:"dotted" }}>
+            <div className={style.badgeContainer}>
 
-                    <h2 className={style.titulo}>Nombre: {props.description}<br /><br />
-                        Tipo: {props.type}</h2>
-                </div>
-                <Image src={QR} style={{ height: "10vh", width: "10vh", alignSelf: "center" }} alt={"QR correspondiente a una facultad"} />
-                <div className={style.boton} style={{ position: "revert", alignSelf: "center" }}>
-                    <a href="/badges" >
-                        Editar insignia
-                    </a>
-                </div>
-
+                <img style={{ verticalAlign: "center", marginTop: "10%" }}
+                    src={props.image}
+                    width={150}
+                    height={150}></img>
+                <h2 className={style.texto} style={{ marginLeft: "10%", textAlign: "left" }}>Nombre: {props.description}<br /><br />
+                    Tipo: {props.type}</h2>
+            </div>
+            <img src={props.qrCode}
+                width={200}
+                height={200}
+                style={{ alignSelf: "center" }}
+                alt={"QR correspondiente a una facultad"} />
+            <div className={style.boton} style={{ position: "revert", alignSelf: "center" }}>
+                <a classname={style.botonEditar}
+                    href="" >
+                    Editar insignia
+                </a>
             </div>
 
-        </div >
+        </div>
+
+
     )
 }
