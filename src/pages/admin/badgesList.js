@@ -48,8 +48,8 @@ export default function badgesList({ props, Nombre }) {
                     </a>
                 </div>
             </div>
-            <div style={{overflow:"auto"}}>
-                <div className={adminStyle.badgeList} style={{ overflowY: "auto" }} >
+            
+                <div className={adminStyle.badgeList} >
                     {badgeList.map((badge) => (
                         <Badge key={badge.description} description={badge.description} type={badge.type} image={badge.image}></Badge>
                         // <p key={badge.description}>{badge.description}  {badge.type}</p>
@@ -58,7 +58,7 @@ export default function badgesList({ props, Nombre }) {
 
             </div>
 
-        </div>
+        
     )
 }
 

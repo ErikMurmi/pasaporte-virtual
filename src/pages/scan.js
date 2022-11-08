@@ -9,8 +9,8 @@ import useUser from "../hooks/useUser";
 import { addUnlockedBadge } from "./api/badges";
 import { Button } from "@mui/material";
 
-function Scan() {
-  const [data, setData] = useState("No result");
+function Scan(props) {
+  const [data, setData] = useState("No hay insignia");
   const [visible,setVisible] = useState(false)
   const user = useUser()
   const router = useRouter()
@@ -23,7 +23,7 @@ function Scan() {
 
   return (
     <>
-      <Barra/>
+    
       <div className={styles.container}>
         {visible && <>
           <QrReader 
@@ -44,9 +44,10 @@ function Scan() {
             style={{ width: "40%", height: "40%" }}
           />
           <p>{data}</p>
-          
+{/*           
             <Button onClick={()=>{addUnlockedBadge(user.uid,{"name":"FACEA"})}}  >FACEA</Button>
-            <Button onClick={()=>{addUnlockedBadge(user.uid,{"name":"FICA"})}}  >FICA</Button>
+            <Button onClick={()=>{addUnlockedBadge(user.uid,{"name":"FICA"})}}  >FICA</Button> */}
+            {data!= "No hay insignia" && <Button onClick={()=>{addUnlockedBadge(user.uid,{"name":data})}}  >{data}</Button>}
           </>}
         <button onClick={()=>{router.push('/inicio')}}> Volver inicio</button>
       </div>

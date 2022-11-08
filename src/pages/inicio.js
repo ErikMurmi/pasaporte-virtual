@@ -44,7 +44,7 @@ export default function inicio (props){
       <div style={{textAlign:"left"}}>
         <h2>Bienvenido {info?info.name:null}</h2>
         <h2>Insignias recolectadas</h2>
-        <p>{props.availableBadges.length}</p>
+        <p>{unlockedBadges.length}</p>
       </div>
       <div className={[style.tamanioCarousel]}>
         <CarouselComponent images={carrouselBadges}/>
