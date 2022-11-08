@@ -54,7 +54,9 @@ div.boton a {
 
 }
 
-
+form.form{
+    margin-bottom: 10%;
+}
 form.form label,
 form.form input {
     display: block;

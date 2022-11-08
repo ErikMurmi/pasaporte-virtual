@@ -43,7 +43,7 @@ export default function badgesList({ props, Nombre }) {
                 <h2 >Bienvenido {Nombre}</h2>
                 <h2 >Insignias</h2>
                 <div className={adminStyle.boton}   >
-                    <a href="/admin/badges.js" >
+                    <a href="/admin/badges" >
                         Agregar insignia
                     </a>
                 </div>
