@@ -3,10 +3,12 @@ import style from "../../styles/admin.module.css"
 import React, { useState, Component } from "react";
 import { addBadge } from "../api/badges";
 import { storage } from "../../config/client";
-import { ref, uploadBytes, get, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import QRCode from "react-qr-code"
+import { ref, uploadBytes, get, getDownloadURL, uploadBytesResumable, uploadString } from "firebase/storage";
+import QRCode from "qrcode"
+import Image from "next/image";
 
-export default function createBadge( props ) {
+
+export default function createBadge(props) {
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [tipo, setTipo] = useState(true);
@@ -18,20 +20,30 @@ export default function createBadge( props ) {
     const handleSubmitBadge = async (e) => {
         e.preventDefault();
         console.log()
-        let badge = await addBadge({ description: descripcion, image: imagenRef, name: nombre, qr: "qr3", type: tipo ? "bono" : "normal" });
+        let badge = await addBadge({ description: descripcion, image: imagenRef, name: nombre, qr: qrCode, type: tipo ? "bono" : "normal" });
         alert("Insignia Guardada")
-    };
 
-    const generateQR= () =>{
+
+    };
+    const generateQR = () => {
         QRCode.toDataURL(nombre, (err, nombre) => {
-            if(err) return console.error(err)
+            if (err) return console.error(err)
             console.log(url)
             setQrCode(nombre);
         })
 
     }
 
-    
+    // const generateQR= () =>{
+    //     QRCode.toDataURL(nombre, (err, nombre) => {
+    //         if(err) return console.error(err)
+    //         console.log(url)
+    //         setQrCode(nombre);
+    //     })
+
+    // }
+
+
     console.log(imagen);
     console.log(tipo);
     console.log(nombre);
@@ -71,6 +83,7 @@ export default function createBadge( props ) {
     // };
     const uploadImage = () => {
         const imageRef = ref(storage, `images/badges/${nombre}`);
+        const qrRef = ref(storage, `images/qrCodes/${nombre}QR`);
         const uploadTask = uploadBytesResumable(imageRef, imagen);
 
         // Register three observers:
@@ -101,9 +114,24 @@ export default function createBadge( props ) {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     console.log('File available at', downloadURL);
                     setImagenRef(downloadURL);
+
+                    QRCode.toDataURL(nombre, (err, nombre) => {
+                        if (err) return console.error(err)
+                        console.log(url)
+                        setQrCode(nombre);
+                    })
+
+                    // uploadString(qrRef, qrCode, 'data_url').then((snapshot) => {
+                    //     console.log('Uploaded a data_url string!');
+
+                    //   });
+
+
+
                     alert("Imagen Guardada");
                 });
-            }
+            },
+
         );
     }
 
@@ -118,18 +146,23 @@ export default function createBadge( props ) {
                 <label htmlFor="descripcion">Ingresa la descripción de la Insignia</label><br />
                 <input id="descripcion" type="text" name="descripcion"
                     placeholder="Facultad de Ingenieria y Ciencias" value={descripcion} onChange={(e) => setDescripcion(e.target.value)}></input><br />
-                <image src={qrCode}></image>
+
                 <label htmlFor="tipo">Escoge el tipo de insignia</label>
+
                 {/* <Switch {...label} defaultChecked/> */}
 
                 <label htmlFor="true">Insgignia Bonus</label>
                 <input type={"radio"} id="true" name="tipo" value="True" onChange={(e) => setTipo(true)} defaultChecked />
                 <label htmlFor="false">Insignia normal</label>
                 <input type={"radio"} id="false" name="tipo" value="False" onChange={(e) => setTipo(false)} /><br />
-                <label htmlFor="image">Seleccione una imagen</label>
-                {nombre!="" &&  <input type={"file"} id="image" onChange={(e) => { setImagen(e.target.files[0]) }} />}
-                {imagen!= null && <button type="button" onClick={uploadImage}>Guardar Imagen</button>}
-                {imagenRef!=null && <input type={"submit"} value="Crear" />}
+                {nombre != null && <label htmlFor="image">Seleccione una imagen</label>}
+                {nombre != null && <input type={"file"} id="image" onChange={(e) => { setImagen(e.target.files[0]) }} />}
+                {imagen != null && <button type="button" onClick={uploadImage}>Guardar Imagen</button>}
+                {qrCode != "" && <label>Codigo QR</label>}
+                {qrCode != "" && <Image src={qrCode} width={240} height={240} ></Image>}
+                {qrCode != "" && <a href={qrCode} download={`${nombre}QR.png`}>Descargar codigo QR</a>}
+                {/* {<button type="button" onClick={generateQR}>QR</button>} */}
+                {imagenRef != null && <input type={"submit"} value="Crear" />}
 
             </form>
         </>
@@ -216,7 +249,7 @@ export default function createBadge( props ) {
     //         </Formik>
     //     </div>
 
-        //             <button onClick={uploadImage}>Guardar</button>
+    //             <button onClick={uploadImage}>Guardar</button>
 
-   // )
+    // )
 }
