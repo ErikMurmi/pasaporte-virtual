@@ -37,6 +37,23 @@ export default function inicio (props){
     }
   },[unlockedBadges])
 
+  //const [carrouselFinalBadges, setCarrouselFinalBadges] = useState(carrouselBadges);
+  const [carrouselFinalBadges, setCarrouselFinalBadges] = useState([{src:"/Insignia.png",title:"HOLA",unlocked:true},{src:"/Insignia.png",title:"ADIOS",unlocked:false}]);
+
+  function comparadorListas(){
+    const badges = carrouselBadges;
+    for(let s = 0; s < badges.length; s++){
+      badges[s] = {...badges[i], unlocked:false}
+    }
+    for(let i = 0; i < badges.length;i++){
+      for(let j = 0; j < unlockedBadges.length; j++){
+        if(carrouselBadges[i].title == unlockedBadges[j].title){
+          badges[i].unlocked = true
+        }
+      }
+    }
+    setCarrouselFinalBadges(badges);
+  }
 
   return (<>
     <Barra logged={true} ></Barra>
@@ -47,7 +64,7 @@ export default function inicio (props){
         <p>{unlockedBadges.length}</p>
       </div>
       <div className={[style.tamanioCarousel]}>
-        <CarouselComponent images={carrouselBadges}/>
+        <CarouselComponent images={carrouselFinalBadges}/>
       </div>
       <button onClick={()=>{router.replace('/scan')}}>
         <div className={style.botonQr}>

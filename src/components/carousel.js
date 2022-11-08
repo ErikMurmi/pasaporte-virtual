@@ -1,5 +1,7 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import styles from "../styles/components.module.css"
 import { Carousel } from 'react-responsive-carousel';
+import { style } from "@mui/system";
 
 const imagenesCarousel = [
     { src: "/Insignia.png", alt: "", title: "Insignia 1" },
@@ -11,7 +13,7 @@ const imagenesCarousel = [
 
 export const carousel = ({images}) => {
 
-    //console.log(images)
+    console.log(images)
     return (
         <div>
             <Carousel 
@@ -40,9 +42,10 @@ export const carousel = ({images}) => {
                   }}
                 >
                 {images.map((carouselList) => (
+                  
                     <div key={carouselList.src}>
-                        <img src={carouselList.src} key={carouselList.src} alt={carouselList.title} />
-                        <p className="legend">{carouselList.title}</p>
+                        <img src={carouselList.src} key={carouselList.src} alt={carouselList.title} style={carouselList.unlocked?null:{opacity:".5"}}/>
+                        <p className="legend">{carouselList.unlocked?carouselList.title:"bloqueado"}</p>
                     </div>
                 ))}
             </Carousel>
