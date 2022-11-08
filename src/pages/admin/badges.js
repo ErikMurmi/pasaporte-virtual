@@ -4,22 +4,34 @@ import React, { useState, Component } from "react";
 import { addBadge } from "../api/badges";
 import { storage } from "../../config/client";
 import { ref, uploadBytes, get, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import QRCode from "react-qr-code"
 
-export default function badges() {
+export default function createBadge( props ) {
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [tipo, setTipo] = useState(true);
     const [imagen, setImagen] = useState(null);
     const [imagenRef, setImagenRef] = useState(null);
     const [newBadge, setNewBadge] = useState();
-
-
+    const [qrCode, setQrCode] = useState('');
+    const [url, setUrl] = useState('');
     const handleSubmitBadge = async (e) => {
         e.preventDefault();
         console.log()
         let badge = await addBadge({ description: descripcion, image: imagenRef, name: nombre, qr: "qr3", type: tipo ? "bono" : "normal" });
         alert("Insignia Guardada")
     };
+
+    const generateQR= () =>{
+        QRCode.toDataURL(nombre, (err, nombre) => {
+            if(err) return console.error(err)
+            console.log(url)
+            setQrCode(nombre);
+        })
+
+    }
+
+    
     console.log(imagen);
     console.log(tipo);
     console.log(nombre);
@@ -106,6 +118,7 @@ export default function badges() {
                 <label htmlFor="descripcion">Ingresa la descripción de la Insignia</label><br />
                 <input id="descripcion" type="text" name="descripcion"
                     placeholder="Facultad de Ingenieria y Ciencias" value={descripcion} onChange={(e) => setDescripcion(e.target.value)}></input><br />
+                <image src={qrCode}></image>
                 <label htmlFor="tipo">Escoge el tipo de insignia</label>
                 {/* <Switch {...label} defaultChecked/> */}
 

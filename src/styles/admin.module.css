@@ -30,6 +30,7 @@ div.badgeContainer {
     display: flex;
     flex-direction: row;
     width: 60%;
+    overflow-y:"auto";
 }
 
 div.badgeContainer image {
