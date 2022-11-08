@@ -1,0 +1,86 @@
+/* 
+    *** Estílos Registro ***
+*/
+
+/* Estilos botón qr*/
+
+.insigniasUsuario{
+    margin: auto 5%;
+}
+
+.insigniasUsuario button{
+    display: flex;
+    background-color: #8D2331;
+    border: 2px solid #8D2331;
+    color: white;
+    border-radius: 10px;
+    width: 40%;
+    height: 32%;
+    margin: 17% auto 0 auto;
+    justify-content: space-between;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.insigniasUsuario button .botonQr{
+    display: flex;
+    align-items: center;
+    width: 25%;
+    height: 25%;
+}
+.insigniasUsuario button .botonQr .imagenBotonQR{
+    width: 100%;
+    height: 100%;
+}
+
+/* Scroll */
+.tamanioCarousel {
+    height: 70%;
+    width: 70%;
+    margin: 0 auto;
+}
+
+/*
+    *** Barra ***
+*/
+
+.barra {
+    width: 100%;
+    max-height: 10%;
+    background-color: #8D2331;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+.barraSpace {
+    width: 100%;
+    max-height: 10%;
+    background-color: #8D2331;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.containerBarra{
+    width: 30%;/*Alto de la imagen*/
+}
+
+.containerBarra .logoUdla{
+    width: 100%;
+    height: 100%;
+}
+
+.botonCerrarSesion{
+    background-color: #8D2331;
+    color: #fff;
+    border: solid #8D2331;
+    font-size: 1em;
+    font-weight: bold;
+}

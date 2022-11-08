@@ -1,5 +1,4 @@
 import Barra from "../components/Barra"
-import style from "../styles/registro.module.css"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
@@ -12,72 +11,71 @@ export const registro = () => {
     const user = useUser()
     const router = useRouter()
     const colegios = [
-        {value: "default", colegio: "Elige tu colegio"},
-        {value: "uea", colegio: "Unidad Educativa Alluriquín"},
-        {value: "aei", colegio: "Unidad Educativa Alluriquín"},
-        {value: "eao", colegio: "Unidad Educativa Alluriquín"},
-        {value: "oui", colegio: "Unidad Educativa Alluriquín"},
+        { value: "default", colegio: "Elige tu colegio" },
+        { value: "uea", colegio: "Unidad Educativa Alluriquín" },
+        { value: "aei", colegio: "Unidad Educativa Alluriquín" },
+        { value: "eao", colegio: "Unidad Educativa Alluriquín" },
+        { value: "oui", colegio: "Unidad Educativa Alluriquín" },
     ]
-    const [newUser,setNewUser] = useState({
-        name:'',
-        colegio:'',
-        email:'',
-        type:'client'
+    const [newUser, setNewUser] = useState({
+        name: '',
+        colegio: '',
+        email: '',
+        type: 'client'
     })
 
     useEffect(() => {
         user && router.replace("/inicio")
-      }, [user])
+    }, [user])
 
-    const handleChange =(e)=>{
-        const {value,name} = e.target
-        setNewUser({...newUser,[name]:value})
+    const handleChange = (e) => {
+        const { value, name } = e.target
+        setNewUser({ ...newUser, [name]: value })
     }
 
-    const signUp=async (form)=>{
+    const signUp = async (form) => {
         form.preventDefault()
         await createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
-        .then(async(userCredential) => {
-            const user = userCredential.user;
-            addUser({id:user.uid,...newUser})
+            .then(async (userCredential) => {
+                const user = userCredential.user;
+                addUser({ id: user.uid, ...newUser })
             })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log("code:",errorCode,"msg:",errorMessage)
-            return null
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log("code:", errorCode, "msg:", errorMessage)
+                return null
             });
     }
 
     return (
         <div>
             <Barra></Barra>
-            <div className={style.titulo}>
-                <h2>Registro</h2>
-            </div>
+            <h1>Registro</h1>
+            <form onSubmit={signUp}>
 
-            <form className={style.form} onSubmit={signUp}>
                 <label htmlFor="nombre">Nombre y Apellido</label>
                 <input id="nombre" type="text" name="name" onChange={handleChange}
-                placeholder="Ingresa tu nombre"></input>
+                    placeholder="Ingresa tu nombre"></input>
                 <label htmlFor="email">Email</label>
                 <input id="email" name="email" onChange={handleChange}
-                type="email" placeholder="Ingresa tu correo"></input>
+                    type="email" placeholder="Ingresa tu correo"></input>
                 <label htmlFor="contrasenia">Contraseña</label>
                 <input id="contrasenia" name="password" onChange={handleChange}
-                 type="password" placeholder="Ingresa tu contraseña"></input>
+                    type="password" placeholder="Ingresa tu contraseña"></input>
                 <label htmlFor="colegio">Mi colegio</label>
                 <select name="colegio" id="colegio" defaultValue={'default'}
-                onChange={handleChange}>
+                    onChange={handleChange}>
                     {colegios.map((colegio) => (
-                    <option key={colegio.value} value={colegio.value}>{colegio.colegio}</option>
-                ))}
+                        <option key={colegio.value} value={colegio.value}>{colegio.colegio}</option>
+                    ))}
                 </select>
                 <input type="submit" value="Registrar"></input>
             </form>
-            <div className={style.linkCenter}>
-                <Link href="/" className={style.link}>
-                    Ya tienes una cuenta? Inicia sesión aquí
+            <div className="linkCenter">
+                <p>Ya tienes una cuenta? </p>
+                <Link href="/" className="link">
+                    Inicia sesión aquí
                 </Link>
             </div>
         </div>
