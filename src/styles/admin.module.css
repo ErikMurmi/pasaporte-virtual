@@ -30,6 +30,7 @@ div.badgeContainer {
     display: flex;
     flex-direction: row;
     width: 60%;
+    overflow-y:"auto";
 }
 
 div.badgeContainer image {
@@ -53,7 +54,9 @@ div.boton a {
 
 }
 
-
+form.form{
+    margin-bottom: 10%;
+}
 form.form label,
 form.form input {
     display: block;

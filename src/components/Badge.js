@@ -38,13 +38,13 @@ export default function Badge(props) {
 
 
     return (
-        <div style={{ marginTop: "6%", marginBottom: "6", overflowX: "hidden", }}>
+        <div style={{ marginTop: "6%", marginBottom: "10%", overflowX: "hidden"}}>
             <div style={{ display: "flex", flexDirection: "column" }}>
                 <div className={style.badgeContainer}>
 
                     <img src={props.image}
-                        width={300}
-                        height={"auto"}></img>
+                        width={150}
+                        height={150}></img>
 
                     <h2 className={style.titulo}>Nombre: {props.description}<br /><br />
                         Tipo: {props.type}</h2>

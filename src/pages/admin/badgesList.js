@@ -13,13 +13,6 @@ export default function badgesList({ props, Nombre }) {
         name: "FICA",
         qr: "qr_name.png",
         type: "bono"
-    },
-    {
-        description: "Facultad de Administracion",
-        image: "name2.png",
-        name: "FACEA",
-        qr: "qr_name2.png",
-        type: ""
     }
     ]);
 
@@ -34,29 +27,38 @@ export default function badgesList({ props, Nombre }) {
         // badgeList = badgeL;
     }
 
+    () => {
+
+    }
+
+
     // loadBadges;
     // console.log(badgeList);
-    
+
 
     return (
-        <div>
+        <div >
             <Barra></Barra>
             <div className={adminStyle.titulo}>
                 <h2 >Bienvenido {Nombre}</h2>
                 <h2 >Insignias</h2>
                 <div className={adminStyle.boton}   >
-                    <a href="/badges" >
+                    <a href="/admin/badges" >
                         Agregar insignia
                     </a>
                 </div>
             </div>
-            <div className={adminStyle.badgeList}>
-                {badgeList.map((badge) => (
-                    <Badge key={badge.description} description={badge.description} type={badge.type} image={badge.image}></Badge>
-                    // <p key={badge.description}>{badge.description}  {badge.type}</p>
-                ))}
+            
+                <div className={adminStyle.badgeList} >
+                    {badgeList.map((badge) => (
+                        <Badge key={badge.description} description={badge.description} type={badge.type} image={badge.image}></Badge>
+                        // <p key={badge.description}>{badge.description}  {badge.type}</p>
+                    ))}
+                </div>
+
             </div>
-        </div>
+
+        
     )
 }
 
