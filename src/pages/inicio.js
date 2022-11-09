@@ -24,7 +24,7 @@ export default function inicio(props) {
   const [info, setInfo] = useState(null)
   const [unlockedBadges, setUnlockedBadges] = useState([])
   const [carrouselBadges, setCarrouselBadges] = useState(props.availableBadges)
-  const [pageState, setPageState] = useState('wait')
+  const [pageState, setPageState] = useState(states.WAITING)
   const [carrouselFinalBadges, setCarrouselFinalBadges] = useState([{ src: "/Insignia.png"}]);
 
   function handleNewBadgeChange(screen) {
@@ -90,7 +90,7 @@ export default function inicio(props) {
   return (<>
     <Barra logged={true} ></Barra>
 
-    {newBadgeUnlocked == false &&
+    {pageState === states.WAITING &&
       <div div className={style.insigniasUsuario}>
         <div style={{ textAlign: "left" }}>
           <h2>Bienvenido {info ? info.name : null}</h2>
@@ -100,7 +100,7 @@ export default function inicio(props) {
         <div className={[style.tamanioCarousel]}>
           <CarouselComponent images={carrouselFinalBadges} />
         </div>
-        <button onClick={() => { setNewBadgeUnlocked(true) }}>
+        <button onClick={() => { setPageState(states.SCANNING) }}>
 
           <div className={style.botonQr}>
             <Image src={qr} alt='qr_img' className={style.imagenBotonQR} />
@@ -110,7 +110,7 @@ export default function inicio(props) {
       </div>
     }
 
-    {newBadgeUnlocked == true &&
+    {pageState === states.SCANNING  &&
       <Scan onScanChange={setPageState}></Scan>
     }
 
