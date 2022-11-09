@@ -8,6 +8,7 @@ const Collections ={
 }
 
 export const addUnlockedBadge=async(uid,badge)=>{
+    console.log(`Datos desbloqueo, id: ${uid}, badgename:${badge}`)
     const docRef =  doc(db,Collections.USUARIOS,uid,"unlockedBadges",badge.name)
     return await setDoc(docRef,{badge:doc(db,`badges/${badge.name}`),timestamp:serverTimestamp()})
 }

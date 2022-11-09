@@ -12,25 +12,40 @@ import CarouselComponent from "../components/carousel"
 import { getUserUnlockedBadges } from "./api/users/index"
 import Scan from "./scan"
 
+export const states = {
+  WAITING :'WAIT',
+  SCANNING:'SCANNING',
+  RELOAD:'RELOAD'
+}
+
 export default function inicio(props) {
   const router = useRouter()
   const user = useUser();
   const [info, setInfo] = useState(null)
   const [unlockedBadges, setUnlockedBadges] = useState([])
   const [carrouselBadges, setCarrouselBadges] = useState(props.availableBadges)
-  const [newBadgeUnlocked, setNewBadgeUnlocked] = useState(false)
+  const [pageState, setPageState] = useState('wait')
+  const [carrouselFinalBadges, setCarrouselFinalBadges] = useState([{ src: "/Insignia.png"}]);
 
   function handleNewBadgeChange(screen) {
     setNewBadgeUnlocked(screen);
   }
 
+  async function getUserInfo() {
+    setInfo(await getUser(user.uid))
+  }
+  async function getBadges() {
+    setUnlockedBadges(await getUserUnlockedBadges(user.uid))
+  }
+
+  useEffect(()=>{
+    if(pageState === states.RELOAD ){
+      window.location.reload();
+      setPageState(states.WAITING)
+    }
+  },[])
+
   useEffect(() => {
-    async function getUserInfo() {
-      setInfo(await getUser(user.uid))
-    }
-    async function getBadges() {
-      setUnlockedBadges(await getUserUnlockedBadges(user.uid))
-    }
     if (user !== null && user !== undefined) {
       getBadges()
       getUserInfo()
@@ -39,31 +54,36 @@ export default function inicio(props) {
 
   useEffect(() => {
     if (unlockedBadges.length > 0) {
+      console.log('Desbloqueados: ',unlockedBadges)
       setCarrouselBadges(mapBadgesToCarrousel(unlockedBadges))
+      comparadorListas()
+      console.log('Lista de badges carrousel: ',carrouselFinalBadges)
     }
   }, [unlockedBadges])
+
+
+  console.log('Llegan de props',props.availableBadges)
 
   function reload() {
 
     window.location.reload();
   }
 
-
-  //const [carrouselFinalBadges, setCarrouselFinalBadges] = useState(carrouselBadges);
-  const [carrouselFinalBadges, setCarrouselFinalBadges] = useState([{ src: "/Insignia.png", title: "HOLA", unlocked: true }, { src: "/Insignia.png", title: "ADIOS", unlocked: false }]);
-
   function comparadorListas() {
-    const badges = carrouselBadges;
+    let badges = carrouselBadges;
     for (let s = 0; s < badges.length; s++) {
-      badges[s] = { ...badges[i], unlocked: false }
+      badges[s] = { ...badges[s], unlocked: false }
     }
-    for (let i = 0; i < badges.length; i++) {
-      for (let j = 0; j < unlockedBadges.length; j++) {
-        if (carrouselBadges[i].title == unlockedBadges[j].title) {
-          badges[i].unlocked = true
+    for (let i = 0; i < unlockedBadges.length; i++) {
+      let actualBadge = unlockedBadges[i]
+      for (let j = 0; j < badges.length; j++) {
+        console.log(`Actual badge:${actualBadge.name} comparacion:${badges[j].title} resultado${actualBadge.name===badges[j].title}`,)
+        if (actualBadge.name === badges[j].title) {
+          badges[j].unlocked = true
         }
       }
     }
+    console.log("badges en false: ", badges)
     setCarrouselFinalBadges(badges);
   }
 
@@ -91,7 +111,7 @@ export default function inicio(props) {
     }
 
     {newBadgeUnlocked == true &&
-      <Scan onScanChange={setNewBadgeUnlocked}></Scan>
+      <Scan onScanChange={setPageState}></Scan>
     }
 
   </>
@@ -116,7 +136,5 @@ export const getServerSideProps = async () => {
       availableBadges: imgArray
     }
   }
-
-
 
 }

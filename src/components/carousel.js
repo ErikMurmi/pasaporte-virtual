@@ -12,8 +12,6 @@ const imagenesCarousel = [
 ]
 
 export const carousel = ({images}) => {
-
-    console.log(images)
     return (
         <div>
             <Carousel 
@@ -42,7 +40,6 @@ export const carousel = ({images}) => {
                   }}
                 >
                 {images.map((carouselList) => (
-                  
                     <div key={carouselList.src}>
                         <img src={carouselList.src} key={carouselList.src} alt={carouselList.title} style={carouselList.unlocked?null:{opacity:".5"}}/>
                         <p className="legend">{carouselList.unlocked?carouselList.title:"bloqueado"}</p>

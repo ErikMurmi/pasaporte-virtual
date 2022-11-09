@@ -32,6 +32,8 @@ function Scan(props) {
     }
   }, [user])
 
+  useEffect(()=>{console.log('Data:',data)},[data])
+
   return (
     <>
       <div className={styles.container}>
@@ -42,6 +44,7 @@ function Scan(props) {
               if (!!result) {
                 // ()=>{changeData(result?.text)};
                 setData(result?.text);
+                console.log(data)
                 // updateUser;
                 // props.onScanChange(false);
 
@@ -78,7 +81,7 @@ function Scan(props) {
             color:"white",
             fontSize: "3rem"
 
-          }} onClick={() => { props.onScanChange(false); addUnlockedBadge(user.uid, { "name": data }) }}>DESBLOQUEAR {data}</Button>}
+          }} onClick={() => {console.log('Data enviada:',data);addUnlockedBadge(user.uid, { "name": data });props.onScanChange(false); }}>DESBLOQUEAR {data}</Button>}
           {/* <input type={"text"} value={data} onChange={(e)=>{ props.onScanChange(false); addUnlockedBadge(user.uid, { "name": data }) } }readonly></input> */}
         </>}
         {/* <button onClick={() => { router.push('/inicio') }}> Volver inicio</button> */}
