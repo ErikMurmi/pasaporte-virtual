@@ -74,7 +74,7 @@ export default function inicio(props) {
       <div div className={style.insigniasUsuario}>
         <div style={{ textAlign: "left" }}>
           <h2>Bienvenido {info ? info.name : null}</h2>
-          <h2 style={{backgroundColor:"black", alignSelf:"center", color:"white", width:"30%", borderRadius:"2rem", padding:"1em"}}>Insignias recolectadas:   
+          <h2 style={{backgroundColor:"black", alignSelf:"center", color:"white", maxWidth:"80%", borderRadius:"2rem", padding:"1em"}}>Insignias recolectadas:   
           &nbsp;&nbsp;{unlockedBadges.length}</h2>
         </div>
         <div className={[style.tamanioCarousel]}>
