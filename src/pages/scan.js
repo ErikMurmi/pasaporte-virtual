@@ -78,7 +78,7 @@ function Scan(props) {
             color:"white",
             fontSize: "3rem"
 
-          }} onClick={() => { props.onScanChange(false); addUnlockedBadge(user.uid, { "name": data }) }}>{data}</Button>}
+          }} onClick={() => { props.onScanChange(false); addUnlockedBadge(user.uid, { "name": data }) }}>DESBLOQUEAR {data}</Button>}
           {/* <input type={"text"} value={data} onChange={(e)=>{ props.onScanChange(false); addUnlockedBadge(user.uid, { "name": data }) } }readonly></input> */}
         </>}
         {/* <button onClick={() => { router.push('/inicio') }}> Volver inicio</button> */}
