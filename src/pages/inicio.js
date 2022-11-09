@@ -20,8 +20,8 @@ export default function inicio(props) {
   const [carrouselBadges, setCarrouselBadges] = useState(props.availableBadges)
   const [newBadgeUnlocked, setNewBadgeUnlocked] = useState(false)
 
-  function handleNewBadgeChange(screen){
-      setNewBadgeUnlocked(screen);
+  function handleNewBadgeChange(screen) {
+    setNewBadgeUnlocked(screen);
   }
 
   useEffect(() => {
@@ -43,6 +43,12 @@ export default function inicio(props) {
     }
   }, [unlockedBadges])
 
+  function reload() {
+
+    window.location.reload();
+  }
+
+
   //const [carrouselFinalBadges, setCarrouselFinalBadges] = useState(carrouselBadges);
   const [carrouselFinalBadges, setCarrouselFinalBadges] = useState([{ src: "/Insignia.png", title: "HOLA", unlocked: true }, { src: "/Insignia.png", title: "ADIOS", unlocked: false }]);
 
@@ -63,12 +69,13 @@ export default function inicio(props) {
 
   return (<>
     <Barra logged={true} ></Barra>
+
     {newBadgeUnlocked == false &&
       <div div className={style.insigniasUsuario}>
         <div style={{ textAlign: "left" }}>
           <h2>Bienvenido {info ? info.name : null}</h2>
-          <h2>Insignias recolectadas</h2>
-          <p>{unlockedBadges.length}</p>
+          <h2 style={{backgroundColor:"black", alignSelf:"center", color:"white", width:"30%", borderRadius:"2rem", padding:"1em"}}>Insignias recolectadas:   
+          &nbsp;&nbsp;{unlockedBadges.length}</h2>
         </div>
         <div className={[style.tamanioCarousel]}>
           <CarouselComponent images={carrouselFinalBadges} />
