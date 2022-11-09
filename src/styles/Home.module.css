@@ -107,6 +107,24 @@
   height: 1em;
   margin-left: 0.5rem;
 }
+.boton{
+  
+    background-color: #8D2331;
+    border: 2px solid #8D2331;
+    border-radius: 9vh;
+    height: 7vh;
+    margin: 3vh;
+    max-width: 30%;
+    text-align: center;
+    padding-bottom: 1vh;
+    padding-top: 0.5vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    position: absolute;
+    top: 5rem;
+    right: 2vh;
+
+}
 
 @media (max-width: 600px) {
   .grid {
