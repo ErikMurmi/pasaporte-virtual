@@ -13,9 +13,9 @@ import { getUserUnlockedBadges } from "./api/users/index"
 import Scan from "./scan"
 
 export const states = {
-  WAITING :'WAIT',
-  SCANNING:'SCANNING',
-  RELOAD:'RELOAD'
+  WAITING: 'WAIT',
+  SCANNING: 'SCANNING',
+  RELOAD: 'RELOAD'
 }
 
 export default function inicio(props) {
@@ -25,7 +25,7 @@ export default function inicio(props) {
   const [unlockedBadges, setUnlockedBadges] = useState([])
   const [carrouselBadges, setCarrouselBadges] = useState(props.availableBadges)
   const [pageState, setPageState] = useState(states.WAITING)
-  const [carrouselFinalBadges, setCarrouselFinalBadges] = useState([{ src: "/Insignia.png"}]);
+  const [carrouselFinalBadges, setCarrouselFinalBadges] = useState([{ src: "/Insignia.png" }]);
 
   function handleNewBadgeChange(screen) {
     setNewBadgeUnlocked(screen);
@@ -38,12 +38,12 @@ export default function inicio(props) {
     setUnlockedBadges(await getUserUnlockedBadges(user.uid))
   }
 
-  useEffect(()=>{
-    if(pageState === states.RELOAD ){
-      window.location.reload();
+  useEffect(() => {
+    if (pageState === states.RELOAD) {
+      getBadges();
       setPageState(states.WAITING)
     }
-  },[])
+  }, [pageState])
 
   useEffect(() => {
     if (user !== null && user !== undefined) {
@@ -54,15 +54,15 @@ export default function inicio(props) {
 
   useEffect(() => {
     if (unlockedBadges.length > 0) {
-      console.log('Desbloqueados: ',unlockedBadges)
+      console.log('Desbloqueados: ', unlockedBadges)
       setCarrouselBadges(mapBadgesToCarrousel(unlockedBadges))
       comparadorListas()
-      console.log('Lista de badges carrousel: ',carrouselFinalBadges)
+      console.log('Lista de badges carrousel: ', carrouselFinalBadges)
     }
   }, [unlockedBadges])
 
 
-  console.log('Llegan de props',props.availableBadges)
+  console.log('Llegan de props', props.availableBadges)
 
   function reload() {
 
@@ -77,7 +77,7 @@ export default function inicio(props) {
     for (let i = 0; i < unlockedBadges.length; i++) {
       let actualBadge = unlockedBadges[i]
       for (let j = 0; j < badges.length; j++) {
-        console.log(`Actual badge:${actualBadge.name} comparacion:${badges[j].title} resultado${actualBadge.name===badges[j].title}`,)
+        console.log(`Actual badge:${actualBadge.name} comparacion:${badges[j].title} resultado${actualBadge.name === badges[j].title}`,)
         if (actualBadge.name === badges[j].title) {
           badges[j].unlocked = true
         }
@@ -94,8 +94,8 @@ export default function inicio(props) {
       <div div className={style.insigniasUsuario}>
         <div style={{ textAlign: "left" }}>
           <h2>Bienvenido {info ? info.name : null}</h2>
-          <h2 style={{backgroundColor:"black", alignSelf:"center", color:"white", maxWidth:"80%", borderRadius:"2rem", padding:"1em"}}>Insignias recolectadas:   
-          &nbsp;&nbsp;{unlockedBadges.length}</h2>
+          <h2 style={{ backgroundColor: "black", alignSelf: "center", color: "white", maxWidth: "80%", borderRadius: "2rem", padding: "1em" }}>Insignias recolectadas:
+            &nbsp;&nbsp;{unlockedBadges.length}</h2>
         </div>
         <div className={[style.tamanioCarousel]}>
           <CarouselComponent images={carrouselFinalBadges} />
@@ -110,7 +110,7 @@ export default function inicio(props) {
       </div>
     }
 
-    {pageState === states.SCANNING  &&
+    {pageState === states.SCANNING &&
       <Scan onScanChange={setPageState}></Scan>
     }
 
