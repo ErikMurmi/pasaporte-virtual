@@ -84,3 +84,61 @@
     font-size: 1em;
     font-weight: bold;
 }
+
+/* 
+    Table 
+*/
+
+.usuarios table {
+    text-align: center;
+    width: 96%;
+    border-collapse:separate;
+    margin: auto 2% auto 2%;
+    table-layout: auto;
+}
+
+.usuarios thead{
+    background-color: black;
+    color: white;
+}
+
+.usuarios td{
+    border: 1px solid #000000;
+    text-align: left;
+    margin: 0;
+}
+.usuarios th {
+    border: 1px solid #9b9a9a;
+    text-align: center;
+    padding: 1%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    margin: 0;
+}
+
+.usuarios button{
+    border-radius: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: black;
+    color: white;
+    border: solid black;
+    margin: -10% auto 10% auto;
+}
+
+.usuarios thead th:first-of-type{
+    border-top-left-radius: 10px;
+}
+
+.usuarios thead th:last-of-type{
+    border-top-right-radius: 10px;
+}
+
+.usuarios tbody tr:last-of-type th:first-of-type{
+    border-bottom-left-radius: 10px;
+}
+
+.usuarios tbody tr:last-of-type th:last-of-type{
+    border-bottom-right-radius: 10px;
+}
