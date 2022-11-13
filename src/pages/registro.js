@@ -12,10 +12,12 @@ export const registro = () => {
     const router = useRouter()
     const colegios = [
         { value: "default", colegio: "Elige tu colegio" },
-        { value: "uea", colegio: "Unidad Educativa Alluriquín" },
-        { value: "aei", colegio: "Unidad Educativa Alluriquín" },
-        { value: "eao", colegio: "Unidad Educativa Alluriquín" },
-        { value: "oui", colegio: "Unidad Educativa Alluriquín" },
+        { value: "isaac", colegio: "Isaac Newton" },
+        { value: "william", colegio: "William Shakespeare" },
+        { value: "letort", colegio: "Letort" },
+        { value: "efrata", colegio: "Efrata" },
+        { value: "rudolf", colegio: "Rudolf Steiner" },
+        { value: "pedro", colegio: "Pedro Pablo Traversari" },
     ]
     const [newUser, setNewUser] = useState({
         name: '',
