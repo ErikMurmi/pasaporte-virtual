@@ -1,6 +1,6 @@
 import { ClassNames } from "@emotion/react";
 import styles from "../styles/components.module.css"
-import Barra from "../components/Barra.js"
+import Barra from "../../components/Barra.js"
 
 const tablaUsuarios = [
   { estudiante: "Tito Jaramilloo", normales: 8, bonus: 2, },

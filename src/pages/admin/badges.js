@@ -18,7 +18,7 @@ export default function createBadge(props) {
     const [qrCode, setQrCode] = useState('');
     const [url, setUrl] = useState('');
 
-    
+
 
     const handleSubmitBadge = async (e) => {
         e.preventDefault();
@@ -42,51 +42,9 @@ export default function createBadge(props) {
 
     }
 
-    // const generateQR= () =>{
-    //     QRCode.toDataURL(nombre, (err, nombre) => {
-    //         if(err) return console.error(err)
-    //         console.log(url)
-    //         setQrCode(nombre);
-    //     })
-
-    // }
-
-
     console.log(imagen);
     console.log(tipo);
     console.log(nombre);
-
-
-    // const uploadImage = () => {
-    //     if (imagen == null) return;
-    //     const imageRef = ref(storage, `images/badges/${nombre}`);
-    //     // setImagenRef(ref(storage, `images/badges/${imagen.name}`));
-    //     uploadBytes(imageRef, imagen).then(() => {
-    //         getDownloadURL(imageRef).then((url) => { setImagenRef(url); console.log(imagenRef) })
-    //             .catch((error) => {
-    //                 // A full list of error codes is available at
-    //                 // https://firebase.google.com/docs/storage/web/handle-errors
-    //                 switch (error.code) {
-    //                     case 'storage/object-not-found':
-    //                         // File doesn't exist
-    //                         break;
-    //                     case 'storage/unauthorized':
-    //                         // User doesn't have permission to access the object
-    //                         break;
-    //                     case 'storage/canceled':
-    //                         // User canceled the upload
-    //                         break;
-
-    //                     // ...
-
-    //                     case 'storage/unknown':
-    //                         // Unknown error occurred, inspect the server response
-    //                         break;
-    //                 }
-    //             });
-    //         alert("Imagen guardada");
-    //     });
-
 
     // };
     const uploadImage = () => {
@@ -159,19 +117,19 @@ export default function createBadge(props) {
 
                 {/* <Switch {...label} defaultChecked/> */}
 
-                <label htmlFor="true" style={{ borderStyle: "solid", minWidth: "30%", alignSelf: "center", alignItems: "center", borderRadius: "1rem", textAlign:"center", padding:"1rem", background:tipo?"black":"white", color:tipo?"white":"black"}}>Insignia Bonus
-                    <input type={"radio"} style={{display:"none"}} id="true" name="tipo" value="True" onChange={(e) => setTipo(true)} defaultChecked /></label>
+                <label htmlFor="true" style={{ borderStyle: "solid", minWidth: "30%", alignSelf: "center", alignItems: "center", borderRadius: "1rem", textAlign: "center", padding: "1rem", background: tipo ? "black" : "white", color: tipo ? "white" : "black" }}>Insignia Bonus
+                    <input type={"radio"} style={{ display: "none" }} id="true" name="tipo" value="True" onChange={(e) => setTipo(true)} defaultChecked /></label>
 
 
-                <label htmlFor="false" style={{ borderStyle: "solid", minWidth: "30%", alignSelf: "center", alignItems: "center", borderRadius: "1rem", textAlign:"center", padding:"1rem", background:tipo?"white":"black", color:tipo?"black":"white"}}>Insignia normal
-                    <input type={"radio"} style={{display:"none"}} id="false" name="tipo" value="False" onChange={(e) => setTipo(false)} /></label>
+                <label htmlFor="false" style={{ borderStyle: "solid", minWidth: "30%", alignSelf: "center", alignItems: "center", borderRadius: "1rem", textAlign: "center", padding: "1rem", background: tipo ? "white" : "black", color: tipo ? "black" : "white" }}>Insignia normal
+                    <input type={"radio"} style={{ display: "none" }} id="false" name="tipo" value="False" onChange={(e) => setTipo(false)} /></label>
 
                 {nombre != "" && <label htmlFor="image">Seleccione una imagen</label>}
                 {nombre != "" && <input type={"file"} id="image" onChange={(e) => { setImagen(e.target.files[0]) }} />}
                 {imagen != null && <button type="button" onClick={uploadImage}>Guardar Imagen</button>}
                 {qrCode != "" && <label>Codigo QR</label>}
-                {qrCode != "" && <Image src={qrCode} width={240} height={240} style={{alignSelf:"center"}}></Image>}
-                {qrCode != "" && <a type="button" href={qrCode} download={`${nombre}QR.png`} style={{alignSelf:"center"}}>Descargar codigo QR</a>}
+                {qrCode != "" && <Image src={qrCode} width={240} height={240} style={{ alignSelf: "center" }}></Image>}
+                {qrCode != "" && <a type="button" href={qrCode} download={`${nombre}QR.png`} style={{ alignSelf: "center" }}>Descargar codigo QR</a>}
                 {/* {<button type="button" onClick={generateQR}>QR</button>} */}
                 {imagenRef != null && <input type={"submit"} value="Crear" />}
 
