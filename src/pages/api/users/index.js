@@ -1,4 +1,5 @@
-import { collection, getDocs,addDoc,doc,getDoc, setDoc} from "firebase/firestore";
+import { keys } from "@mui/system";
+import { collection, getDocs,addDoc,doc,getDoc, setDoc, QuerySnapshot} from "firebase/firestore";
 import { db } from "../../../config/client"; 
 
 const Collections ={
@@ -8,15 +9,32 @@ const Collections ={
 
 export const getAllUsers=async()=>{
     const querySnapshot = await getDocs(collection(db, Collections.USERS));
-    var users = await querySnapshot.docs.reduce(async function(total,item){
-        var user = item.data()
-        var id = item.id
-        var badges = await getUserUnlockedBadges(id)
-        user.unlockedBadges = badges
-        total.push(user)
-        return total
-    },[]);
-    return users
+    // var users = querySnapshot.docs.map((doc)=>{
+    //     const data = doc.data()
+    //     const id = doc.id
+    //         return{
+    //             id,
+    //             ...data
+    //         }
+    // })
+    var users = []
+    querySnapshot.docs.forEach(doc=> {
+       
+        users.push(doc.data());
+       
+    });
+    // for(var i=0; i<querySnapshot.docs.length;i++){
+    //     users.push({data:querySnapshot.docs[i].data()})
+    // }
+    // var users = await querySnapshot.docs.reduce(async function(total,item){
+    //     var user = item.data()
+    //     var id = item.id
+    //     var badges = await getUserUnlockedBadges(id)
+    //     user.unlockedBadges = badges
+    //     total.push(user)
+    //     return total
+    // },[]);
+     return users
 }
 
 

@@ -34,7 +34,7 @@ export default function badgesList({ props, Nombre }) {
             < h2 className={adminStyle.titulo} style={{textAlign:"left", marginLeft:"10%", marginTop:"10%"}}>Bienvenido {Nombre}<br></br>
                 Insignias</h2>
             <div className={adminStyle.boton}   >
-                <a classname={adminStyle.botonAgregar} href="/admin/badges" >
+                <a className={adminStyle.botonAgregar} href="/admin/badges" >
                     Agregar insignia
                 </a>
             </div>
@@ -42,7 +42,7 @@ export default function badgesList({ props, Nombre }) {
 
             <div className={adminStyle.badgeList}>
                 {badgeList.map((badge) => (
-                    <Badge key={badge.description} description={badge.description} type={badge.type} image={badge.image} qrCode={badge.qr}></Badge>
+                    <Badge key={badge.description} name={badge.name} description={badge.description} location={badge.location} type={badge.type} image={badge.image} qrCode={badge.qr}></Badge>
                     // <p key={badge.description}>{badge.description}  {badge.type}</p>
                 ))}
             </div>

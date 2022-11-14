@@ -16,12 +16,14 @@ export default function Badge(props) {
         <div style={{ display: "flex", flexDirection: "column", marginTop: "10%", marginBottom: "10%", borderStyle:"dotted" }}>
             <div className={style.badgeContainer}>
 
-                <img style={{ verticalAlign: "center", marginTop: "10%" }}
+                <img style={{ verticalAlign: "center", marginTop: "10%", alignSelf:"center" }}
                     src={props.image}
                     width={150}
                     height={150}></img>
-                <h2 className={style.texto} style={{ marginLeft: "10%", textAlign: "left" }}>Nombre: {props.description}<br /><br />
-                    Tipo: {props.type}</h2>
+                <h2 className={style.texto} style={{ marginLeft: "10%", textAlign: "left" }}>Nombre: {props.name}</h2>
+                <br/><p>Descripcion: {props.description}</p>
+                <p>Ubicación: {props.location}</p>
+                <p>Tipo: {props.type}</p>    
             </div>
             <img src={props.qrCode}
                 width={200}
@@ -29,7 +31,7 @@ export default function Badge(props) {
                 style={{ alignSelf: "center" }}
                 alt={"QR correspondiente a una facultad"} />
             <div className={style.boton} style={{ position: "revert", alignSelf: "center" }}>
-                <a classname={style.botonEditar}
+                <a className={style.botonEditar}
                     href="" >
                     Editar insignia
                 </a>

@@ -1,4 +1,5 @@
 import Barra from "../../components/Barra";
+import {Routes, Route, useNavigate, BrowserRouter} from 'react-router-dom';
 import style from "../../styles/admin.module.css"
 import React, { useState, Component } from "react";
 import { addBadge } from "../api/badges";
@@ -8,29 +9,38 @@ import QRCode from "qrcode"
 import Image from "next/image";
 
 
-export default function createBadge(props) {
+
+export default function createBadge(Route) {
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [tipo, setTipo] = useState(true);
     const [imagen, setImagen] = useState(null);
     const [imagenRef, setImagenRef] = useState(null);
+    const [locacion, setLocacion] = useState("");
     const [newBadge, setNewBadge] = useState();
     const [qrCode, setQrCode] = useState('');
     const [url, setUrl] = useState('');
+    const [modalVisible, setModalVisible] = useState(false);
 
 
+
+    // const navigate = useNavigate();
+    // const navigateToBadgesList = () => {
+    //     navigate('/src/pages/admin/badgesList.js')
+    // }
 
     const handleSubmitBadge = async (e) => {
         e.preventDefault();
         console.log()
-        let badge = await addBadge({ description: descripcion, image: imagenRef, name: nombre, qr: qrCode, type: tipo ? "bono" : "normal" });
+        let badge = await addBadge({ description: descripcion, image: imagenRef, location: locacion, name: nombre, qr: qrCode, type: tipo ? "bono" : "normal" });
         alert("Insignia Guardada");
         setNombre("");
         setDescripcion("");
         setTipo(true);
         setImagen(null);
         setQrCode('');
-
+        setLocacion("");
+        // navigateToBadgesList;
 
     };
     const generateQR = () => {
@@ -41,12 +51,11 @@ export default function createBadge(props) {
         })
 
     }
+    // console.log(imagen);
+    // console.log(tipo);
+    // console.log(nombre);
 
-    console.log(imagen);
-    console.log(tipo);
-    console.log(nombre);
-
-    // };
+    // // };
     const uploadImage = () => {
         const imageRef = ref(storage, `images/badges/${nombre}`);
         const qrRef = ref(storage, `images/qrCodes/${nombre}QR`);
@@ -86,14 +95,9 @@ export default function createBadge(props) {
                         console.log(url)
                         setQrCode(nombre);
                     })
-
                     // uploadString(qrRef, qrCode, 'data_url').then((snapshot) => {
                     //     console.log('Uploaded a data_url string!');
-
                     //   });
-
-
-
                     alert("Imagen Guardada");
                 });
             },
@@ -112,6 +116,9 @@ export default function createBadge(props) {
                 <label htmlFor="descripcion">Ingresa la descripción de la Insignia</label><br />
                 <input id="descripcion" type="text" name="descripcion"
                     placeholder="Facultad de Ingenieria y Ciencias" value={descripcion} onChange={(e) => setDescripcion(e.target.value)}></input><br />
+                <label htmlFor="locacion">Ingresa la locación</label><br />
+                <input id="locacion" type="text" name="locacion"
+                    placeholder="Sendero Ecologico" value={locacion} onChange={(e) => setLocacion(e.target.value)}></input><br />
 
                 <label htmlFor="tipo">Escoge el tipo de insignia</label><br />
 
@@ -128,7 +135,7 @@ export default function createBadge(props) {
                 {nombre != "" && <input type={"file"} id="image" onChange={(e) => { setImagen(e.target.files[0]) }} />}
                 {imagen != null && <button type="button" onClick={uploadImage}>Guardar Imagen</button>}
                 {qrCode != "" && <label>Codigo QR</label>}
-                {qrCode != "" && <Image src={qrCode} width={240} height={240} style={{ alignSelf: "center" }}></Image>}
+                {qrCode != "" && <Image src={qrCode} width={240} height={240} alt={"QR de la insignia"} style={{ alignSelf: "center" }}></Image>}
                 {qrCode != "" && <a type="button" href={qrCode} download={`${nombre}QR.png`} style={{ alignSelf: "center" }}>Descargar codigo QR</a>}
                 {/* {<button type="button" onClick={generateQR}>QR</button>} */}
                 {imagenRef != null && <input type={"submit"} value="Crear" />}

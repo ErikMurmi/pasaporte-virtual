@@ -1,6 +1,9 @@
 import { ClassNames } from "@emotion/react";
-import styles from "../styles/components.module.css"
+import styles from "../../styles/components.module.css"
 import Barra from "../../components/Barra.js"
+import { getAllUsers } from "../api/users";
+import { useState, useEffect } from "react";
+// import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const tablaUsuarios = [
   { estudiante: "Tito Jaramilloo", normales: 8, bonus: 2, },
@@ -14,6 +17,26 @@ const tablaUsuarios = [
 ];
 
 export const usuarios = () => {
+
+  const [userList, setUserList] = useState([{
+    email: "example@mail.com",
+    highschool: "Colegio",
+    name: "Ejemplo",
+    qr: "qr_name.png",
+    type: "normal"
+  }
+  ]);
+
+  useEffect(() => {
+    loadUsers();
+  }, [])
+
+  const loadUsers = async () => {
+    let userL = await getAllUsers();
+    // console.log(badgeL);
+    setUserList(userL);
+    // badgeList = badgeL;
+  }
   return (
     <>
       <div className={styles.usuarios}>
@@ -28,11 +51,11 @@ export const usuarios = () => {
             </tr>
           </thead>
           <tbody>
-            {tablaUsuarios.map((usuariosMap) => (
-              <tr>
-                <th>{usuariosMap.estudiante}</th>
-                <th>{usuariosMap.normales}</th>
-                <th>{usuariosMap.bonus}</th>
+            {userList.map((usuariosMap) => (
+              <tr key={usuariosMap.id}>
+                <th>{usuariosMap.name}</th>
+                <th>{usuariosMap.highschool}</th>
+                <th>{usuariosMap.type}</th>
               </tr>
             ))}
           </tbody>
