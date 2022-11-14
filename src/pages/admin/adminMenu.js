@@ -3,7 +3,7 @@ import styles from '../../styles/Home.module.css'
 
 
 
-export default function adminMenu() {
+export default function AdminMenu() {
 
 
   return (
@@ -19,12 +19,12 @@ export default function adminMenu() {
 
 
         <div className={styles.grid}>
-          <a href="/admin/badgesList" className={styles.card}>
+          <a href="/admin/BadgesList" className={styles.card}>
             <h2>Insignias&rarr;</h2>
             <p>Administrar lista de Estudiantes</p>
           </a>
 
-          <a href="/admin/usuarios" className={styles.card}>
+          <a href="/admin/Usuarios" className={styles.card}>
             <h2> Estudiantes&rarr;</h2>
             <p> Administrar lista de insignias</p>
           </a>

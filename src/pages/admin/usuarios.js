@@ -16,7 +16,7 @@ const tablaUsuarios = [
   { estudiante: "Roberto Salazar", normales: 8, bonus: 2, },
 ];
 
-export const usuarios = () => {
+export const Usuarios = () => {
 
   const [userList, setUserList] = useState([{
     email: "example@mail.com",
