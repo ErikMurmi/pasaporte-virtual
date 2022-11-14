@@ -39,10 +39,10 @@ export const carousel = ({images}) => {
                     );
                   }}
                 >
-                {images.map((carouselList) => (
-                    <div key={carouselList.src}>
-                        <img src={carouselList.src} key={carouselList.src} alt={carouselList.title} style={carouselList.unlocked?null:{opacity:".5"}}/>
-                        <p className="legend">{carouselList.unlocked?carouselList.title:"bloqueado"}</p>
+                {images.map((carouselList,index) => (
+                    <div key={index}>
+                        <img src={carouselList.image} key={index} alt={carouselList.name} style={carouselList.unlocked?null:{opacity:".5"}}/>
+                        <p className="legend">{carouselList.unlocked?carouselList.name:"bloqueado"}</p>
                     </div>
                 ))}
             </Carousel>
