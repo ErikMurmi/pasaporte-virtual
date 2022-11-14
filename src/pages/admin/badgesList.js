@@ -5,7 +5,7 @@ import { getAllBadges } from "../api/badges"
 import { useEffect, useState } from "react"
 
 
-export default function badgesList({ props, Nombre }) {
+export default function BadgesList({ props, Nombre }) {
 
     const [badgeList, setBadgeList] = useState([{
         description: "Facultad de ingenierias y ciencias aplicadas",

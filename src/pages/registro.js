@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../config/client"
 import { addUser } from "./api/users"
 
-export const registro = () => {
+export const Registro = () => {
     const user = useUser()
     const router = useRouter()
     const colegios = [
@@ -37,17 +37,21 @@ export const registro = () => {
 
     const signUp = async (form) => {
         form.preventDefault()
-        await createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
-            .then(async (userCredential) => {
-                const user = userCredential.user;
-                addUser({ id: user.uid, ...newUser })
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log("code:", errorCode, "msg:", errorMessage)
-                return null
-            });
+        if (newUser.colegio.length==0 || newUser.colegio ==='default'){
+            alert("Se debe seleccionar un colegio")
+        }else{
+            await createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
+                .then(async (userCredential) => {
+                    const user = userCredential.user;
+                    addUser({ id: user.uid, ...newUser })
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log("code:", errorCode, "msg:", errorMessage)
+                    return null
+                });
+        }
     }
 
     return (

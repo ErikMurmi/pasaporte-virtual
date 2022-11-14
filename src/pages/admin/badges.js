@@ -9,8 +9,7 @@ import QRCode from "qrcode"
 import Image from "next/image";
 
 
-
-export default function createBadge(Route) {
+export default function CreateBadge(props) {
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [tipo, setTipo] = useState(true);
