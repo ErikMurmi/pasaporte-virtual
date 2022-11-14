@@ -27,10 +27,6 @@ export default function inicio(props) {
   const [pageState, setPageState] = useState(states.WAITING)
   const [carrouselFinalBadges, setCarrouselFinalBadges] = useState([{ src: "/Insignia.png" }]);
 
-  function handleNewBadgeChange(screen) {
-    setNewBadgeUnlocked(screen);
-  }
-
   async function getUserInfo() {
     setInfo(await getUser(user.uid))
   }
@@ -57,17 +53,8 @@ export default function inicio(props) {
       console.log('Desbloqueados: ', unlockedBadges)
       setCarrouselBadges(mapBadgesToCarrousel(unlockedBadges))
       comparadorListas()
-      console.log('Lista de badges carrousel: ', carrouselFinalBadges)
     }
   }, [unlockedBadges])
-
-
-  console.log('Llegan de props', props.availableBadges)
-
-  function reload() {
-
-    window.location.reload();
-  }
 
   function comparadorListas() {
     let badges = carrouselBadges;
@@ -83,19 +70,28 @@ export default function inicio(props) {
         }
       }
     }
-    console.log("badges en false: ", badges)
+    // console.log("badges en false: ", badges)
     setCarrouselFinalBadges(badges);
   }
 
   return (<>
     <Barra logged={true} ></Barra>
-
     {pageState === states.WAITING &&
       <div div className={style.insigniasUsuario}>
         <div style={{ textAlign: "left" }}>
           <h2>Bienvenido {info ? info.name : null}</h2>
-          <h2 style={{ backgroundColor: "black", alignSelf: "center", color: "white", maxWidth: "80%", borderRadius: "2rem", padding: "1em" }}>Insignias recolectadas:
-            &nbsp;&nbsp;{unlockedBadges.length}</h2>
+          <p style={{ backgroundColor: "black",overflowWrap: "normal", alignSelf: "center",fontSize:"1.2em", fontWeight:"bold",
+          color: "white", maxWidth: "80%", borderRadius: "1rem", padding: ".8em" }}
+          >{`Has recolectado ${unlockedBadges.length} insiginias`}
+            </p>
+        </div>
+        <div>
+          <button>
+            Normales
+          </button>
+          <button style={{backgroundColor:"#519aba"}}>
+            Bonus
+          </button>
         </div>
         <div className={[style.tamanioCarousel]}>
           <CarouselComponent images={carrouselFinalBadges} />
@@ -131,8 +127,22 @@ const mapBadgesToCarrousel = (badges) => {
 export const getServerSideProps = async () => {
   const badges = await getAllBadges()
   const imgArray = mapBadgesToCarrousel(badges)
+  let normalBadges = []
+  let bonusBadges = []
+  badges.forEach(badge => {
+     if(badge.type==='normal'){
+      normalBadges.push(badge)
+     }
+     if(badge.type==='bono'){
+      bonusBadges.push(badge)
+     }
+  });
+  // console.log('Normal badges: ',normalBadges)
+  // console.log('Bonus badges: ',bonusBadges)
   return {
     props: {
+      normalBadges: normalBadges,
+      bonusBadges: bonusBadges,
       availableBadges: imgArray
     }
   }
