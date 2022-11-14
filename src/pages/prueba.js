@@ -1,16 +1,17 @@
 import Carousel, { carousel } from "../components/carousel";
+import InsigniasFrame from "../components/InsigniasFrame";
 
 const imagenesCarousel = [
-    { src: "/Insignia.png", alt: "", title: "Insignia 1",unlocked:false},
-    { src: "/Insignia.png", alt: "", title: "Insignia 2", unlocked:true},
-    { src: "/Insignia.png", alt: "", title: "Insignia 3",unlocked:false },
-    { src: "/Insignia.png", alt: "", title: "Insignia 4",unlocked:true },
-    { src: "/Insignia.png", alt: "", title: "Insignia 5",unlocked:true },
+    {unlocked:true, id:"Enfermedades Infecciosas", type: "normal", qr:"", name:"Enfermedades Infecciosas", description:"Salud y Bienestar", location:"Salud", image:"https://firebasestorage.googleapis.com/v0/b/pasaporte-virtual.appspot.com/o/images%2Fbadges%2FBiodiversidad?alt=media&token=344a123a-bc95-487a-9b77-c4f8951542e3"},
+    {unlocked:false, id:"Enfermedades Infecciosas", type: "normal", qr:"", name:"Enfermedades Infecciosas", description:"Salud y Bienestar", location:"Salud", image:"https://firebasestorage.googleapis.com/v0/b/pasaporte-virtual.appspot.com/o/images%2Fbadges%2FBiodiversidad?alt=media&token=344a123a-bc95-487a-9b77-c4f8951542e3"},
+    {unlocked:true, id:"Enfermedades Infecciosas", type: "normal", qr:"", name:"Enfermedades Infecciosas", description:"Salud y Bienestar", location:"Salud", image:"https://firebasestorage.googleapis.com/v0/b/pasaporte-virtual.appspot.com/o/images%2Fbadges%2FBiodiversidad?alt=media&token=344a123a-bc95-487a-9b77-c4f8951542e3"},
 ]
 
 export const prueba = () => {
   return (
-    <Carousel images={imagenesCarousel}/>
+
+      <InsigniasFrame insignias={imagenesCarousel}/>
+
   )
 }
 
