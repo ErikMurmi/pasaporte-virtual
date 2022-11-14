@@ -4,8 +4,11 @@
 
 /* Estilos botón qr*/
 
-.insigniasUsuario {
-    margin: auto 5%;
+.insigniasUsuario{
+    margin: 5% 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .insigniasUsuario button {
@@ -18,6 +21,7 @@
     height: 32%;
     margin: 10% auto 0 auto;
     justify-content: space-between;
+    align-items: center;
     padding-left: 2%;
     padding-right: 2%;
 }
