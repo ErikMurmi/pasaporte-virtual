@@ -16,14 +16,14 @@ export default function Badge(props) {
         <div style={{ display: "flex", flexDirection: "column", marginTop: "10%", marginBottom: "10%", borderStyle:"dotted" }}>
             <div className={style.badgeContainer}>
 
-                <img style={{ verticalAlign: "center", marginTop: "10%" }}
+                <Image style={{ verticalAlign: "center", marginTop: "10%" }}
                     src={props.image}
-                    width={150}
-                    height={150}></img>
+                    width={150} alt="badge"
+                    height={150}></Image>
                 <h2 className={style.texto} style={{ marginLeft: "10%", textAlign: "left" }}>Nombre: {props.description}<br /><br />
                     Tipo: {props.type}</h2>
             </div>
-            <img src={props.qrCode}
+            <Image src={props.qrCode}
                 width={200}
                 height={200}
                 style={{ alignSelf: "center" }}
