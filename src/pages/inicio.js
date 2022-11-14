@@ -19,7 +19,7 @@ export const states = {
   RELOAD: 'RELOAD'
 }
 
-export default function inicio(props) {
+export default function Inicio(props) {
   const router = useRouter()
   const user = useUser();
   const [info, setInfo] = useState(null)

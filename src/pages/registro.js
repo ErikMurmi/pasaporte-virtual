@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../config/client"
 import { addUser } from "./api/users"
 
-export const registro = () => {
+export const Registro = () => {
     const user = useUser()
     const router = useRouter()
     const colegios = [
