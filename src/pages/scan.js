@@ -75,14 +75,8 @@ function Scan(props) {
           <QrReader
             onResult={(result, error) => {
               if (!!result) {
-                // ()=>{changeData(result?.text)};
                 setData(result?.text);
                 console.log(data)
-
-                // updateUser;
-                // props.onScanChange(false);
-
-                // ()=>{props.onScanChange(false); addUnlockedBadge(user.uid, { "name": data }) } 
               }
 
               if (!!error) {
@@ -97,15 +91,8 @@ function Scan(props) {
             style={{ width: "40%", height: "40%" }}
           />
 
-
-          {/*           
-          
-            <Button onClick={()=>{addUnlockedBadge(user.uid,{"name":"FACEA"})}}  >FACEA</Button>
-            <Button onClick={()=>{addUnlockedBadge(user.uid,{"name":"FICA"})}}  >FICA</Button> */}
-          {/* {data!= "No hay insignia" && <Button onClick={()=>{addUnlockedBadge(user.uid,{"name":data}), props.onScanChange(true)}}  >{data}</Button>} */}
           {data != "No hay insignia" && <Button style={{
-            backgroundColor: "#8D2331",
-            border: "2px solid #8D2331",
+            backgroundColor: "#1ee064",
             borderRadius: "9vh",
             height: "7vh",
             alignSelf: "center",
