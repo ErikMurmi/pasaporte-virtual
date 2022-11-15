@@ -4,6 +4,7 @@ import Image from "next/image"
 import style from "../styles/admin.module.css"
 import React, { useEffect } from "react"
 import Barra from "./Barra"
+import Link from 'next/link'
 
 export default function Badge(props) {
     console.log(props.image)
