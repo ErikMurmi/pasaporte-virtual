@@ -3,6 +3,7 @@ import Badge from "../../components/Badge"
 import adminStyle from "../../styles/admin.module.css"
 import { getAllBadges } from "../api/badges"
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 
 export default function BadgesList({ props, Nombre }) {

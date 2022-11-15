@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import { storage } from '../config/client';
 import { ref,getDownloadURL } from 'firebase/storage';
 import { useEffect } from 'react';
+import Link from 'next/link';
 
 
 export default function Home() {
