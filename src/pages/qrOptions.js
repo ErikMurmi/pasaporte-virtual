@@ -39,15 +39,15 @@ export default function Home() {
 
 
         <div className={styles.grid}>
-          <a href="/scan" className={styles.card}>
+          <Link href="/scan" className={styles.card}>
             <h2>Scan a qr code&rarr;</h2>
             <p>Scan a qr code with your camera</p>
-          </a>
+          </Link>
 
-          <a href="/generate" className={styles.card}>
+          <Link href="/generate" className={styles.card}>
             <h2> Generate a qr code&rarr;</h2>
             <p> Generate a qr code with text or a link</p>
-          </a>
+          </Link>
 
           <Image height={200} id="badge">
 
@@ -57,7 +57,7 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        <a
+        <Link
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
@@ -66,7 +66,7 @@ export default function Home() {
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
-        </a>
+        </Link>
       </footer>
     </div>
   )

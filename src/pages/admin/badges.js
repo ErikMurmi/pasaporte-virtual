@@ -3,7 +3,7 @@ import style from "../../styles/admin.module.css"
 import React, { useState, Component } from "react";
 import { addBadge } from "../api/badges";
 import { storage } from "../../config/client";
-import { ref, uploadBytes, get, getDownloadURL, uploadBytesResumable, uploadString } from "firebase/storage";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import QRCode from "qrcode"
 import Image from "next/image";
 

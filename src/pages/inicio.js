@@ -6,12 +6,10 @@ import useUser from "../hooks/useUser"
 import { useEffect, useState } from "react"
 import { getAllBadges } from "./api/badges"
 import { useRouter } from "next/router"
-import { auth, storage } from "../config/client"
 import { getUser } from "./api/users/index"
 import CarouselComponent from "../components/Carousel"
 import { getUserUnlockedBadges } from "./api/users/index"
 import Scan from "./scan"
-import { formControlUnstyledClasses } from "@mui/base"
 
 export const states = {
   WAITING: 'WAIT',

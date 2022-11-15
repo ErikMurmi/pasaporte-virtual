@@ -9,7 +9,7 @@ import { getUser } from "./api/users"
 import { useRouter } from "next/router"
 import useUser from "../hooks/useUser"
 
-export const login = () => {
+export const Login = () => {
     const fields = { EMAIL: 'email', PASSWORD: 'password' }
     const [errorMsg, setErrorMsg] = useState("")
     const [email, setEmail] = useState("")
@@ -81,4 +81,4 @@ export const login = () => {
     )
 }
 
-export default login
+export default Login
