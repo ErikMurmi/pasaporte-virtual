@@ -13,7 +13,7 @@ export const InsigniasFrame = ({ insignias }) => {
                                key={insigniasMap.src} 
                                alt={insigniasMap.alt} 
                                fill="true"
-                               style={insigniasMap.unlocked?null:{opacity:0.5}}/>
+                               style={insigniasMap.unlocked?null:{opacity:0.2}}/>
                     </div>
                     <div className={Styles.textoFila}>
                         <p><b>{insigniasMap.name}</b></p>

@@ -46,7 +46,7 @@
 }
 
 .tamanioFrame {
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
 }
 
@@ -176,8 +176,8 @@
 
 .imagenFila{
     position: relative;
-    width: 30vw;
-    height: 30vw;
+    width: 24.7vw;
+    height: 40vw;
 }
 
 .textoFila{
