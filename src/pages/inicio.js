@@ -10,6 +10,7 @@ import { getUser } from "./api/users/index"
 import CarouselC from "../components/CarouselC"
 import { getUserUnlockedBadges } from "./api/users/index"
 import Scan from "./scan"
+import { borderColor } from "@mui/system"
 
 export const states = {
   WAITING: 'WAIT',
@@ -55,6 +56,10 @@ export default function Inicio(props) {
   }, [unlockedBadges])
 
 
+  useEffect(() => {
+    console.log(normalesCompleted)
+  }, [normalesCompleted])
+
 
   function comparadorListas(badgesList) {
     let badges = badgesList;
@@ -96,7 +101,7 @@ export default function Inicio(props) {
       <div div className={style.insigniasUsuario}>
         <div style={{ textAlign: "left" }}>
           <p style={{ backgroundColor: "black",overflowWrap: "normal", alignSelf: "center",fontSize:"1.2em", fontWeight:"bold",
-          color: "white", maxWidth: "80%", borderRadius: "1rem", padding: ".8em" }}
+          color: "white", maxWidth: "90%", borderRadius: "1rem", padding: ".8em", marginBottom:"10%"}}
           >{`${info? `${info.name} has`: 'Has'} recolectado ${unlockedBadges.length} insiginias`}
             </p>
         </div>
@@ -113,8 +118,12 @@ export default function Inicio(props) {
         <div className={[style.tamanioCarousel]}>
           <CarouselC images={carrouselBadges} />
         </div>
+        {normalesCompleted&& badgesState==='normales'?<div style={{textAlign:"center"}}>
+            <h3>¡Felcidades por completar la aventura!</h3>
+            <p>Ahora puedes conocer la universidad más de cerca</p>
+            <button className="button" style={{backgroundColor:"#f26500",marginBottom:"-20px",borderColor:"#f26500"}}
+          onClick={()=>{router.push('/video')}}>Ver video</button></div>:null}
         <button onClick={() => { setPageState(states.SCANNING) }}>
-
           <div className={style.botonQr}>
             <Image src={qr} alt='qr_img' className={style.imagenBotonQR} />
           </div>
