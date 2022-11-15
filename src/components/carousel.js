@@ -5,50 +5,50 @@ import Image from "next/image";
 import { style } from "@mui/system";
 
 const imagenesCarousel = [
-    { src: "/Insignia.png", alt: "", title: "Insignia 1" },
-    { src: "/Insignia.png", alt: "", title: "Insignia 2" },
-    { src: "/Insignia.png", alt: "", title: "Insignia 3" },
-    { src: "/Insignia.png", alt: "", title: "Insignia 4" },
-    { src: "/Insignia.png", alt: "", title: "Insignia 5" },
+  { src: "/Insignia.png", alt: "", title: "Insignia 1" },
+  { src: "/Insignia.png", alt: "", title: "Insignia 2" },
+  { src: "/Insignia.png", alt: "", title: "Insignia 3" },
+  { src: "/Insignia.png", alt: "", title: "Insignia 4" },
+  { src: "/Insignia.png", alt: "", title: "Insignia 5" },
 ]
 
-export const CarouselC = ({images}) => {
-    return (
-        <div>
-            <Carousel 
-                infiniteLoop
-                showThumbs={false} 
-                showArrows={false}
-                showStatus={false}
-                renderIndicator={(onClickHandler, isSelected, index) => {
-                    const defStyle = { marginLeft: 20, color: "gray", cursor: "pointer", fontSize: "250%" };
-                    const style = isSelected
-                      ? { ...defStyle, color: "black" }
-                      : { ...defStyle };
-                    return (
-                      <span
-                        style={style}
-                        onClick={onClickHandler}
-                        onKeyDown={onClickHandler}
-                        value={index}
-                        key={index}
-                        role="button"
-                        tabIndex={0}
-                      >
-                        {"•"}
-                      </span>
-                    );
-                  }}
-                >
-                {images.map((carouselList,index) => (
-                    <div key={index}>
-                        <Image width={500} height={300} src={carouselList.image} key={index} alt={carouselList.name} style={carouselList.unlocked?null:{opacity:".5"}}/>
-                        <p className="legend">{carouselList.unlocked?carouselList.name:"bloqueado"}</p>
-                    </div>
-                ))}
-            </Carousel>
-        </div>
-    )
+export const CarouselC = ({ images }) => {
+  return (
+    <div>
+      <Carousel
+        infiniteLoop
+        showThumbs={false}
+        showArrows={false}
+        showStatus={false}
+        renderIndicator={(onClickHandler, isSelected, index) => {
+          const defStyle = { marginLeft: 20, color: "gray", cursor: "pointer", fontSize: "250%" };
+          const style = isSelected
+            ? { ...defStyle, color: "black" }
+            : { ...defStyle };
+          return (
+            <span
+              style={style}
+              onClick={onClickHandler}
+              onKeyDown={onClickHandler}
+              value={index}
+              key={index}
+              role="button"
+              tabIndex={0}
+            >
+              {"•"}
+            </span>
+          );
+        }}
+      >
+        {images.map((carouselList, index) => (
+          <div key={index}>
+            <Image width={500} height={300} src={carouselList.image} key={index} alt={carouselList.name} style={carouselList.unlocked ? null : { opacity: ".5" }} />
+            <p className="legend">{carouselList.unlocked ? carouselList.name : "bloqueado"}</p>
+          </div>
+        ))}
+      </Carousel>
+    </div>
+  )
 }
 
 export default CarouselC;

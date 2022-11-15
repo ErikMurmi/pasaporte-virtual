@@ -6,14 +6,14 @@ import { useState, useEffect } from "react";
 // import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const tablaUsuarios = [
-  { estudiante: "Tito Jaramilloo", normales: 8, bonus: 2, },
-  { estudiante: "Roberto Salazar", normales: 8, bonus: 2, },
-  { estudiante: "Fernando Jaramillo", normales: 8, bonus: 2, },
-  { estudiante: "Roberto Salazar", normales: 8, bonus: 2, },
-  { estudiante: "Tito Jaramilloo", normales: 8, bonus: 2, },
-  { estudiante: "Roberto Salazar", normales: 8, bonus: 2, },
-  { estudiante: "Tito Jaramilloo", normales: 8, bonus: 2, },
-  { estudiante: "Roberto Salazar", normales: 8, bonus: 2, },
+  { estudiante: "Tito Jaramilloo", normales: 8, bonus: 2, id:1},
+  { estudiante: "Roberto Salazar", normales: 8, bonus: 2,  id:2},
+  { estudiante: "Fernando Jaramillo", normales: 8, bonus: 2, id:3 },
+  { estudiante: "Roberto Salazar", normales: 8, bonus: 2,  id:4},
+  { estudiante: "Tito Jaramilloo", normales: 8, bonus: 2,  id:5},
+  { estudiante: "Roberto Salazar", normales: 8, bonus: 2,  id:6},
+  { estudiante: "Tito Jaramilloo", normales: 8, bonus: 2,  id:7},
+  { estudiante: "Roberto Salazar", normales: 8, bonus: 2,  id:8},
 ];
 
 export const Usuarios = () => {
@@ -51,8 +51,8 @@ export const Usuarios = () => {
             </tr>
           </thead>
           <tbody>
-            {userList.map((usuariosMap) => (
-              <tr key={usuariosMap.id}>
+            {userList.map((usuariosMap, index) => (
+              <tr key={index}>
                 <th>{usuariosMap.name}</th>
                 <th>{usuariosMap.highschool}</th>
                 <th>{usuariosMap.type}</th>
@@ -65,4 +65,4 @@ export const Usuarios = () => {
   )
 }
 
-export default usuarios;
+export default Usuarios;
