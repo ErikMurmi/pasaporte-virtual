@@ -88,4 +88,4 @@ export const Registro = () => {
     )
 }
 
-export default registro
+export default Registro
