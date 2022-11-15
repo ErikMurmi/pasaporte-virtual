@@ -26,8 +26,8 @@ export default function Inicio(props) {
   const [unlockedBadges, setUnlockedBadges] = useState([])
   const [carrouselBadges, setCarrouselBadges] = useState(props.normalBadges)
   const [pageState, setPageState] = useState(states.WAITING)
-  const [badgesState,setBadgesState] = useState('normales')
-  const [normalesCompleted,setNormalesCompleted] = useState(false)
+  const [badgesState, setBadgesState] = useState('hidden')
+  const [normalesCompleted, setNormalesCompleted] = useState(false)
   const [view, setView] = useState(true)
 
   async function getUserInfo() {
@@ -52,9 +52,9 @@ export default function Inicio(props) {
   }, [user])
 
   useEffect(() => {
-    if (unlockedBadges.length > 0) {
-      loadNormalesBadges()
-    }
+    // if (unlockedBadges.length > 0) {
+    //   loadNormalesBadges()
+    // }
   }, [unlockedBadges])
 
 
@@ -80,12 +80,12 @@ export default function Inicio(props) {
     setCarrouselBadges(badges)
   }
 
-  function loadBonusBadges(){
+  function loadBonusBadges() {
     setView(true)
     setBadgesState('bonus')
     comparadorListas(props.bonusBadges)
-    for(let i=0;i<carrouselBadges.length;i++){
-      if(carrouselBadges[i].unlocked===false){
+    for (let i = 0; i < carrouselBadges.length; i++) {
+      if (carrouselBadges[i].unlocked === false) {
         setNormalesCompleted(false)
         return
       }
@@ -93,13 +93,13 @@ export default function Inicio(props) {
     setNormalesCompleted(true)
   }
 
-  function loadNormalesBadges(){
+  function loadNormalesBadges() {
     setView(true)
     setBadgesState('normales')
     comparadorListas(props.normalBadges)
   }
 
-  function loadNormalesFrame(){
+  function loadNormalesFrame() {
     setBadgesState('info')
     setView(false)
     comparadorListas(props.normalBadges)
@@ -111,18 +111,20 @@ export default function Inicio(props) {
     {pageState === states.WAITING &&
       <div div className={style.insigniasUsuario}>
         <div style={{ textAlign: "left" }}>
-          <p style={{ backgroundColor: "black",overflowWrap: "normal", alignSelf: "center",fontSize:"1.2em", fontWeight:"bold",
-          color: "white", maxWidth: "90%", borderRadius: "1rem", padding: ".8em", marginBottom:"10%"}}
-          >{`${info? `${info.name} has`: 'Has'} recolectado ${unlockedBadges.length} insiginias`}
-            </p>
+          <p style={{
+            backgroundColor: "black", overflowWrap: "normal", alignSelf: "center", fontSize: "1.2em", fontWeight: "bold",
+            color: "white", maxWidth: "90%", borderRadius: "1rem", padding: ".8em", marginBottom: "10%"
+          }}
+          >{`${info ? `${info.name} has` : 'Has'} recolectado ${unlockedBadges.length} insiginias`}
+          </p>
         </div>
         <div className="horizontal-container">
           <button onClick={loadNormalesBadges} style={badgesState==='normales'?{backgroundColor:"#8D2331", color:"white",fontWeight: "bold"}:null} className="bonus-type">
             Estaciones
           </button >
-          <hr className='vertical-line'/>
-          <button className="bonus-type" style={badgesState==='bonus'?{backgroundColor:"#8D2331", color:"white", fontWeight: "bold"}:null} 
-          onClick={loadBonusBadges}>
+          <hr className='vertical-line' />
+          <button className="bonus-type" style={badgesState === 'bonus' ? { backgroundColor: "#8D2331", color: "white", fontWeight: "bold" } : null}
+            onClick={loadBonusBadges}>
             Bonus
           </button>
           <hr className='vertical-line'/>
@@ -131,20 +133,21 @@ export default function Inicio(props) {
             Info Estaciones
           </button>
         </div>
-        {view?
-        <div className={[style.tamanioCarousel]}>
-          <CarouselC images={carrouselBadges} />
-        </div>
-        :
-        <div className={[style.tamanioFrame]}>
-          <InsigniasFrame insignias={carrouselBadges}/>
-        </div>
+    {badgesState ==="hidden"?null:<>
+        {badgesState === 'normales' | badgesState === 'bonus' ?
+          <div className={[style.tamanioCarousel]}>
+            <CarouselC images={carrouselBadges} />
+          </div>
+          :
+          <div className={[style.tamanioFrame]}>
+            <InsigniasFrame insignias={carrouselBadges} />
+          </div>
         }
-        {normalesCompleted&& badgesState==='normales'?<div style={{textAlign:"center"}}>
-            <h3>¡Felcidades por completar la aventura!</h3>
-            <p>Ahora puedes conocer la universidad más de cerca</p>
-            <button className="button" style={{backgroundColor:"#f26500",marginBottom:"-20px",borderColor:"#f26500"}}
-          onClick={()=>{router.push('/video')}}>Ver video</button></div>:null}
+        {normalesCompleted && badgesState === 'normales' ? <div style={{ textAlign: "center" }}>
+          <h3>¡Felcidades por completar la aventura!</h3>
+          <p>Ahora puedes conocer la universidad más de cerca</p>
+          <button className="button" style={{ backgroundColor: "#f26500", marginBottom: "-20px", borderColor: "#f26500" }}
+            onClick={() => { router.push('/video') }}>Ver video</button></div> : null}</>}
         <button onClick={() => { setPageState(states.SCANNING) }}>
           <div className={style.botonQr}>
             <Image src={qr} alt='qr_img' className={style.imagenBotonQR} />
@@ -178,15 +181,15 @@ export const getServerSideProps = async () => {
   let normalBadges = []
   let bonusBadges = []
   badges.forEach(badge => {
-     if(badge.type==='normal'){
+    if (badge.type === 'normal') {
       normalBadges.push(badge)
-     }
-     if(badge.type==='bono'){
+    }
+    if (badge.type === 'bono') {
       bonusBadges.push(badge)
-     }
+    }
   });
-  console.log('Normal badges: ',normalBadges)
-  console.log('Bonus badges: ',bonusBadges)
+  console.log('Normal badges: ', normalBadges)
+  console.log('Bonus badges: ', bonusBadges)
   return {
     props: {
       normalBadges: normalBadges,

@@ -8,6 +8,7 @@ import { auth } from "../config/client"
 import { addUser } from "./api/users"
 
 export const Registro = () => {
+    const [password, setPassword] = useState("")
     const user = useUser()
     const router = useRouter()
     const colegios = [
@@ -35,6 +36,12 @@ export const Registro = () => {
     const handleChange = (e) => {
         const { value, name } = e.target
         setNewUser({ ...newUser, [name]: value })
+    }
+
+    const handlePassword = (e) => {
+        handleChange; 
+        (e) => setPassword(e.target.value); 
+        console.log(password);
     }
 
     const signUp = async (form) => {
@@ -70,7 +77,8 @@ export const Registro = () => {
                     type="email" placeholder="Ingresa tu correo"></input>
                 <label htmlFor="contrasenia">Contraseña</label>
                 <input id="contrasenia" name="password" onChange={handleChange}
-                    type="password" placeholder="Ingresa tu contraseña"></input>
+                    type="password" placeholder="Ingresa tu contraseña" minLength={6}></input>
+             {/* {password.length<6 && <label>Contraseña debe tener mas de 6 caracteres</label>} */}
                 <label htmlFor="colegio">Mi colegio</label>
                 <select name="colegio" id="colegio" defaultValue={'default'}
                     onChange={handleChange}>
