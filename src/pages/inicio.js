@@ -90,6 +90,7 @@ export default function Inicio(props) {
     comparadorListas(props.normalBadges)
   }
 
+  console.log(props)
   return (<>
     <Barra logged="true" ></Barra>
     {pageState === states.WAITING &&
