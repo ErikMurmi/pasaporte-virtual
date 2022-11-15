@@ -11,6 +11,7 @@ import CarouselC from "../components/CarouselC"
 import { getUserUnlockedBadges } from "./api/users/index"
 import Scan from "./scan"
 import { borderColor } from "@mui/system"
+import InsigniasFrame from "components/InsigniasFrame"
 
 export const states = {
   WAITING: 'WAIT',
@@ -27,6 +28,7 @@ export default function Inicio(props) {
   const [pageState, setPageState] = useState(states.WAITING)
   const [badgesState,setBadgesState] = useState('normales')
   const [normalesCompleted,setNormalesCompleted] = useState(false)
+  const [view, setView] = useState(true)
 
   async function getUserInfo() {
     setInfo(await getUser(user.uid))
@@ -79,6 +81,7 @@ export default function Inicio(props) {
   }
 
   function loadBonusBadges(){
+    setView(true)
     setBadgesState('bonus')
     comparadorListas(props.bonusBadges)
     for(let i=0;i<carrouselBadges.length;i++){
@@ -91,7 +94,14 @@ export default function Inicio(props) {
   }
 
   function loadNormalesBadges(){
+    setView(true)
     setBadgesState('normales')
+    comparadorListas(props.normalBadges)
+  }
+
+  function loadNormalesFrame(){
+    setBadgesState('info')
+    setView(false)
     comparadorListas(props.normalBadges)
   }
 
@@ -115,10 +125,21 @@ export default function Inicio(props) {
           onClick={loadBonusBadges}>
             Bonus
           </button>
+          <hr className='vertical-line'/>
+          <button className="bonus-type" style={badgesState==='info'?{backgroundColor:"#8D2331", color:"white", fontWeight: "bold"}:null} 
+          onClick={loadNormalesFrame}>
+            Info
+          </button>
         </div>
+        {view?
         <div className={[style.tamanioCarousel]}>
           <CarouselC images={carrouselBadges} />
         </div>
+        :
+        <div className={[style.tamanioFrame]}>
+          <InsigniasFrame insignias={carrouselBadges}/>
+        </div>
+        }
         {normalesCompleted&& badgesState==='normales'?<div style={{textAlign:"center"}}>
             <h3>¡Felcidades por completar la aventura!</h3>
             <p>Ahora puedes conocer la universidad más de cerca</p>
