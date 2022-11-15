@@ -126,11 +126,43 @@
 
 }
 
+.botonDesbloquear{
+ 
+    background-color: #8D2331;
+    border: 2px solid #8D2331;
+    border-radius: 9vh;
+    height: 7vh;
+    align-self:center;
+    max-width: 90%;
+    text-align: center;
+    padding: 2rem;
+    color:white;
+    font-size: 3rem
+
+
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
     flex-direction: column;
   }
+
+  .botonDesbloquear{
+ 
+    background-color: #8D2331;
+    border: 2px solid #8D2331;
+    border-radius: 9vh;
+    height: 7vh;
+    align-self:center;
+    max-width: 90%;
+    text-align: center;
+    padding: 2rem;
+    color:white;
+    font-size: 3rem
+
+
+}
 }
 
 @media (prefers-color-scheme: dark) {
