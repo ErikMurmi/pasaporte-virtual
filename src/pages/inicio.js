@@ -119,18 +119,18 @@ export default function Inicio(props) {
           </p>
         </div>
         <div className="horizontal-container">
-          <button onClick={loadNormalesBadges} style={badgesState === 'normales' ? { backgroundColor: "#8D2331", color: "white", fontWeight: "bold" } : null} className="bonus-type">
-            Normales
+          <button onClick={loadNormalesBadges} style={badgesState==='normales'?{backgroundColor:"#8D2331", color:"white",fontWeight: "bold"}:null} className="bonus-type">
+            Estaciones
           </button >
           <hr className='vertical-line' />
           <button className="bonus-type" style={badgesState === 'bonus' ? { backgroundColor: "#8D2331", color: "white", fontWeight: "bold" } : null}
             onClick={loadBonusBadges}>
             Bonus
           </button>
-          <hr className='vertical-line' />
-          <button className="bonus-type" style={badgesState === 'info' ? { backgroundColor: "#8D2331", color: "white", fontWeight: "bold" } : null}
-            onClick={loadNormalesFrame}>
-            Info
+          <hr className='vertical-line'/>
+          <button className="bonus-type" style={badgesState==='info'?{backgroundColor:"#8D2331", color:"white", fontWeight: "bold"}:null} 
+          onClick={loadNormalesFrame}>
+            Info Estaciones
           </button>
         </div>
     {badgesState ==="hidden"?null:<>
