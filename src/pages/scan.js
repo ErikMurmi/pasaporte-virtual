@@ -93,7 +93,7 @@ function Scan(props) {
 
           {data != "No hay insignia" && <Button style={{
             backgroundColor: "#1ee064",
-            borderRadius: "9vh",
+            borderRadius: "15px",
             height: "7vh",
             alignSelf: "center",
             maxWidth: "90%",
@@ -101,13 +101,12 @@ function Scan(props) {
             padding: "2rem",
             color: "white",
             fontSize: "1rem",
-            marginBottom: "20%"
+            marginBottom: "10%",
+            marginTop:"10%"
 
             // }} onClick={() => {console.log('Data enviada:',data);addUnlockedBadge(user.uid, { "name": data });props.onScanChange(states.RELOAD); }}>DESBLOQUEAR {data}</Button>}
           }} onClick={updateUser}>DESBLOQUEAR {data}</Button>}
-          {/* <input type={"text"} value={data} onChange={(e)=>{ props.onScanChange(false); addUnlockedBadge(user.uid, { "name": data }) } }readonly></input> */}
         </>}
-        {/* <button onClick={() => { router.push('/inicio') }}> Volver inicio</button> */}
         <Button href="/inicio" onClick={() => {props.onScanChange(states.waiting)}} 
           style={{
             width:"70%",
