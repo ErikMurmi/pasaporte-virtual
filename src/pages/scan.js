@@ -81,7 +81,8 @@ function Scan(props) {
             textAlign: "center",
             padding: "2rem",
             color:"white",
-            fontSize: "3rem"
+            fontSize: "1rem",
+            marginBottom:"20%"
 
           }} onClick={() => {console.log('Data enviada:',data);addUnlockedBadge(user.uid, { "name": data });props.onScanChange(states.RELOAD); }}>DESBLOQUEAR {data}</Button>}
           {/* <input type={"text"} value={data} onChange={(e)=>{ props.onScanChange(false); addUnlockedBadge(user.uid, { "name": data }) } }readonly></input> */}
