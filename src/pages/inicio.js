@@ -28,7 +28,6 @@ export default function Inicio(props) {
   const [pageState, setPageState] = useState(states.WAITING)
   const [badgesState, setBadgesState] = useState('hidden')
   const [normalesCompleted, setNormalesCompleted] = useState(false)
-  const [view, setView] = useState(true)
 
   async function getUserInfo() {
     setInfo(await getUser(user.uid))
@@ -81,7 +80,6 @@ export default function Inicio(props) {
   }
 
   function loadBonusBadges() {
-    setView(true)
     setBadgesState('bonus')
     comparadorListas(props.bonusBadges)
     for (let i = 0; i < carrouselBadges.length; i++) {
@@ -94,15 +92,13 @@ export default function Inicio(props) {
   }
 
   function loadNormalesBadges() {
-    setView(true)
     setBadgesState('normales')
     comparadorListas(props.normalBadges)
   }
 
   function loadNormalesFrame() {
     setBadgesState('info')
-    setView(false)
-    comparadorListas(props.normalBadges)
+    comparadorListas(props.availableBadges)
   }
 
   console.log(props)
@@ -118,8 +114,15 @@ export default function Inicio(props) {
           >{`${info ? `${info.name} has` : 'Has'} recolectado ${unlockedBadges.length} insiginias`}
           </p>
         </div>
+        {normalesCompleted && badgesState === 'normales' ?
+          <div style={{ textAlign: "center", border: "solid yellow", borderRadius: "10px", backgroundColor: "" }}>
+            <h3>¡FELICIDADES POR COMPLETAR LA AVENTURA!</h3>
+            <p>Ahora puedes conocer la universidad más de cerca</p>
+            <button className="button" style={{ backgroundColor: "#f26500", marginBottom: "3%", marginTop: "3%", borderColor: "#f26500" }}
+              onClick={() => { router.push('/video') }}>Ver video</button></div>
+          :null}
         <div className="horizontal-container">
-          <button onClick={loadNormalesBadges} style={badgesState==='normales'?{backgroundColor:"#8D2331", color:"white",fontWeight: "bold"}:null} className="bonus-type">
+          <button onClick={loadNormalesBadges} style={badgesState === 'normales' ? { backgroundColor: "#8D2331", color: "white", fontWeight: "bold" } : null} className="bonus-type">
             Estaciones
           </button >
           <hr className='vertical-line' />
@@ -127,27 +130,27 @@ export default function Inicio(props) {
             onClick={loadBonusBadges}>
             Bonus
           </button>
-          <hr className='vertical-line'/>
-          <button className="bonus-type" style={badgesState==='info'?{backgroundColor:"#8D2331", color:"white", fontWeight: "bold"}:null} 
-          onClick={loadNormalesFrame}>
+          <hr className='vertical-line' />
+          <button className="bonus-type" style={badgesState === 'info' ? { backgroundColor: "#8D2331", color: "white", fontWeight: "bold" } : null}
+            onClick={loadNormalesFrame}>
             Info Estaciones
           </button>
         </div>
-    {badgesState ==="hidden"?null:<>
-        {badgesState === 'normales' | badgesState === 'bonus' ?
-          <div className={[style.tamanioCarousel]}>
-            <CarouselC images={carrouselBadges} />
-          </div>
-          :
-          <div className={[style.tamanioFrame]}>
-            <InsigniasFrame insignias={carrouselBadges} />
-          </div>
-        }
+        {badgesState === "hidden" ? null : <>
+          {badgesState === 'normales' | badgesState === 'bonus' ?
+            <div className={[style.tamanioCarousel]}>
+              <CarouselC images={carrouselBadges} />
+            </div>
+            :
+            <div className={[style.tamanioFrame]}>
+              <InsigniasFrame insignias={carrouselBadges} />
+            </div>
+          }</>}
         {normalesCompleted && badgesState === 'normales' ? <div style={{ textAlign: "center" }}>
           <h3>¡Felcidades por completar la aventura!</h3>
           <p>Ahora puedes conocer la universidad más de cerca</p>
           <button className="button" style={{ backgroundColor: "#f26500", marginBottom: "-20px", borderColor: "#f26500" }}
-            onClick={() => { router.push('/video') }}>Ver video</button></div> : null}</>}
+            onClick={() => { router.push('/video') }}>Ver video</button></div> : null}
         <button onClick={() => { setPageState(states.SCANNING) }}>
           <div className={style.botonQr}>
             <Image src={qr} alt='qr_img' className={style.imagenBotonQR} />
@@ -177,7 +180,6 @@ const mapBadgesToCarrousel = (badges) => {
 
 export const getServerSideProps = async () => {
   const badges = await getAllBadges()
-  const imgArray = mapBadgesToCarrousel(badges)
   let normalBadges = []
   let bonusBadges = []
   badges.forEach(badge => {
@@ -194,7 +196,7 @@ export const getServerSideProps = async () => {
     props: {
       normalBadges: normalBadges,
       bonusBadges: bonusBadges,
-      availableBadges: imgArray
+      availableBadges: badges
     }
   }
 
