@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 import { getAllBadges } from "./api/badges"
 import { useRouter } from "next/router"
 import { getUser } from "./api/users/index"
-import CarouselC from "../components/Carousel"
+import CarouselC from "../components/CarouselC"
 import { getUserUnlockedBadges } from "./api/users/index"
 import Scan from "./scan"
 
