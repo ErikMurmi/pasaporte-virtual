@@ -40,7 +40,7 @@ export const Login = () => {
                 const user = userCredential.user;
                 const info = await getUser(user.uid)
                 if (info.type === 'admin')
-                    router.replace('/Admin/AdminMenu')
+                    router.push('/Admin/AdminMenu')
                 else
                     router.replace('/inicio')
                 return true;
