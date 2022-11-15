@@ -23,7 +23,9 @@ export const Registro = () => {
         name: '',
         colegio: '',
         email: '',
-        type: 'client'
+        type: 'client',
+        bonos: 0,
+        normales:0
     })
 
     useEffect(() => {

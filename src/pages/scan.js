@@ -6,13 +6,14 @@ import { QrReader } from "react-qr-reader";
 import styles from "../styles/Home.module.css";
 import Barra from "../components/Barra";
 import useUser from "../hooks/useUser";
-import { addUnlockedBadge } from "./api/badges";
+import { addUnlockedBadge, getBadge } from "./api/badges";
 import { Button } from "@mui/material";
 import { async } from "@firebase/util";
 import { fontSize } from "@mui/system";
 import { states } from "./inicio";
 function Scan(props) {
   const [data, setData] = useState("No hay insignia");
+  // const [badge, setBadge] = useState(null);
   const [visible, setVisible] = useState(false)
   const user = useUser()
   const router = useRouter()
@@ -23,16 +24,46 @@ function Scan(props) {
     addUnlockedBadge(user.uid, { "name": data });
   }
 
-  async function updateUser() {
-    addUnlockedBadge(user.uid, { "name": data })
+  function checkBadgesUnlocked (badgeCheck) {
+    console.log(badgeCheck);
+    // props.unlockedBadges.forEach(element => {
+    //   if (element.name === badgeCheck.name) {
+    //     alert("Ya desbloqueaste esta insignia");
+    //     return false;
+    //   }
+    // }
+    for(let i = 0; i<props.unlockedBadges.length;i++){
+      if(props.unlockedBadges[i].name === badgeCheck.name){
+        alert("Ya desbloqueaste esta insignia");
+        return false;
+      }
+    }
+
+    
+    return true;
   }
+
+  async function updateUser() {
+    // addUnlockedBadge(user.uid, { "name": data })
+    console.log('Data enviada:', data);
+    
+    let badge = await getBadge(data);
+    console.log(`badge obtenida${badge.name}`);
+    if (checkBadgesUnlocked(badge)) {
+      addUnlockedBadge(user.uid, badge);
+      props.onScanChange(states.RELOAD);
+    }
+    props.onScanChange(states.RELOAD);
+
+  }
+
   useEffect(() => {
     if (user !== null && user !== undefined) {
       setVisible(true)
     }
   }, [user])
 
-  useEffect(()=>{console.log('Data:',data)},[data])
+  useEffect(() => { console.log('Data:', data) }, [data])
 
   return (
     <>
@@ -45,6 +76,7 @@ function Scan(props) {
                 // ()=>{changeData(result?.text)};
                 setData(result?.text);
                 console.log(data)
+
                 // updateUser;
                 // props.onScanChange(false);
 
@@ -74,21 +106,22 @@ function Scan(props) {
             border: "2px solid #8D2331",
             borderRadius: "9vh",
             height: "7vh",
-            alignSelf:"center",
+            alignSelf: "center",
             maxWidth: "90%",
             textAlign: "center",
             padding: "2rem",
-            color:"white",
+            color: "white",
             fontSize: "1rem",
-            marginBottom:"20%"
+            marginBottom: "20%"
 
-          }} onClick={() => {console.log('Data enviada:',data);addUnlockedBadge(user.uid, { "name": data });props.onScanChange(states.RELOAD); }}>DESBLOQUEAR {data}</Button>}
+            // }} onClick={() => {console.log('Data enviada:',data);addUnlockedBadge(user.uid, { "name": data });props.onScanChange(states.RELOAD); }}>DESBLOQUEAR {data}</Button>}
+          }} onClick={updateUser}>DESBLOQUEAR {data}</Button>}
           {/* <input type={"text"} value={data} onChange={(e)=>{ props.onScanChange(false); addUnlockedBadge(user.uid, { "name": data }) } }readonly></input> */}
         </>}
         {/* <button onClick={() => { router.push('/inicio') }}> Volver inicio</button> */}
       </div>
     </>
   );
-}
 
+}
 export default Scan;

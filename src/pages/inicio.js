@@ -134,7 +134,7 @@ export default function Inicio(props) {
     }
 
     {pageState === states.SCANNING &&
-      <Scan onScanChange={setPageState}></Scan>
+      <Scan onScanChange={setPageState} unlockedBadges={unlockedBadges}></Scan>
     }
 
   </>

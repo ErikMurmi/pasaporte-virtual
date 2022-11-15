@@ -36,7 +36,7 @@ export default function BadgesList(props) {
             < h2 className={adminStyle.titulo} style={{textAlign:"left", marginLeft:"10%", marginTop:"10%"}}>Bienvenido <br></br>
                 Insignias</h2>
             <div className={adminStyle.boton}>
-                <Link className={adminStyle.botonAgregar} href="/admin/Badges" >
+                <Link className={adminStyle.botonAgregar} href="/Admin/Badges" >
                     Agregar insignia
                 </Link>
             </div>

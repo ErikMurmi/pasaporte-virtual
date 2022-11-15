@@ -79,8 +79,8 @@ export const Usuarios = () => {
             {userList.map((usuariosMap, index) => (
               <tr key={index}>
                 <th>{usuariosMap.name}</th>
-                <th>{usuariosMap.highschool}</th>
-                <th>{usuariosMap.type}</th>
+                <th>{usuariosMap.normales}</th>
+                <th>{usuariosMap.bonos}</th>
               </tr>
             ))}
           </tbody>

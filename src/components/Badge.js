@@ -15,10 +15,13 @@ export default function Badge(props) {
                 <Image style={{ verticalAlign: "center", marginTop: "10%", alignSelf: "center" }}
                     // src={props.Image!=="name.png"?props.Image:Insignia}
                     src={props.image}
-                    width={150} alt="badge"
-                    height={150} />
+                    width={150} 
+                    alt="badge"
+                    height={150} 
+                    layout='fill'
+                    objectFit='contain' />
                 <h2 className={style.texto} style={{ marginLeft: "10%", textAlign: "left" }}>Nombre: {props.name}</h2>
-                <div style={{marginLeft:"10%", textAlign:"left"}}>
+                <div style={{ marginLeft: "10%", textAlign: "left" }}>
                     <p>Descripcion: {props.description}</p>
                     <p>Ubicacion: {props.location}</p>
 

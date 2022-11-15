@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
+import Barra from '../../components/Barra'
 
 
 
@@ -11,7 +12,7 @@ export default function AdminMenu() {
       <Head>
         <title>Menu de administración</title>
       </Head>
-
+      <Barra></Barra>
       <main className={styles.main}>
         <h1 className={styles.title}>
           Pasaporte Virtual
@@ -19,12 +20,12 @@ export default function AdminMenu() {
 
 
         <div className={styles.grid}>
-          <a href="/admin/BadgesList" className={styles.card}>
+          <a href="/Admin/BadgesList" className={styles.card}>
             <h2>Insignias&rarr;</h2>
             <p>Administrar lista de Estudiantes</p>
           </a>
 
-          <a href="/admin/Usuarios" className={styles.card}>
+          <a href="/Admin/Usuarios" className={styles.card}>
             <h2> Estudiantes&rarr;</h2>
             <p> Administrar lista de insignias</p>
           </a>
