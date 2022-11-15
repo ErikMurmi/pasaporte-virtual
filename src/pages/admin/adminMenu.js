@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
 import Barra from '../../components/Barra'
+import Link from 'next/link'
+
 
 
 
@@ -20,15 +22,15 @@ export default function AdminMenu() {
 
 
         <div className={styles.grid}>
-          <a href="/admin/badgesList" className={styles.card}>
+          <Link href="/admin/badgesList" className={styles.card}>
             <h2>Insignias&rarr;</h2>
             <p>Administrar lista de Estudiantes</p>
-          </a>
+          </Link>
 
-          <a href="/admin/usuarios" className={styles.card}>
+          <Link href="/admin/usuarios" className={styles.card}>
             <h2> Estudiantes&rarr;</h2>
             <p> Administrar lista de insignias</p>
-          </a>
+          </Link>
 
 
         </div>
