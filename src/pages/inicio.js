@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 import { getAllBadges } from "./api/badges"
 import { useRouter } from "next/router"
 import { getUser } from "./api/users/index"
-import CarouselComponent from "../components/Carousel"
+import CarouselC from "../components/CarouselC"
 import { getUserUnlockedBadges } from "./api/users/index"
 import Scan from "./scan"
 
@@ -111,7 +111,7 @@ export default function Inicio(props) {
           </button>
         </div>
         <div className={[style.tamanioCarousel]}>
-          <CarouselComponent images={carrouselBadges} />
+          <CarouselC images={carrouselBadges} />
         </div>
         <button onClick={() => { setPageState(states.SCANNING) }}>
 

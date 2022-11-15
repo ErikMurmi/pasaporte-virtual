@@ -1,4 +1,4 @@
-import Carousel, { carousel } from "../components/carousel";
+import Carousel, { carousel } from "../components/CarouselC";
 import InsigniasFrame from "../components/InsigniasFrame";
 
 const imagenesCarousel = [
