@@ -35,10 +35,10 @@ export default function Badge(props) {
                 style={{ alignSelf: "center" }}
                 alt={"QR correspondiente a una facultad"} />
             <div className={style.boton} style={{ position: "revert", alignSelf: "center" }}>
-                <a className={style.botonEditar}
+                <Link className={style.botonEditar}
                     href="" >
                     Editar insignia
-                </a>
+                </Link>
             </div>
 
         </div>
