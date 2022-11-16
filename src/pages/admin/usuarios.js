@@ -19,18 +19,6 @@ XLSX.stream.set_readable(Readable);
 import * as cpexcel from 'xlsx/dist/cpexcel.full.mjs';
 XLSX.set_cptable(cpexcel);
 
-
-const tablaUsuarios = [
-  { estudiante: "Tito Jaramilloo", normales: 8, bonus: 2, id:1},
-  { estudiante: "Roberto Salazar", normales: 8, bonus: 2,  id:2},
-  { estudiante: "Fernando Jaramillo", normales: 8, bonus: 2, id:3 },
-  { estudiante: "Roberto Salazar", normales: 8, bonus: 2,  id:4},
-  { estudiante: "Tito Jaramilloo", normales: 8, bonus: 2,  id:5},
-  { estudiante: "Roberto Salazar", normales: 8, bonus: 2,  id:6},
-  { estudiante: "Tito Jaramilloo", normales: 8, bonus: 2,  id:7},
-  { estudiante: "Roberto Salazar", normales: 8, bonus: 2,  id:8},
-];
-
 export const Usuarios = () => {
 
   const [userList, setUserList] = useState([{
@@ -51,6 +39,7 @@ export const Usuarios = () => {
     let userL = await getAllUsers();
     // console.log(badgeL);
     setUserList(userL);
+    console.log(userList)
     // badgeList = badgeL;
   }
 
@@ -62,6 +51,16 @@ export const Usuarios = () => {
 
     XLSX.writeFile(wb, "estudiantes.xlsx")
   }
+
+  const colegios = {
+    "isaac": "Isaac Newton",
+    "william":"William Shakespeare",
+    "letort":"Letort",
+    "efrata":"Efrata",
+    "rudolf":"Rudolf Steiner",
+    "pedro":"Pedro Pablo Traversari"
+  }
+
   return (
     <>
       <Barra logged="true"/>
@@ -74,6 +73,8 @@ export const Usuarios = () => {
               <th>Estudiante</th>
               <th>Insignias Normales</th>
               <th>Insignias Bonus</th>
+              <th>Correo</th>
+              <th>Colegio</th>
             </tr>
           </thead>
           <tbody>
@@ -82,6 +83,8 @@ export const Usuarios = () => {
                 <th>{usuariosMap.name}</th>
                 <th>{usuariosMap.normales}</th>
                 <th>{usuariosMap.bonos}</th>
+                <th>{usuariosMap.email}</th>
+                <th>{colegios[usuariosMap.colegio]}</th>
               </tr>
             ))}
           </tbody>
