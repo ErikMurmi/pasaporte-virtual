@@ -2,6 +2,7 @@ import Barra from "../components/Barra"
 import style from "../styles/components.module.css"
 import Image from "next/image"
 import qr from "../images/qr.png"
+import { AiOutlineYoutube } from "react-icons/ai"
 import useUser from "../hooks/useUser"
 import { useEffect, useState } from "react"
 import { getAllBadges } from "./api/badges"
@@ -115,12 +116,18 @@ export default function Inicio(props) {
           </p>
         </div>
         {normalesCompleted && badgesState === 'normales' ?
-          <div style={{ textAlign: "center", border: "solid yellow", borderRadius: "10px", backgroundColor: "" }}>
-            <h3>¡FELICIDADES POR COMPLETAR LA AVENTURA!</h3>
-            <p>Ahora puedes conocer la universidad más de cerca</p>
-            <button className="button" style={{ backgroundColor: "#f26500", marginBottom: "3%", marginTop: "3%", borderColor: "#f26500" }}
-              onClick={() => { router.push('/video') }}>Ver video</button></div>
-          :null}
+        <div style={{ textAlign: "center", border: "solid #e5be10", borderRadius: "10px", backgroundColor: "#e5be10" }}>
+          <h3>¡FELICIDADES POR COMPLETAR LA AVENTURA!</h3>
+          <p>Ahora puedes conocer la universidad más de cerca</p>
+          <button className="button" onClick={() => { router.push('/video') }}
+          style={{ backgroundColor: "#f26500", marginBottom: "3%", marginTop: "3%", borderColor: "#f26500",
+                   display: "flex", justifyContent: "center", padding: "1%" }}>
+            <AiOutlineYoutube style={{width: "20%", height: "20%"}}/>
+          &nbsp;&nbsp;Ver video
+        </button>
+        </div>
+        :null}
+
         <div className="horizontal-container">
           <button onClick={loadNormalesBadges} style={badgesState === 'normales' ? { backgroundColor: "#8D2331", color: "white", fontWeight: "bold" } : null} className="bonus-type">
             Estaciones

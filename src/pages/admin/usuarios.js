@@ -64,6 +64,7 @@ export const Usuarios = () => {
   }
   return (
     <>
+      <Barra logged="true"/>
       <div className={styles.usuarios}>
         <h1>Lista de Usuarios</h1>
         <button onClick={exportTable}>Decargar lista (.xsl)</button>

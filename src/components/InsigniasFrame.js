@@ -16,7 +16,8 @@ export const InsigniasFrame = ({ insignias }) => {
                                style={insigniasMap.unlocked?null:{opacity:0.2}}/>
                     </div>
                     <div className={Styles.textoFila}>
-                        <p><b>{insigniasMap.name}</b></p>
+                        {insigniasMap.type === 'bono'?<p style={{fontWeight: "bold", color: "#f26500"}}>Bonus</p>:null}
+                        <p style={{fontWeight:"bold"}}>{insigniasMap.name}</p>
                         <p>Encuéntrala en {insigniasMap.location}</p>
                     </div>
                 </div>
