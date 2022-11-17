@@ -38,6 +38,9 @@ export default function Inicio(props) {
   }
 
   useEffect(() => {
+    if (user !== null && user !== undefined) {
+      getUserInfo()
+    }
     if (pageState === states.RELOAD) {
       getUnlockedBadges();
       setPageState(states.WAITING)
@@ -52,10 +55,10 @@ export default function Inicio(props) {
   }, [user])
 
   useEffect(() => {
-    // if (unlockedBadges.length > 0) {
-    //   loadNormalesBadges()
-    // }
-  }, [unlockedBadges])
+    if(info.normales===props.normalBadges.length){
+      setNormalesCompleted(true)
+    }
+  }, [info])
 
 
   useEffect(() => {
@@ -83,13 +86,6 @@ export default function Inicio(props) {
   function loadBonusBadges() {
     setBadgesState('bonus')
     comparadorListas(props.bonusBadges)
-    for (let i = 0; i < carrouselBadges.length; i++) {
-      if (carrouselBadges[i].unlocked === false) {
-        setNormalesCompleted(false)
-        return
-      }
-    }
-    setNormalesCompleted(true)
   }
 
   function loadNormalesBadges() {
