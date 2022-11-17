@@ -55,8 +55,11 @@ export default function Inicio(props) {
   }, [user])
 
   useEffect(() => {
-    if(info.normales===props.normalBadges.length){
-      setNormalesCompleted(true)
+    if(info!==undefined && info!== null){
+      console.log('has conseguido ',info.normales)
+      if(info.normales===props.normalBadges.length){
+        setNormalesCompleted(true)
+      }
     }
   }, [info])
 
