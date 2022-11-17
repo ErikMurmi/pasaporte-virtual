@@ -42,7 +42,13 @@ form {
 }
 
 label{
-  margin-bottom: -3px;;
+  margin-bottom: -3px;
+  display: flex;
+  flex-direction: row;
+}
+
+label div{
+  color: red;
 }
 
 input, select {

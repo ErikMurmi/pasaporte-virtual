@@ -99,7 +99,7 @@ export default function Inicio(props) {
 
   function loadNormalesFrame() {
     setBadgesState('info')
-    comparadorListas(props.availableBadges)
+    comparadorListas(props.normalBadges.concat(props.bonusBadges))
   }
 
   console.log(props)

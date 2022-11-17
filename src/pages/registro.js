@@ -69,17 +69,17 @@ export const Registro = () => {
             <h1>Registro</h1>
             <form onSubmit={signUp}>
 
-                <label htmlFor="nombre">Nombre y Apellido</label>
+                <label htmlFor="nombre">Nombre y Apellido <div>*</div></label>
                 <input id="nombre" type="text" name="name" onChange={handleChange}
-                    placeholder="Ingresa tu nombre"></input>
-                <label htmlFor="email">Email</label>
+                    placeholder="Tu nombre completo"></input>
+                <label htmlFor="email">Email <div>*</div></label>
                 <input id="email" name="email" onChange={handleChange}
-                    type="email" placeholder="Ingresa tu correo"></input>
-                <label htmlFor="contrasenia">Contraseña</label>
+                    type="email" placeholder="example@mail.com"></input>
+                <label htmlFor="contrasenia">Contraseña <div>*</div></label>
                 <input id="contrasenia" name="password" onChange={handleChange}
-                    type="password" placeholder="Ingresa tu contraseña" minLength={6}></input>
+                    type="password" placeholder="Mínimo 6 caracteres" minLength={6}></input>
              {/* {password.length<6 && <label>Contraseña debe tener mas de 6 caracteres</label>} */}
-                <label htmlFor="colegio">Mi colegio</label>
+                <label htmlFor="colegio">Mi colegio <div>*</div></label>
                 <select name="colegio" id="colegio" defaultValue={'default'}
                     onChange={handleChange}>
                     {colegios.map((colegio) => (
