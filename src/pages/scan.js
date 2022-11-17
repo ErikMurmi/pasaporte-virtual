@@ -80,9 +80,19 @@ function Scan(props) {
                 // setData(result?.text);
                 let word = result?.text;
                 let lastWord = word.split(' ').pop();
-                console.log("Palabra",word);
+                console.log("Palabra", word);
                 console.log("ultima", lastWord)
-                if (lastWord === "BONUs") {
+                if (word === "Acción por el clima BONUs") {
+                  setData("Acción por el clima Bonus");
+
+                }
+                else if (word === "Acción por el clima") {
+                  setData("Acción por el clima");
+
+                } else if (word === "Agua limpia y Saneamiento BONUs") {
+                  setData("Agua limpia y Saneamiento Bonus");
+
+                } else if (lastWord === "BONUs") {
 
                   var lastIndex = word.lastIndexOf(" ");
 
