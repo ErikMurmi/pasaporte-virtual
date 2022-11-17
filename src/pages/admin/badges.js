@@ -3,13 +3,14 @@ import style from "../../styles/admin.module.css"
 import React, { useState, Component } from "react";
 import { addBadge } from "../api/badges";
 import { storage } from "../../config/client";
-import { ref, getDownloadURL, uploadBytesResumable} from "firebase/storage";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import QRCode from "qrcode"
 import Image from "next/image";
 
 
 export default function CreateBadge(props) {
     const [nombre, setNombre] = useState("");
+    var nombreBonus = "";
     const [descripcion, setDescripcion] = useState("");
     const [tipo, setTipo] = useState(true);
     const [imagen, setImagen] = useState(null);
@@ -55,6 +56,7 @@ export default function CreateBadge(props) {
 
     // // };
     const uploadImage = () => {
+        nombreBonus = nombre + " BONUs";
         const imageRef = ref(storage, `images/badges/${nombre}`);
         const qrRef = ref(storage, `images/qrCodes/${nombre}QR`);
         const uploadTask = uploadBytesResumable(imageRef, imagen);
@@ -88,11 +90,22 @@ export default function CreateBadge(props) {
                     console.log('File available at', downloadURL);
                     setImagenRef(downloadURL);
 
-                    QRCode.toDataURL(nombre, (err, nombre) => {
-                        if (err) return console.error(err)
-                        console.log(url)
-                        setQrCode(nombre);
-                    })
+                    if (tipo == true) {
+                        QRCode.toDataURL(nombreBonus, (err, nombreBonus) => {
+                            if (err) return console.error(err)
+                            console.log(url)
+                            setQrCode(nombreBonus);
+                        })
+                    } 
+
+                    if (tipo == false) {
+                        QRCode.toDataURL(nombre, (err, nombre) => {
+                            if (err) return console.error(err)
+                            console.log(url)
+                            setQrCode(nombre);
+                        })
+                    }
+
                     // uploadString(qrRef, qrCode, 'data_url').then((snapshot) => {
                     //     console.log('Uploaded a data_url string!');
                     //   });

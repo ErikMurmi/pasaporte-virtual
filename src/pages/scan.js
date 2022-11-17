@@ -11,7 +11,7 @@ import { Button } from "@mui/material";
 import { async } from "@firebase/util";
 import { fontSize } from "@mui/system";
 import { states } from "./inicio";
-import {AiFillHome} from "react-icons/ai"
+import { AiFillHome } from "react-icons/ai"
 
 function Scan(props) {
   const [data, setData] = useState("No hay insignia");
@@ -26,7 +26,7 @@ function Scan(props) {
     addUnlockedBadge(user.uid, { "name": data });
   }
 
-  function checkBadgesUnlocked (badgeCheck) {
+  function checkBadgesUnlocked(badgeCheck) {
     console.log(badgeCheck);
     // props.unlockedBadges.forEach(element => {
     //   if (element.name === badgeCheck.name) {
@@ -34,26 +34,28 @@ function Scan(props) {
     //     return false;
     //   }
     // }
-    for(let i = 0; i<props.unlockedBadges.length;i++){
-      if(props.unlockedBadges[i].name === badgeCheck.name){
+    for (let i = 0; i < props.unlockedBadges.length; i++) {
+      if (props.unlockedBadges[i].name === badgeCheck.name) {
         alert("Ya desbloqueaste esta insignia");
         return false;
       }
     }
 
-    
+
     return true;
   }
 
   async function updateUser() {
     // addUnlockedBadge(user.uid, { "name": data })
     console.log('Data enviada:', data);
-    
-    let badge = await getBadge(data);
-    console.log(`badge obtenida${badge.name}`);
-    if (checkBadgesUnlocked(badge)) {
-      addUnlockedBadge(user.uid, badge);
-      props.onScanChange(states.RELOAD);
+    if (data !== "No hay insignia") {
+      let badge = await getBadge(data);
+      console.log(`badge obtenida${badge.name}`);
+      if (checkBadgesUnlocked(badge)) {
+        addUnlockedBadge(user.uid, badge);
+        props.onScanChange(states.RELOAD);
+      }
+
     }
     props.onScanChange(states.RELOAD);
 
@@ -75,8 +77,32 @@ function Scan(props) {
           <QrReader
             onResult={(result, error) => {
               if (!!result) {
-                setData(result?.text);
-                console.log(data)
+                // setData(result?.text);
+                let word = result?.text;
+                let lastWord = word.split(' ').pop();
+                console.log("Palabra", word);
+                console.log("ultima", lastWord)
+                if (word === "Acción por el clima BONUs") {
+                  setData("Acción por el clima Bonus");
+
+                }
+                else if (word === "Acción por el clima") {
+                  setData("Acción por el clima");
+
+                } else if (word === "Agua limpia y Saneamiento BONUs") {
+                  setData("Agua limpia y Saneamiento Bonus");
+
+                } else if (lastWord === "BONUs") {
+
+                  var lastIndex = word.lastIndexOf(" ");
+
+                  word = word.substring(0, lastIndex);
+                  console.log("borrada ", word);
+                  setData(word);
+                } else {
+                  setData(word);
+                }
+                // console.log(data);
               }
 
               if (!!error) {
@@ -102,14 +128,14 @@ function Scan(props) {
             color: "white",
             fontSize: "1rem",
             marginBottom: "10%",
-            marginTop:"10%"
+            marginTop: "10%"
 
             // }} onClick={() => {console.log('Data enviada:',data);addUnlockedBadge(user.uid, { "name": data });props.onScanChange(states.RELOAD); }}>DESBLOQUEAR {data}</Button>}
           }} onClick={updateUser}>DESBLOQUEAR {data}</Button>}
         </>}
-        <Button href="/inicio" onClick={() => {props.onScanChange(states.waiting)}} 
+        <Button href="/inicio" onClick={() => { props.onScanChange(states.waiting) }}
           style={{
-            width:"70%",
+            width: "70%",
             display: "flex",
             backgroundColor: "#8D2331",
             border: "2px solid #8D2331",
@@ -119,13 +145,13 @@ function Scan(props) {
             justifyContent: "center",
             margin: "2vh auto 0",
             fontSize: "2vh"
-        }}>
+          }}>
 
-          <div> 
+          <div>
             <AiFillHome style={{
-                width: "3vh",
-                height: "3vh"
-            }}/>
+              width: "3vh",
+              height: "3vh"
+            }} />
           </div>
           &nbsp;Volver al inicio
         </Button>
