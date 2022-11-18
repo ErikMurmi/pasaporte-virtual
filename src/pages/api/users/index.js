@@ -16,8 +16,10 @@ export const getAllUsers = async () => {
     var users = [];
     querySnapshot.docs.forEach(doc => {
 
+        if(doc.data().type=="client"){
 
-        users.push(doc.data());
+            users.push(doc.data());
+        }
 
 
     });
