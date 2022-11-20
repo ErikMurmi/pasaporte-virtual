@@ -127,8 +127,8 @@ function Scan(props) {
             padding: "0.5rem",
             color: "white",
             fontSize: "1rem",
-            marginBottom: "10%",
-            marginTop: "10%"
+            marginBottom: "6%",
+            marginTop: "-5%"
 
             // }} onClick={() => {console.log('Data enviada:',data);addUnlockedBadge(user.uid, { "name": data });props.onScanChange(states.RELOAD); }}>DESBLOQUEAR {data}</Button>}
           }} onClick={updateUser}>DESBLOQUEAR {data}</Button>}
@@ -143,7 +143,7 @@ function Scan(props) {
             borderRadius: "10px",
             alignItems: "center",
             justifyContent: "center",
-            margin: "2vh auto 0",
+            margin: "0 auto 0",
             fontSize: "2vh"
           }}>
 
