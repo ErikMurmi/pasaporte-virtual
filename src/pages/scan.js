@@ -120,11 +120,11 @@ function Scan(props) {
           {data != "No hay insignia" && <Button style={{
             backgroundColor: "#1ee064",
             borderRadius: "15px",
-            height: "7vh",
+            height: "auto",
             alignSelf: "center",
             maxWidth: "90%",
             textAlign: "center",
-            padding: "2rem",
+            padding: "0.5rem",
             color: "white",
             fontSize: "1rem",
             marginBottom: "10%",
