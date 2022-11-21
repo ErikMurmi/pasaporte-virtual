@@ -15,8 +15,8 @@ import { AiFillHome } from "react-icons/ai"
 
 function Scan(props) {
   const [data, setData] = useState("No hay insignia");
-  // const [badge, setBadge] = useState(null);
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
+  const [buttonVisible, setButtonVisible] = useState(true);
   const user = useUser()
   const router = useRouter()
 
@@ -47,6 +47,8 @@ function Scan(props) {
 
   async function updateUser() {
     // addUnlockedBadge(user.uid, { "name": data })
+    setVisible(false);
+    // await new Promise(r => setTimeout(r, 10000));
     console.log('Data enviada:', data);
     if (data !== "No hay insignia") {
       let badge = await getBadge(data);
@@ -117,7 +119,8 @@ function Scan(props) {
             style={{ width: "40%", height: "40%" }}
           />
 
-          {data != "No hay insignia" && <Button style={{
+       
+          {data != "No hay insignia" && buttonVisible && <Button style={{
             backgroundColor: "#1ee064",
             borderRadius: "15px",
             height: "auto",
@@ -133,6 +136,7 @@ function Scan(props) {
             // }} onClick={() => {console.log('Data enviada:',data);addUnlockedBadge(user.uid, { "name": data });props.onScanChange(states.RELOAD); }}>DESBLOQUEAR {data}</Button>}
           }} onClick={updateUser}>DESBLOQUEAR {data}</Button>}
         </>}
+       
         <Button href="/inicio" onClick={() => { props.onScanChange(states.waiting) }}
           style={{
             width: "70%",
@@ -156,6 +160,7 @@ function Scan(props) {
           &nbsp;Volver al inicio
         </Button>
       </div>
+      { !buttonVisible && <p>Cargando...</p>}
     </>
   );
 
