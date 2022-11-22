@@ -24,12 +24,12 @@ export default function AdminMenu() {
         <div className={styles.grid}>
           <Link href="/admin/badgesList" className={styles.card}>
             <h2>Insignias&rarr;</h2>
-            <p>Administrar lista de Estudiantes</p>
+            <p>Administrar lista de insignias</p>
           </Link>
 
           <Link href="/admin/usuarios" className={styles.card}>
             <h2> Estudiantes&rarr;</h2>
-            <p> Administrar lista de insignias</p>
+            <p> Administrar lista de estudiantes</p>
           </Link>
 
 

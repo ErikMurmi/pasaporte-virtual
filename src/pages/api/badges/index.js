@@ -10,19 +10,25 @@ const Collections = {
 export const addUnlockedBadge = async (uid, badge) => {
     console.log(`Datos desbloqueo, id: ${uid}, badgename:${badge.type}`)
     const docRef = doc(db, Collections.USUARIOS, uid, "unlockedBadges", badge.name)
+    var done = false;
     // doc(db,Collections.USUARIOS,uid,"bonos", )
-   
-    if (badge.type === "normal") {
-        updateDoc(doc(db, Collections.USUARIOS, uid), {
-            normales: increment(1)
-            
-        });
-    } else if(badge.type === "bono") {
-        updateDoc(doc(db, Collections.USUARIOS, uid), {
-            bonos: increment(1)
-        });
+    if (!done) {
+        if (badge.type === "normal") {
+            updateDoc(doc(db, Collections.USUARIOS, uid), {
+                normales: increment(1)
+
+            });
+            done = true;
+        } else if (badge.type === "bono") {
+            updateDoc(doc(db, Collections.USUARIOS, uid), {
+                bonos: increment(1)
+            });
+            done = true;
+        }
+        return await setDoc(docRef, { badge: doc(db, `badges/${badge.name}`), timestamp: serverTimestamp() })
+
     }
-    return await setDoc(docRef, { badge: doc(db, `badges/${badge.name}`), timestamp: serverTimestamp() })
+
 }
 
 export const getAllBadges = async () => {
@@ -38,13 +44,13 @@ export const getAllBadges = async () => {
     return badges
 }
 
-export async function getBadge (id){
+export async function getBadge(id) {
     console.log("id recogida", id)
-    const docRef = doc(db,Collections.BADGES,id)
+    const docRef = doc(db, Collections.BADGES, id)
     const docSnap = await getDoc(docRef)
-    if(docSnap.exists()){
+    if (docSnap.exists()) {
         return docSnap.data()
-    }else{
+    } else {
         console.log('No badge info found')
     }
 }

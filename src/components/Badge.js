@@ -18,15 +18,14 @@ export default function Badge(props) {
                     src={props.image}
                     width={150} 
                     alt="badge"
-                    height={150} 
-                    layout='fill'
-                    objectFit='contain' />
+                    height={250} 
+                    layout='fill'/>
+                    {/* // objectFit='contain'  */}
                 <h2 className={style.texto} style={{ marginLeft: "10%", textAlign: "left" }}>Nombre: {props.name}</h2>
                 <div style={{ marginLeft: "10%", textAlign: "left" }}>
-                    <p>Descripcion: {props.description}</p>
-                    <p>Ubicacion: {props.location}</p>
-
-                    <p>Tipo: {props.type}</p>
+                    <p><b>Descripcion:</b> {props.description}</p>
+                    <p><b>Ubicacion:</b> {props.location}</p>
+                    <p><b>Tipo:</b> {props.type}</p>
 
                 </div>
             </div>
@@ -35,12 +34,12 @@ export default function Badge(props) {
                 height={200}
                 style={{ alignSelf: "center" }}
                 alt={"QR correspondiente a una facultad"} />
-            <div className={style.boton} style={{ position: "revert", alignSelf: "center" }}>
+            {/* <div className={style.boton} style={{ position: "revert", alignSelf: "center" }}>
                 <Link className={style.botonEditar}
                     href="" >
                     Editar insignia
                 </Link>
-            </div>
+            </div> */}
 
         </div>
 

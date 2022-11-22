@@ -18,7 +18,7 @@ function Scan(props) {
   const [visible, setVisible] = useState(false);
   const [buttonVisible, setButtonVisible] = useState(true);
   const user = useUser()
-  const router = useRouter()
+  // const router = useRouter()
 
   function changeData(texto) {
     setData(texto);
@@ -27,13 +27,7 @@ function Scan(props) {
   }
 
   function checkBadgesUnlocked(badgeCheck) {
-    console.log(badgeCheck);
-    // props.unlockedBadges.forEach(element => {
-    //   if (element.name === badgeCheck.name) {
-    //     alert("Ya desbloqueaste esta insignia");
-    //     return false;
-    //   }
-    // }
+
     for (let i = 0; i < props.unlockedBadges.length; i++) {
       if (props.unlockedBadges[i].name === badgeCheck.name) {
         alert("Ya desbloqueaste esta insignia");
@@ -48,11 +42,13 @@ function Scan(props) {
   async function updateUser() {
     // addUnlockedBadge(user.uid, { "name": data })
     setVisible(false);
-    // await new Promise(r => setTimeout(r, 10000));
-    console.log('Data enviada:', data);
+    setButtonVisible(false);
+    await new Promise(r => setTimeout(r, 4000));
+
+    // console.log('Data enviada:', data);
     if (data !== "No hay insignia") {
       let badge = await getBadge(data);
-      console.log(`badge obtenida${badge.name}`);
+      // console.log(`badge obtenida${badge.name}`);
       if (checkBadgesUnlocked(badge)) {
         addUnlockedBadge(user.uid, badge);
         props.onScanChange(states.RELOAD);
@@ -69,7 +65,7 @@ function Scan(props) {
     }
   }, [user])
 
-  useEffect(() => { console.log('Data:', data) }, [data])
+  // useEffect(() => { console.log('Data:', data) }, [data])
 
   return (
     <>
@@ -82,8 +78,8 @@ function Scan(props) {
                 // setData(result?.text);
                 let word = result?.text;
                 let lastWord = word.split(' ').pop();
-                console.log("Palabra", word);
-                console.log("ultima", lastWord)
+                // console.log("Palabra", word);
+                // console.log("ultima", lastWord)
                 if (word === "Acción por el clima BONUs") {
                   setData("Acción por el clima Bonus");
 
@@ -99,7 +95,7 @@ function Scan(props) {
                   var lastIndex = word.lastIndexOf(" ");
 
                   word = word.substring(0, lastIndex);
-                  console.log("borrada ", word);
+                  // console.log("borrada ", word);
                   setData(word);
                 } else {
                   setData(word);
@@ -119,7 +115,7 @@ function Scan(props) {
             style={{ width: "40%", height: "40%" }}
           />
 
-       
+
           {data != "No hay insignia" && buttonVisible && <Button style={{
             backgroundColor: "#1ee064",
             borderRadius: "15px",
@@ -136,7 +132,7 @@ function Scan(props) {
             // }} onClick={() => {console.log('Data enviada:',data);addUnlockedBadge(user.uid, { "name": data });props.onScanChange(states.RELOAD); }}>DESBLOQUEAR {data}</Button>}
           }} onClick={updateUser}>DESBLOQUEAR {data}</Button>}
         </>}
-       
+        {!buttonVisible && <p>Cargando...</p>}
         <Button href="/inicio" onClick={() => { props.onScanChange(states.waiting) }}
           style={{
             width: "70%",
@@ -160,7 +156,7 @@ function Scan(props) {
           &nbsp;Volver al inicio
         </Button>
       </div>
-      { !buttonVisible && <p>Cargando...</p>}
+
     </>
   );
 

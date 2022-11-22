@@ -55,9 +55,9 @@ export default function Inicio(props) {
   }, [user])
 
   useEffect(() => {
-    if(info!==undefined && info!== null){
-      console.log('has conseguido ',info.normales)
-      if(info.normales===props.normalBadges.length){
+    if (info !== undefined && info !== null) {
+      // console.log('has conseguido ',info.normales)
+      if (info.normales === props.normalBadges.length) {
         setNormalesCompleted(true)
       }
     }
@@ -65,7 +65,7 @@ export default function Inicio(props) {
 
 
   useEffect(() => {
-    console.log(normalesCompleted)
+    // console.log(normalesCompleted)
   }, [normalesCompleted])
 
 
@@ -101,7 +101,7 @@ export default function Inicio(props) {
     comparadorListas(props.normalBadges.concat(props.bonusBadges))
   }
 
-  console.log(props)
+  // console.log(props)
   return (<>
     <Barra logged="true" ></Barra>
     {pageState === states.WAITING &&
@@ -115,17 +115,19 @@ export default function Inicio(props) {
           </p>
         </div>
         {normalesCompleted && badgesState === 'normales' ?
-        <div style={{ textAlign: "center", border: "solid #e5be10", borderRadius: "10px", backgroundColor: "#e5be10" }}>
-          <h3>¡FELICIDADES POR COMPLETAR LA AVENTURA!</h3>
-          <p>Ahora puedes conocer la universidad más de cerca</p>
-          <button className="button" onClick={() => { router.push('/video') }}
-          style={{ backgroundColor: "#f26500", marginBottom: "3%", marginTop: "3%", borderColor: "#f26500",
-                   display: "flex", justifyContent: "center", padding: "1%" }}>
-            <AiOutlineYoutube style={{width: "20%", height: "20%"}}/>
-          &nbsp;&nbsp;Ver video
-        </button>
-        </div>
-        :null}
+          <div style={{ textAlign: "center", border: "solid #e5be10", borderRadius: "10px", backgroundColor: "#e5be10" }}>
+            <h3>¡FELICIDADES POR COMPLETAR LA AVENTURA!</h3>
+            <p>Ahora puedes conocer la universidad más de cerca</p>
+            <button className="button" onClick={() => { router.push('/video') }}
+              style={{
+                backgroundColor: "#f26500", marginBottom: "3%", marginTop: "3%", borderColor: "#f26500",
+                display: "flex", justifyContent: "center", padding: "1%"
+              }}>
+              <AiOutlineYoutube style={{ width: "20%", height: "20%" }} />
+              &nbsp;&nbsp;Ver video
+            </button>
+          </div>
+          : null}
 
         <div className="horizontal-container">
           <button onClick={loadNormalesBadges} style={badgesState === 'normales' ? { backgroundColor: "#8D2331", color: "white", fontWeight: "bold" } : null} className="bonus-type">
@@ -196,8 +198,8 @@ export const getServerSideProps = async () => {
       bonusBadges.push(badge)
     }
   });
-  console.log('Normal badges: ', normalBadges)
-  console.log('Bonus badges: ', bonusBadges)
+  // console.log('Normal badges: ', normalBadges)
+  // console.log('Bonus badges: ', bonusBadges)
   return {
     props: {
       normalBadges: normalBadges,
