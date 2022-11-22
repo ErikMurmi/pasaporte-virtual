@@ -41,9 +41,10 @@ function Scan(props) {
 
   async function updateUser() {
     // addUnlockedBadge(user.uid, { "name": data })
-    setVisible(false);
+    // setVisible(false);
     setButtonVisible(false);
-    await new Promise(r => setTimeout(r, 4000));
+   //Funcion para retrasar el funcionamiento de la app 
+    // await new Promise(r => setTimeout(r, 4000));
 
     // console.log('Data enviada:', data);
     if (data !== "No hay insignia") {
