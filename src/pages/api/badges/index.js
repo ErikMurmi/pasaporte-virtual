@@ -18,14 +18,16 @@ export const addUnlockedBadge = async (uid, badge) => {
                 normales: increment(1)
 
             });
+            return await setDoc(docRef, { badge: doc(db, `badges/${badge.name}`), timestamp: serverTimestamp() })
             done = true;
         } else if (badge.type === "bono") {
             updateDoc(doc(db, Collections.USUARIOS, uid), {
                 bonos: increment(1)
             });
+            return await setDoc(docRef, { badge: doc(db, `badges/${badge.name}`), timestamp: serverTimestamp() })
             done = true;
         }
-        return await setDoc(docRef, { badge: doc(db, `badges/${badge.name}`), timestamp: serverTimestamp() })
+        
 
     }
 
