@@ -1,5 +1,5 @@
 import { keys } from "@mui/system";
-import { collection, getDocs, addDoc, doc, getDoc, setDoc, QuerySnapshot, query, orderBy } from "firebase/firestore";
+import { collection, getDocs, addDoc, doc, getDoc, setDoc, QuerySnapshot, query, orderBy, updateDoc } from "firebase/firestore";
 import { db } from "../../../config/client";
 
 const Collections = {
@@ -10,13 +10,13 @@ const Collections = {
 export const getAllUsers = async () => {
     const querySnapshot = await getDocs(collection(db, Collections.USERS));
     const coleccion = collection(db, 'users');
-    console.log(coleccion)
+    // console.log(coleccion)
  
 
     var users = [];
     querySnapshot.docs.forEach(doc => {
 
-        if(doc.data().type=="client"){
+        if(doc.data().type=="client" && doc.data().enable == true){
 
             users.push(doc.data());
         }
@@ -26,14 +26,33 @@ export const getAllUsers = async () => {
     let usersBonus = users.sort(
         (p1, p2) => (p1.bonos < p2.bonos) ? 1 : (p1.bonos > p2.bonos) ? -1 : 0);
 
-    console.log(usersBonus);
+    // console.log(usersBonus);
 
     let usersNormales = users.sort(
         (p1, p2) => (p1.normales < p2.normales) ? 1 : (p1.normales > p2.normales) ? -1 : 0);
 
-    console.log(usersNormales);
+    // console.log(usersNormales);
 
     return users;
+}
+
+export const updateAllUsers = async () => {
+    const querySnapshot = await getDocs(collection(db, Collections.USERS));
+    // const coleccion = collection(db, 'users');
+    // console.log(coleccion)
+    querySnapshot.docs.forEach(doc => {
+        if(doc.data().normales>0){
+             updateDoc(doc.ref, {
+                enable: false
+              });
+        } else {
+            updateDoc(doc.ref, {
+                enable: true
+              });
+        }
+// console.log(doc.ref)
+    console.log("completado")
+    });
 }
 
 

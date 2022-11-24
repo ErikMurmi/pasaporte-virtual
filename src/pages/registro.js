@@ -26,7 +26,8 @@ export const Registro = () => {
         email: '',
         type: 'client',
         bonos: 0,
-        normales:0
+        normales:0,
+        enable: true,
     })
 
     useEffect(() => {

@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 // import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 // import { read, writeFileXLSX, XLSX } from "xlsx";
 import * as XLSX from 'xlsx/xlsx.mjs';
+import { updateAllUsers } from "../api/users";
 
 /* load 'fs' for readFile and writeFile support */
 // import * as fs from 'fs';
@@ -17,6 +18,7 @@ XLSX.stream.set_readable(Readable);
 
 /* load the codepage support library for extended support with older formats  */
 import * as cpexcel from 'xlsx/dist/cpexcel.full.mjs';
+import { async } from "@firebase/util";
 XLSX.set_cptable(cpexcel);
 
 export const Usuarios = () => {
@@ -39,8 +41,12 @@ export const Usuarios = () => {
     let userL = await getAllUsers();
     // console.log(badgeL);
     setUserList(userL);
-    console.log(userList)
+    // console.log(userList)
     // badgeList = badgeL;
+  }
+
+  const updateUsers = async() => {
+    await updateAllUsers();
   }
 
   const exportTable =()=>{
@@ -64,6 +70,7 @@ export const Usuarios = () => {
   return (
     <>
       <Barra logged="true"/>
+      {/* <button onClick={async ()=>{await updateAllUsers()}}> Actualizar</button> */}
       <div className={styles.usuarios}>
         <h1>Lista de Usuarios</h1>
         <button onClick={exportTable}>Decargar lista (.xsl)</button>
