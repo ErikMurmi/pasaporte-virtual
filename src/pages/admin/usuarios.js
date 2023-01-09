@@ -1,7 +1,7 @@
 import { ClassNames } from "@emotion/react";
 import styles from "../../styles/components.module.css"
 import Barra from "../../components/Barra.js"
-import { getAllUsers } from "../api/users";
+import { getAllUsers } from "controllers/usersControllers";
 import { useState, useEffect } from "react";
 // import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 // import { read, writeFileXLSX, XLSX } from "xlsx";
